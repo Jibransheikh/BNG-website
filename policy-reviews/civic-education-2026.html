@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Education Policy 2026 | Bonga Na Gava</title>
+    <meta name="description" content="Review of the Nairobi City County Civic Education, Citizen Engagement and Public Participation Policy 2026. Submit your views on how the county should engage with residents.">
+    <link rel="canonical" href="https://bonganagava.com/policy-reviews/civic-education-2026">
+    <meta property="og:title" content="Civic Education Policy 2026 | Bonga Na Gava">
+    <meta property="og:description" content="Review of the Nairobi City County Civic Education, Citizen Engagement and Public Participation Policy 2026.">
+    <meta property="og:image" content="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <meta property="og:url" content="https://bonganagava.com/policy-reviews/civic-education-2026">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bonga Na Gava">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Civic Education Policy 2026 | Bonga Na Gava">
+    <meta name="twitter:description" content="Review of the Nairobi City County Civic Education Policy 2026.">
+    <meta name="twitter:image" content="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <link rel="icon" type="image/jpeg" href="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brandGreen: '#0f5132', brandDark: '#111827', brandAccent: '#fbbf24', brandRed: '#dc2626' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-minimal-grid { background-size: 60px 60px; background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px); }
+        .visibility-hidden { visibility: hidden; }
+        html.dark { filter: brightness(0.88) saturate(0.9); }
+        html.dark img { filter: brightness(1.1); }
+
+        .pr-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1.5rem; padding: 2.5rem; max-width: 1000px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+        .pr-quote-box { background: #f1f5f9; border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #0f5132; }
+        .pr-quote-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+        .pr-quote-list li { font-size: 1rem; font-weight: 600; font-style: italic; color: #374151; padding-left: 1.5rem; position: relative; }
+        .pr-quote-list li::before { content: "\201C"; position: absolute; left: 0; top: -2px; color: #0f5132; font-size: 1.2rem; font-weight: 800; }
+
+        .pr-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 2px dashed rgba(0,0,0,0.08); align-items: start; }
+        .pr-images-col { display: flex; flex-direction: column; gap: 1rem; position: relative; perspective: 1000px; }
+        .pr-mobile-indicator { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #111827; color: #fff; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; z-index: 20; box-shadow: 0 4px 10px rgba(0,0,0,0.2); animation: prPulse 2s infinite; pointer-events: none; }
+        @keyframes prPulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } }
+        @media (min-width: 768px) { .pr-mobile-indicator { display: none; } }
+
+        .pr-img-wrap { background: white; padding: 8px 8px 16px 8px; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); cursor: pointer; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .pr-img-wrap img { width: 100%; border-radius: 0.5rem; pointer-events: none; }
+        .pr-img-caption { font-size: 0.85rem; font-weight: 700; color: #111827; margin-top: 0.75rem; }
+        .pr-img-wrap:hover, .pr-img-wrap.active { transform: scale(1.03); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .pr-img-wrap:hover .pr-img-caption, .pr-img-wrap.active .pr-img-caption { color: #0f5132; }
+
+        .pr-lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.95); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; }
+        .pr-lightbox.show { opacity: 1; pointer-events: auto; }
+        .pr-lightbox img { max-width: 100%; max-height: 80vh; border-radius: 0.75rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .pr-lightbox.show img { transform: scale(1); }
+        .pr-lightbox-caption { color: white; font-size: 1.1rem; font-weight: 700; margin-top: 0.75rem; }
+        .pr-lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
+        .pr-lightbox-close:hover { opacity: 1; }
+
+        .pr-form { display: flex; flex-direction: column; gap: 1rem; background: #f8fafc; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb; }
+        .pr-form h3 { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.25rem 0; }
+        .pr-form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+        .pr-form label { font-size: 0.85rem; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pr-form input, .pr-form textarea { width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid #d1d5db; background: white; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #111827; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box; }
+        .pr-form input:focus, .pr-form textarea:focus { outline: none; border-color: #0f5132; box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.15); }
+        .pr-btn { background: #0f5132; color: #fff; font-weight: 800; padding: 0.875rem 2rem; border-radius: 0.5rem; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pr-btn:hover:not(:disabled) { background: #065f46; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 81, 50, 0.3); }
+        .pr-btn:disabled { background: #9ca3af; cursor: not-allowed; }
+        .pr-success { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #f0fdf4; padding: 2rem; border-radius: 1rem; border: 1px solid #bbf7d0; min-height: 300px; }
+        .pr-success.show { display: flex; animation: prPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        @keyframes prPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .pr-card { padding: 1.25rem; border-radius: 1.25rem; }
+            .pr-split { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    
+        .policy-dropdown .policy-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .policy-dropdown:hover .policy-mega, .policy-dropdown:focus-within .policy-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .policy-dropdown:hover > a { color: #0f5132; }
+        .resources-dropdown .resources-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .resources-dropdown:hover .resources-mega, .resources-dropdown:focus-within .resources-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .resources-dropdown:hover > a { color: #dc2626; }
+        .blog-dropdown .blog-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .blog-dropdown:hover .blog-mega, .blog-dropdown:focus-within .blog-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .blog-dropdown:hover > a { color: #0f5132; }
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-brandGreen selection:text-white overflow-x-hidden">
+<script>
+    (function() {
+        var d = localStorage.getItem('bng-theme');
+        if (d === 'dark') document.documentElement.classList.add('dark');
+    })();
+</script>
+
+    <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="../index.html" class="flex-shrink-0"><img src="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg" alt="Bonga Na Gava" class="h-10 md:h-12 w-auto object-contain"></a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="../index.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Home</a>
+<div class="relative policy-dropdown">
+                        <a href="index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="policy-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="civic-education-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy &middot; 2026</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Civic Education, Citizen Engagement &amp; Public Participation</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="forest-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Amendment Bill &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Forest Conservation &amp; Management (Amendment) Bill, 2025</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="wildlife-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Wildlife Conservation &amp; Management Bill, 2025</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="public-participation-bill-2024.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Kenya Public Participation Bill, 2024</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+<div class="relative resources-dropdown">
+                        <a href="../resources/law-making-process-guide.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Resources
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="resources-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="../resources/law-making-process-guide.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law-Making Process</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../resources/environmental-impact-assessment.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; EIA</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Environmental Impact Assessment (EIA)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../campaigns.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Campaigns</a>
+                    <div class="relative blog-dropdown">
+                        <a href="../blog.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider flex items-center gap-1">Blog
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="blog-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="../blogs/civic-engagement-nairobi-county-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Community Update &middot; 2026</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">You Know How We're Always Saying the County Doesn't Listen?</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../blogs/forests-at-a-crossroads-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy Analysis &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Forests at a Crossroads: Power, Institutions &amp; Forests</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../blogs/exploring-the-public-participation-bill-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy Analysis &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Exploring the Public Participation Bill 2025</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../contact.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Contact</a>
+                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors">Join Us</a>
+                </nav>
+                <button id="themeToggle" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors" aria-label="Toggle dark mode">
+    <svg class="w-5 h-5 text-brandDark dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+    <svg class="w-5 h-5 text-brandDark hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+</button>
+                <button id="mobileMenuBtn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Open menu">
+                    <span class="block w-6 h-0.5 bg-brandDark"></span>
+                    <span class="block w-6 h-0.5 bg-brandDark"></span>
+                    <span class="block w-4 h-0.5 bg-brandDark ml-auto"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50">
+        <div id="mobileMenuOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-6 overflow-y-auto">
+            <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+                <nav id="mobileNav" class="space-y-1 max-h-[80vh] overflow-y-auto">
+<div id="mnav-top">
+<a href="../index.html" class="block text-sm font-bold text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Home</a>
+<div class="flex items-center justify-between"><a href="index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<div class="flex items-center justify-between"><a href="../resources/law-making-process-guide.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Resources</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-resources" aria-label="Toggle Resources menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<a href="../campaigns.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Campaigns</a>
+<div class="flex items-center justify-between"><a href="../blog.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Blog</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-blog" aria-label="Toggle Blog menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<a href="../contact.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Contact</a>
+<a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="block bg-brandDark text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors text-center mt-4">Join Us</a>
+</div>
+<div id="macc-policy" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Policy Reviews</h4><div class="space-y-1"><a href="civic-education-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Education &middot; 2026</a>
+<a href="forest-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forest Conservation (Amendment) Bill &middot; 2025</a>
+<a href="wildlife-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Wildlife Conservation Bill &middot; 2025</a>
+<a href="public-participation-bill-2024.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2024</a></div></div>
+<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="../resources/law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law-Making Process Guide</a>
+<a href="../resources/environmental-impact-assessment.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">EIA Guide</a></div></div>
+<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="../blogs/civic-engagement-nairobi-county-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Engagement &middot; 2026</a>
+<a href="../blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
+<a href="../blogs/exploring-the-public-participation-bill-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2025</a></div></div>
+                </nav>
+            </div>
+        </div>
+    </div></header>
+
+    <section class="relative pt-20 md:pt-24 pb-8 bg-minimal-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-brandGreen transition-colors uppercase tracking-wider mb-6 header-anim visibility-hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                All Policy Reviews
+            </a>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 text-brandGreen font-bold tracking-widest text-[10px] rounded-full mb-6 border border-gray-100 uppercase header-anim visibility-hidden">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
+                Policy
+            </div>
+            <h1 class="header-anim visibility-hidden text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tighter leading-[1.1] text-brandDark uppercase">Civic Education, Citizen Engagement &amp; Public Participation Policy 2026</h1>
+            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-3xl">Nairobi City County is writing a new rulebook on how they engage with residents. This is your chance to literally write the rules.</p>
+        </div>
+    </section>
+
+    <section class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pr-card content-anim visibility-hidden">
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">Hey Bonga Na Gava community,</p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">You know how we're always saying the county doesn't listen to us? Well, here's the deal: The <strong>Nairobi City County Government</strong> is actually writing a new rulebook on how they should engage with residents (officially called the <strong>Civic Education, Citizen Engagement and Public Participation Policy 2026</strong>). And the best part? They are actively asking for our input to build it.</p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">This isn't just another boring government document to ignore. For us as young people, this is a rare chance to <strong class="text-brandGreen">literally write the rules</strong> on how we want to be heard, how public forums should run, and how the county communicates with us moving forward.</p>
+
+                <div class="pr-quote-box">
+                    <h4 class="font-bold text-brandDark mb-3">Honestly, if you've ever found yourself saying:</h4>
+                    <ul class="pr-quote-list">
+                        <li>"They never consult the youth."</li>
+                        <li>"Public participation is just a PR stunt."</li>
+                        <li>"The government really needs to engage us better."</li>
+                    </ul>
+                </div>
+
+                <p class="text-lg text-gray-700 leading-relaxed text-center font-bold mb-0">This is our chance to define exactly what "better" looks like.</p>
+
+                <div class="pr-split" id="submit-views">
+                    <div class="pr-images-col">
+                        <div class="pr-mobile-indicator">Tap image to view</div>
+                        <div class="pr-img-wrap" onclick="openLightbox(this)">
+                            <img src="https://bonganagava.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-16-at-10.49.23-PM.jpeg" alt="Bonga Na Gava Movement">
+                            <span class="pr-img-caption">The Movement</span>
+                        </div>
+                        <div class="pr-img-wrap" onclick="openLightbox(this)">
+                            <img src="https://bonganagava.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-16-at-10.48.56-PM.jpeg" alt="Official Nairobi County Letter">
+                            <span class="pr-img-caption">Official Letter</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="pr-form">
+                            <h3>Get SMS Alerts &amp; Reply With Your Views</h3>
+                            <p class="text-gray-500 text-sm mb-6">Opt in and we&rsquo;ll text you when new policies or bills drop &mdash; then reply with your opinions straight from your phone. No forms, no spam.</p>
+                            <a href="../index.html#sms-optin" class="pr-btn" style="text-decoration:none;">Opt In via SMS</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <div id="bng-lightbox" class="pr-lightbox">
+        <div class="pr-lightbox-close" id="lightbox-close">&times;</div>
+        <img id="lightbox-img" src="" alt="Expanded Image">
+        <div class="pr-lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <footer class="bg-brandDark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <img src="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg" alt="Bonga Na Gava" class="h-16 w-auto object-contain mb-4" style="filter: brightness(0) invert(1);">
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">A SUSO Participation Tool facilitating youth and communities to formally present their views to the government on proposed policies and regulations.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Quick Links</h4>
+                    <nav class="space-y-3">
+                        <a href="../index.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Home</a>
+                        <a href="index.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Policy Reviews</a>
+                        <a href="../resources/law-making-process-guide.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Resources</a>
+                        <a href="../resources/environmental-impact-assessment.html" class="block text-sm text-gray-400 hover:text-brandRed transition-colors">Environmental Impact Assessment</a>
+                        <a href="../campaigns.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Campaigns</a>
+                        <a href="../privacy.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Privacy Policy</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="mailto:submissions.BNG@suso.world" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">submissions.BNG@suso.world</a>
+                        <a href="mailto:bonganagava@suso.world" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">bonganagava@suso.world</a>
+                        <a href="tel:+254700145257" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">+254 700 145257</a>
+                        <a href="../contact.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Contact Page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">&copy; 2026 World Leaders of Today. All rights reserved.</p>
+                <div class="flex gap-6 text-xs text-gray-500 font-medium uppercase tracking-wider">
+                    <a href="../privacy.html" class="hover:text-brandAccent transition-colors">Privacy Policy</a>
+                    <a href="../contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+            <div class="text-center mt-8">
+                <a href="../submissions.html" class="text-[10px] text-gray-800 hover:text-gray-500 transition-colors" style="opacity:0.15;" title="Submissions">•</a>
+            </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-brandDark text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brandGreen" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+    <script>
+                        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavTop = document.getElementById('mnav-top');
+        function resetMobileNav() {
+            if (mobileNavTop) mobileNavTop.classList.remove('hidden');
+            document.querySelectorAll('.mobile-nav-panel').forEach(function(p){ p.classList.add('hidden'); });
+            document.querySelectorAll('.mobile-acc-btn').forEach(function(b){
+                b.setAttribute('aria-expanded','false');
+                var s = b.querySelector('svg'); if (s) s.style.transform = '';
+            });
+        }
+        function closeMobileMenu() { if (mobileMenu) mobileMenu.classList.add('hidden'); }
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function(){
+                mobileMenu.classList.toggle('hidden');
+                if (!mobileMenu.classList.contains('hidden')) resetMobileNav();
+            });
+            mobileMenu.querySelectorAll('a').forEach(function(link){ link.addEventListener('click', closeMobileMenu); });
+            var ov = document.getElementById('mobileMenuOverlay');
+            if (ov) ov.addEventListener('click', closeMobileMenu);
+            document.querySelectorAll('.mobile-acc-btn').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var pid = btn.getAttribute('aria-controls');
+                    resetMobileNav();
+                    if (mobileNavTop) mobileNavTop.classList.add('hidden');
+                    if (pid) { var panel = document.getElementById(pid); if (panel) panel.classList.remove('hidden'); }
+                    btn.setAttribute('aria-expanded','true');
+                });
+            });
+            document.querySelectorAll('.mnav-back').forEach(function(b){ b.addEventListener('click', resetMobileNav); });
+        }
+        const mainNav = document.getElementById('mainNav');
+        document.querySelectorAll('.visibility-hidden').forEach(function(el){ el.classList.remove('visibility-hidden'); });
+        if (mainNav) { window.addEventListener('scroll', function() { mainNav.classList.toggle('shadow-sm', window.scrollY > 10); }); }
+
+        gsap.from(".header-anim", { y: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out" });
+        gsap.utils.toArray('.content-anim').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power2.out" });
+        });
+
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            const caption = el.querySelector('.pr-img-caption').innerText;
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('bng-lightbox').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('bng-lightbox').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('bng-lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('bng-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+}
+
+// Back to Top
+const backToTop = document.getElementById('backToTop');
+if (backToTop) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            backToTop.classList.add('opacity-100');
+        } else {
+            backToTop.classList.add('opacity-0', 'pointer-events-none');
+            backToTop.classList.remove('opacity-100');
+        }
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+    </script>
+</body>
+</html>

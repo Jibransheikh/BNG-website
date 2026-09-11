@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Impact Assessment (EIA) | Bonga Na Gava</title>
+    <meta name="description" content="A complete overview of the Environmental Impact Assessment (EIA) process in Kenya — the legal framework, triggers, the 4 main stages, public participation requirements, and how to evaluate an EIA report.">
+    <link rel="canonical" href="https://bonganagava.com/resources/environmental-impact-assessment">
+    <meta property="og:title" content="Environmental Impact Assessment (EIA) | Bonga Na Gava">
+    <meta property="og:description" content="Complete overview of the EIA process in Kenya — legal framework, triggers, stages, and public participation.">
+    <meta property="og:image" content="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <meta property="og:url" content="https://bonganagava.com/resources/environmental-impact-assessment">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bonga Na Gava">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Environmental Impact Assessment (EIA) | Bonga Na Gava">
+    <meta name="twitter:description" content="Complete overview of the EIA process in Kenya — legal framework, triggers, stages, and public participation.">
+    <meta name="twitter:image" content="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <link rel="icon" type="image/jpeg" href="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brandGreen: '#0f5132', brandDark: '#111827', brandAccent: '#fbbf24', brandRed: '#dc2626' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-minimal-grid { background-size: 60px 60px; background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px); }
+        .visibility-hidden { visibility: hidden; }
+        html.dark { filter: brightness(0.88) saturate(0.9); }
+        html.dark img { filter: brightness(1.1); }
+
+        .policy-dropdown .policy-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .policy-dropdown:hover .policy-mega, .policy-dropdown:focus-within .policy-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .policy-dropdown:hover > a { color: #0f5132; }
+        .resources-dropdown .resources-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .resources-dropdown:hover .resources-mega, .resources-dropdown:focus-within .resources-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .resources-dropdown:hover > a { color: #dc2626; }
+        .blog-dropdown .blog-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .blog-dropdown:hover .blog-mega, .blog-dropdown:focus-within .blog-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .blog-dropdown:hover > a { color: #0f5132; }
+
+
+        .pr-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+        .pr-section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #0f5132; margin-bottom: 0.75rem; }
+        .rsc-section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #dc2626; margin-bottom: 0.75rem; }
+        .pr-divider { border: none; border-top: 2px dashed rgba(0,0,0,0.08); margin: 2.5rem 0; }
+
+        .marker-red { background-image: linear-gradient(120deg, rgba(220,38,38,0.16) 0%, rgba(220,38,38,0.16) 100%); background-repeat: no-repeat; background-size: 100% 0.45em; background-position: 0 88%; padding: 0 0.15em; }
+
+        @media (max-width: 768px) {
+            .pr-card { padding: 1.25rem; border-radius: 1.25rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-brandRed selection:text-white overflow-x-hidden">
+<script>
+    (function() {
+        var d = localStorage.getItem('bng-theme');
+        if (d === 'dark') document.documentElement.classList.add('dark');
+    })();
+</script>
+
+    <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="../index.html" class="flex-shrink-0"><img src="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg" alt="Bonga Na Gava" class="h-10 md:h-12 w-auto object-contain"></a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="../index.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Home</a>
+<div class="relative policy-dropdown">
+                        <a href="../policy-reviews/index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="policy-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="../policy-reviews/civic-education-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy &middot; 2026</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Civic Education, Citizen Engagement &amp; Public Participation</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../policy-reviews/forest-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Amendment Bill &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Forest Conservation &amp; Management (Amendment) Bill, 2025</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../policy-reviews/wildlife-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Wildlife Conservation &amp; Management Bill, 2025</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../policy-reviews/public-participation-bill-2024.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Kenya Public Participation Bill, 2024</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+<div class="relative resources-dropdown">
+                        <a href="law-making-process-guide.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Resources
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="resources-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="law-making-process-guide.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law-Making Process</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="environmental-impact-assessment.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; EIA</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Environmental Impact Assessment (EIA)</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../campaigns.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Campaigns</a>
+                    <div class="relative blog-dropdown">
+                        <a href="../blog.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider flex items-center gap-1">Blog
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </a>
+                        <div class="blog-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
+<a href="../blogs/civic-engagement-nairobi-county-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Community Update &middot; 2026</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">You Know How We're Always Saying the County Doesn't Listen?</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../blogs/forests-at-a-crossroads-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy Analysis &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Forests at a Crossroads: Power, Institutions &amp; Forests</span>
+                                    </div>
+                                </a>
+                                <div class="h-px bg-gray-100"></div>
+<a href="../blogs/exploring-the-public-participation-bill-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
+                                    <div>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Policy Analysis &middot; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Exploring the Public Participation Bill 2025</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../contact.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Contact</a>
+                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors">Join Us</a>
+                </nav>
+                <button id="themeToggle" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors" aria-label="Toggle dark mode">
+                    <svg class="w-5 h-5 text-brandDark dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    <svg class="w-5 h-5 text-brandDark hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                </button>
+                <button id="mobileMenuBtn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Open menu">
+                    <span class="block w-6 h-0.5 bg-brandDark"></span>
+                    <span class="block w-6 h-0.5 bg-brandDark"></span>
+                    <span class="block w-4 h-0.5 bg-brandDark ml-auto"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-50">
+        <div id="mobileMenuOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-6 overflow-y-auto">
+            <div class="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+                <nav id="mobileNav" class="space-y-1 max-h-[80vh] overflow-y-auto">
+<div id="mnav-top">
+<a href="../index.html" class="block text-sm font-bold text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Home</a>
+<div class="flex items-center justify-between"><a href="../policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<div class="flex items-center justify-between"><a href="law-making-process-guide.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Resources</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-resources" aria-label="Toggle Resources menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<a href="../campaigns.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Campaigns</a>
+<div class="flex items-center justify-between"><a href="../blog.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Blog</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-blog" aria-label="Toggle Blog menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<a href="../contact.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Contact</a>
+<a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="block bg-brandDark text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors text-center mt-4">Join Us</a>
+</div>
+<div id="macc-policy" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Policy Reviews</h4><div class="space-y-1"><a href="../policy-reviews/civic-education-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Education &middot; 2026</a>
+<a href="../policy-reviews/forest-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forest Conservation (Amendment) Bill &middot; 2025</a>
+<a href="../policy-reviews/wildlife-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Wildlife Conservation Bill &middot; 2025</a>
+<a href="../policy-reviews/public-participation-bill-2024.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2024</a></div></div>
+<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law-Making Process Guide</a>
+<a href="environmental-impact-assessment.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">EIA Guide</a></div></div>
+<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="../blogs/civic-engagement-nairobi-county-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Engagement &middot; 2026</a>
+<a href="../blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
+<a href="../blogs/exploring-the-public-participation-bill-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2025</a></div></div>
+                </nav>
+            </div>
+        </div>
+    </div></header>
+
+    <!-- Hero -->
+    <section class="relative pt-20 md:pt-24 pb-8 bg-minimal-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="../index.html" class="inline-flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-brandRed transition-colors uppercase tracking-wider mb-6 header-anim visibility-hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                Home
+            </a>
+            <div class="inline-flex items-center gap-2 px-3 py-1 font-bold tracking-widest text-[10px] rounded-full mb-6 border border-red-100 uppercase header-anim visibility-hidden" style="background: #fef2f2; color: #b91c1c;">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse"></span>
+                Resource Guide &middot; Environmental Management &middot; Kenya
+            </div>
+            <h1 class="header-anim visibility-hidden text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tighter leading-[1.1] text-brandDark uppercase">Environmental Impact Assessment (EIA)</h1>
+            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-3xl mb-8">A complete overview of the EIA process in Kenya &mdash; the legal framework, what triggers an assessment, the four main stages, and how <span class="marker-red font-semibold text-brandDark">public participation</span> fits in.</p>
+            <div class="header-anim visibility-hidden flex flex-wrap gap-4">
+                <a href="#stages" class="inline-flex items-center gap-3 bg-brandRed text-white px-6 py-4 rounded-md font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-colors shadow-lg shadow-red-200">
+                    EIA Triggers &amp; Stages
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </a>
+                <a href="#public-participation" class="inline-flex items-center gap-3 bg-white text-brandDark px-6 py-4 rounded-md font-bold text-sm uppercase tracking-widest border border-gray-200 hover:border-brandRed hover:text-brandRed transition-colors">
+                    Public Participation in EIA
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is an EIA -->
+    <section class="py-12 lg:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pr-card content-anim visibility-hidden">
+                <p class="rsc-section-label">What Is an EIA?</p>
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark mb-4">An Essential Environmental Management Tool</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-8">An <strong class="text-brandDark">Environmental Impact Assessment (EIA)</strong> is an essential environmental management tool. It is a <strong class="text-brandDark">systematic and scientific study</strong> used to:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-red-50/60 border border-red-100 rounded-xl p-6">
+                        <div class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
+                        <p class="text-gray-700 text-sm leading-relaxed"><strong class="text-brandDark">Identify, predict, and critically examine</strong> the potential positive and negative impacts of a planned project on the environment.</p>
+                    </div>
+                    <div class="bg-red-50/60 border border-red-100 rounded-xl p-6">
+                        <div class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+                        <p class="text-gray-700 text-sm leading-relaxed"><strong class="text-brandDark">Improve the quality of the project outcome</strong> by incorporating environmental considerations early on.</p>
+                    </div>
+                    <div class="bg-red-50/60 border border-red-100 rounded-xl p-6">
+                        <div class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg></div>
+                        <p class="text-gray-700 text-sm leading-relaxed"><strong class="text-brandDark">Develop robust mitigation measures</strong> for any negative impacts that may result from the proposed development activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Framework -->
+    <section class="pb-12 lg:pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden">
+                <div class="mb-8">
+                    <p class="rsc-section-label">Legal Framework for EIAs in Kenya &#127470;&#127466;</p>
+                    <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark">Mandated by Law, Rooted in Rights</h2>
+                    <p class="text-gray-500 text-sm mt-2 max-w-3xl">The EIA process is mandated and governed by a robust legal framework, ensuring environmental protection and the right to information.</p>
+                </div>
+
+                <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-4">Constitution of Kenya</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+                    <div class="bg-red-50/60 border border-red-100 rounded-2xl p-6">
+                        <p class="text-3xl font-black text-brandRed mb-2">42</p>
+                        <h4 class="text-sm font-black uppercase tracking-widest text-brandDark mb-2">Article 42</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Right to a <strong class="text-brandDark">clean and healthy environment</strong>.</p>
+                    </div>
+                    <div class="bg-red-50/60 border border-red-100 rounded-2xl p-6">
+                        <p class="text-3xl font-black text-brandRed mb-2">69</p>
+                        <h4 class="text-sm font-black uppercase tracking-widest text-brandDark mb-2">Article 69</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Duty of the state with respect to <strong class="text-brandDark">the environment</strong>.</p>
+                    </div>
+                    <div class="bg-red-50/60 border border-red-100 rounded-2xl p-6">
+                        <p class="text-3xl font-black text-brandRed mb-2">35</p>
+                        <h4 class="text-sm font-black uppercase tracking-widest text-brandDark mb-2">Article 35</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Right to <strong class="text-brandDark">information</strong>.</p>
+                    </div>
+                    <div class="bg-red-50/60 border border-red-100 rounded-2xl p-6">
+                        <p class="text-3xl font-black text-brandRed mb-2">47</p>
+                        <h4 class="text-sm font-black uppercase tracking-widest text-brandDark mb-2">Article 47</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Right to <strong class="text-brandDark">fair administrative action</strong>.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-4">Key Legislation</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:border-brandRed hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-brandRed text-2xl mb-5">&#128220;</div>
+                        <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-3">Environmental Management and Coordination Act (EMCA)</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">The framework law that established the <strong class="text-brandDark">National Environment Management Authority (NEMA)</strong> and mandates both <strong class="text-brandDark">SEAs</strong> and <strong class="text-brandDark">EIAs</strong>.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:border-brandRed hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-brandRed text-2xl mb-5">&#128214;</div>
+                        <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-3">Environmental Management (Impact Assessment and Audit) Regulations, 2003</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Provides the detailed, step-by-step guide on how to <strong class="text-brandDark">conduct an EIA</strong> and <strong class="text-brandDark">manage public participation</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Triggers and Stages -->
+    <section id="stages" class="pb-12 lg:pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden">
+                <div class="mb-8">
+                    <p class="rsc-section-label">EIA Triggers and Stages</p>
+                    <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark">What Triggers an EIA?</h2>
+                    <p class="text-gray-500 text-sm mt-2">A project is triggered for an EIA if it is listed in <strong class="text-brandDark">Schedule II of the EMCA</strong>, categorized by risk level.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:border-brandRed hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-brandRed text-2xl mb-5">&#128680;</div>
+                        <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Low &amp; Medium Risk</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Requires a <strong class="text-brandDark">summary or comprehensive project report</strong>. Public participation is <strong class="text-brandRed font-bold">not required</strong>.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:border-brandRed hover:shadow-xl transition-all duration-300">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-brandRed text-2xl mb-5">&#128737;&#65039;</div>
+                        <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">High Risk</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Requires a <strong class="text-brandDark">full EIA study</strong> led by qualified and recognized <strong class="text-brandDark">EIA experts</strong>.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-6">4 Main Stages of the EIA Study Process</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">1</span>
+                            <span class="w-px flex-grow bg-red-200 my-1"></span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Screening</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">NEMA reviews the <strong class="text-brandDark">nature, location, and potential impact</strong> of the project to determine the required report type.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">2</span>
+                            <span class="w-px flex-grow bg-red-200 my-1"></span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Approval of Terms of Reference (ToRs)</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">A framework that guides the entire EIA study, detailing the <strong class="text-brandDark">geographic area, impacts, issues, and public involvement provisions</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">3</span>
+                            <span class="w-px flex-grow bg-red-200 my-1"></span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">EIA Study</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Comprehensive study considering <strong class="text-brandDark">environmental, social, cultural, economic, and legal factors</strong>, culminating in a detailed report including a non-technical summary, baseline study, alternatives analysis, and mitigation plans.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">4</span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h4 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Decision Making</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">NEMA issues its decision &mdash; <strong class="text-brandDark">approve, refuse, or request more information</strong> &mdash; within <strong class="text-brandRed font-bold">three months</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Public Participation in EIA -->
+    <section id="public-participation" class="pb-12 lg:pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden">
+                <div class="mb-8">
+                    <p class="rsc-section-label">Public Participation in EIA</p>
+                    <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark">Your Chance to Be Heard</h2>
+                    <p class="text-gray-500 text-sm mt-2 max-w-3xl">Public engagement is a critical procedural requirement for <strong class="text-brandDark">high-risk projects</strong> to ensure transparency and inclusivity.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">1</span>
+                            <span class="w-px flex-grow bg-red-200 my-1"></span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Before Submission <span class="text-xs font-bold text-brandRed normal-case tracking-wider">(Regulation 17)</span></h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-3">The proponent seeks views from affected persons.</p>
+                            <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>Requires at least <strong class="text-brandDark">3 public meetings</strong>.</li>
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>Announced via <strong class="text-brandDark">posters, newspaper notice, and radio</strong> (official &amp; local language).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">2</span>
+                            <span class="w-px flex-grow bg-red-200 my-1"></span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Post Submission <span class="text-xs font-bold text-brandRed normal-case tracking-wider">(NEMA Call)</span></h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-3">NEMA invites oral and written comments on the report.</p>
+                            <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>Notice published in the <strong class="text-brandDark">Gazette and a nationwide newspaper</strong>.</li>
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>A minimum of <strong class="text-brandRed font-bold">30 days</strong> is given for public review.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-10 h-10 rounded-full bg-brandRed text-white flex items-center justify-center font-black shadow-lg shadow-red-200">3</span>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-gray-200 p-7 flex-1 hover:border-brandRed transition-colors">
+                            <h3 class="text-lg font-black text-brandDark uppercase tracking-tight mb-2">Public Hearing <span class="text-xs font-bold text-brandRed normal-case tracking-wider">(Discretionary)</span></h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-3">NEMA may, at its discretion, call for a hearing.</p>
+                            <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>Venue must be <strong class="text-brandDark">convenient and accessible</strong> to affected people.</li>
+                                <li class="flex items-start gap-3"><span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>Date, time, and place communicated <strong class="text-brandDark">one week prior</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluating an EIA Report -->
+    <section class="pb-12 lg:pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden">
+                <div class="mb-8">
+                    <p class="rsc-section-label">Evaluating an EIA Report</p>
+                    <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark">What to Look For</h2>
+                    <p class="text-gray-500 text-sm mt-2 max-w-3xl">Reviewing an EIA involves examining both its <strong class="text-brandDark">substantive content</strong> and <strong class="text-brandDark">procedural adherence</strong>.</p>
+                </div>
+                <div class="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg shadow-gray-100">
+                    <table class="w-full text-left border-collapse min-w-[640px]">
+                        <thead>
+                            <tr class="bg-brandRed text-white">
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-widest">Evaluation Area</th>
+                                <th class="px-6 py-4 text-xs font-black uppercase tracking-widest">Key Focus (Substantive Questions)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="odd:bg-white even:bg-red-50/40">
+                                <td class="px-6 py-5 font-bold text-brandDark align-top">Terms of Reference (ToRs)</td>
+                                <td class="px-6 py-5 text-sm text-gray-600 leading-relaxed">Were the ToRs <strong class="text-brandDark">approved, authentic, and adequately guiding</strong> the proponent for an in-depth study?</td>
+                            </tr>
+                            <tr class="odd:bg-white even:bg-red-50/40">
+                                <td class="px-6 py-5 font-bold text-brandDark align-top">Project Description</td>
+                                <td class="px-6 py-5 text-sm text-gray-600 leading-relaxed">Does it provide sufficient detail on <strong class="text-brandDark">location, materials, technology, and design</strong> to understand environmental impacts?</td>
+                            </tr>
+                            <tr class="odd:bg-white even:bg-red-50/40">
+                                <td class="px-6 py-5 font-bold text-brandDark align-top">Baseline Information</td>
+                                <td class="px-6 py-5 text-sm text-gray-600 leading-relaxed">Is there a description of the project area (e.g., <strong class="text-brandDark">land use, water, health, ecology</strong>) and any sensitive areas?</td>
+                            </tr>
+                            <tr class="odd:bg-white even:bg-red-50/40">
+                                <td class="px-6 py-5 font-bold text-brandDark align-top">Project Alternatives</td>
+                                <td class="px-6 py-5 text-sm text-gray-600 leading-relaxed">Does it include analysis of the <strong class="text-brandDark">&ldquo;no project&rdquo; alternative</strong>, as well as the least environmentally damaging <strong class="text-brandDark">location and technology options</strong>?</td>
+                            </tr>
+                            <tr class="odd:bg-white even:bg-red-50/40">
+                                <td class="px-6 py-5 font-bold text-brandDark align-top">Impacts &amp; Mitigation</td>
+                                <td class="px-6 py-5 text-sm text-gray-600 leading-relaxed">Does it predict both <strong class="text-brandDark">positive and negative</strong> social/environmental impacts? Is there a detailed plan to <strong class="text-brandDark">Avoid</strong>, <strong class="text-brandDark">Minimize</strong>, and <strong class="text-brandDark">Offset</strong> negative impacts?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-link CTA -->
+    <section class="pb-12 lg:pb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden rounded-3xl overflow-hidden bg-gradient-to-r from-red-800 to-brandRed text-white p-10 md:p-14 text-center shadow-2xl shadow-red-200">
+                <p class="text-xs font-black uppercase tracking-widest text-red-100 mb-4">Republic of Kenya &bull; Public Participation</p>
+                <h2 class="text-2xl md:text-4xl font-black tracking-tight mb-4 uppercase">Your Environment. Your Right to Be Heard.</h2>
+                <p class="text-red-100 text-lg max-w-2xl mx-auto mb-8">Want to know your rights when a project is proposed near you? Learn how laws are made &mdash; and how to participate at the national and county level.</p>
+                <a href="law-making-process-guide.html" class="inline-flex items-center gap-3 bg-white text-brandRed px-8 py-4 rounded-md font-bold text-sm uppercase tracking-widest hover:bg-red-50 transition-colors shadow-lg">
+                    Read the Law-Making Guide
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brandDark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <img src="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg" alt="Bonga Na Gava" class="h-16 w-auto object-contain mb-4" style="filter: brightness(0) invert(1);">
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">A SUSO Participation Tool facilitating youth and communities to formally present their views to the government on proposed policies and regulations.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Quick Links</h4>
+                    <nav class="space-y-3">
+                        <a href="../index.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Home</a>
+                        <a href="../policy-reviews/index.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Policy Reviews</a>
+                        <a href="law-making-process-guide.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Resources</a>
+                        <a href="environmental-impact-assessment.html" class="block text-sm text-gray-400 hover:text-brandRed transition-colors">Environmental Impact Assessment</a>
+                        <a href="../campaigns.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Campaigns</a>
+                        <a href="../privacy.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Privacy Policy</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="mailto:submissions.BNG@suso.world" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">submissions.BNG@suso.world</a>
+                        <a href="mailto:bonganagava@suso.world" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">bonganagava@suso.world</a>
+                        <a href="tel:+254700145257" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">+254 700 145257</a>
+                        <a href="../contact.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Contact Page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">&copy; 2026 World Leaders of Today. All rights reserved.</p>
+                <div class="flex gap-6 text-xs text-gray-500 font-medium uppercase tracking-wider">
+                    <a href="../privacy.html" class="hover:text-brandAccent transition-colors">Privacy Policy</a>
+                    <a href="../contact.html" class="hover:text-brandAccent transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <a href="../submissions.html" class="text-[10px] text-gray-800 hover:text-gray-500 transition-colors" style="opacity:0.15;" title="Submissions">&bull;</a>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-brandDark text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brandRed" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+    </button>
+
+    <script>
+                        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavTop = document.getElementById('mnav-top');
+        function resetMobileNav() {
+            if (mobileNavTop) mobileNavTop.classList.remove('hidden');
+            document.querySelectorAll('.mobile-nav-panel').forEach(function(p){ p.classList.add('hidden'); });
+            document.querySelectorAll('.mobile-acc-btn').forEach(function(b){
+                b.setAttribute('aria-expanded','false');
+                var s = b.querySelector('svg'); if (s) s.style.transform = '';
+            });
+        }
+        function closeMobileMenu() { if (mobileMenu) mobileMenu.classList.add('hidden'); }
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function(){
+                mobileMenu.classList.toggle('hidden');
+                if (!mobileMenu.classList.contains('hidden')) resetMobileNav();
+            });
+            mobileMenu.querySelectorAll('a').forEach(function(link){ link.addEventListener('click', closeMobileMenu); });
+            var ov = document.getElementById('mobileMenuOverlay');
+            if (ov) ov.addEventListener('click', closeMobileMenu);
+            document.querySelectorAll('.mobile-acc-btn').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var pid = btn.getAttribute('aria-controls');
+                    resetMobileNav();
+                    if (mobileNavTop) mobileNavTop.classList.add('hidden');
+                    if (pid) { var panel = document.getElementById(pid); if (panel) panel.classList.remove('hidden'); }
+                    btn.setAttribute('aria-expanded','true');
+                });
+            });
+            document.querySelectorAll('.mnav-back').forEach(function(b){ b.addEventListener('click', resetMobileNav); });
+        }
+        const mainNav = document.getElementById('mainNav');
+        document.querySelectorAll('.visibility-hidden').forEach(function(el){ el.classList.remove('visibility-hidden'); });
+        if (mainNav) { window.addEventListener('scroll', function() { mainNav.classList.toggle('shadow-sm', window.scrollY > 10); }); }
+
+        gsap.from(".header-anim", { y: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out" });
+        gsap.utils.toArray('.content-anim').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power2.out" });
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('bng-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTop.classList.add('opacity-100');
+                } else {
+                    backToTop.classList.add('opacity-0', 'pointer-events-none');
+                    backToTop.classList.remove('opacity-100');
+                }
+            });
+            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+    </script>
+</body>
+</html>
