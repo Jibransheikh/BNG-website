@@ -6,6 +6,17 @@
     <title>Submissions | Bonga Na Gava</title>
     <meta name="description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
     <link rel="canonical" href="https://bonganagava.com/submissions.html">
+    <meta property="og:title" content="Submissions | Bonga Na Gava">
+    <meta property="og:description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
+    <meta property="og:image" content="https://bonganagava.com/assets/images/og-image.png">
+    <meta property="og:url" content="https://bonganagava.com/submissions.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bonga Na Gava">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Submissions | Bonga Na Gava">
+    <meta name="twitter:description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
+    <meta name="twitter:image" content="https://bonganagava.com/assets/images/og-image.png">
+    <link rel="icon" type="image/png" href="https://bonganagava.com/assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -83,13 +94,23 @@
 <body class="bg-gray-50 text-gray-900 antialiased selection:bg-brandGreen selection:text-white overflow-x-hidden">
 
     <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+        <div class="bg-white text-xs hidden sm:block border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-10">
+                <p class="text-brandAccent font-bold uppercase tracking-widest">#YourVoiceMatters</p>
+                <div class="flex items-center gap-2">
+                    <button type="button" class="js-open-sms bg-green-600 text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-green-700 transition-colors">SMS Alerts</button>
+                    <a href="#" class="js-open-opinion bg-green-900 text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-green-800 transition-colors">Share Your View</a>
+                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-black text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-brandDark transition-colors">Join Us</a>
+                </div>
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="index.html" class="flex-shrink-0"><img src="https://bonganagava.com/wp-content/uploads/2024/01/Bonga-na-Gava-01-300x212.jpg" alt="Bonga Na Gava" class="h-10 md:h-12 w-auto object-contain"></a>
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="index.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Home</a>
 <div class="relative policy-dropdown">
-                        <a href="policy-reviews/index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy
+                        <a href="policy-reviews/index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy Review
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                         </a>
                         <div class="policy-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
@@ -102,14 +123,6 @@
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
-<a href="policy-reviews/forest-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
-                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
-                                    <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Amendment Bill &middot; 2025</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Forest Conservation &amp; Management (Amendment) Bill, 2025</span>
-                                    </div>
-                                </a>
-                                <div class="h-px bg-gray-100"></div>
 <a href="policy-reviews/wildlife-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
                                     <div>
@@ -118,11 +131,11 @@
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
-<a href="policy-reviews/public-participation-bill-2024.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+<a href="policy-reviews/public-participation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
                                     <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Kenya Public Participation Bill, 2024</span>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024 &amp; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Public Participation Bill</span>
                                     </div>
                                 </a>
                             </div>
@@ -139,7 +152,7 @@
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
                                     <div>
                                         <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; 2025</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law-Making Process</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law Making Process</span>
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
@@ -160,14 +173,6 @@
                         </a>
                         <div class="blog-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
                             <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
-<a href="blogs/civic-engagement-nairobi-county-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
-                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
-                                    <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Community Update &middot; 2026</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">You Know How We're Always Saying the County Doesn't Listen?</span>
-                                    </div>
-                                </a>
-                                <div class="h-px bg-gray-100"></div>
 <a href="blogs/forests-at-a-crossroads-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
                                     <div>
@@ -187,7 +192,6 @@
                         </div>
                     </div>
                     <a href="contact.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Contact</a>
-                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors">Join Us</a>
                 </nav>
                 <button id="mobileMenuBtn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Open menu">
                     <span class="block w-6 h-0.5 bg-brandDark"></span>
@@ -203,28 +207,28 @@
                 <nav id="mobileNav" class="space-y-1 max-h-[80vh] overflow-y-auto">
 <div id="mnav-top">
 <a href="index.html" class="block text-sm font-bold text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Home</a>
-<div class="flex items-center justify-between"><a href="policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<div class="flex items-center justify-between"><a href="policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy Review</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <div class="flex items-center justify-between"><a href="resources/law-making-process-guide.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Resources</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-resources" aria-label="Toggle Resources menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <a href="campaigns.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Campaigns</a>
 <div class="flex items-center justify-between"><a href="blog.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Blog</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-blog" aria-label="Toggle Blog menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <a href="contact.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Contact</a>
+<button type="button" class="js-open-sms w-full bg-brandGreen/10 text-brandGreen border border-brandGreen/30 px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen hover:text-white transition-colors text-center mt-4">SMS Alerts</button>
+<a href="#" class="js-open-opinion block bg-brandGreen text-center text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-green-900 transition-colors mt-4">Share Your View</a>
 <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="block bg-brandDark text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors text-center mt-4">Join Us</a>
 </div>
 <div id="macc-policy" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Policy Reviews</h4><div class="space-y-1"><a href="policy-reviews/civic-education-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Education &middot; 2026</a>
-<a href="policy-reviews/forest-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forest Conservation (Amendment) Bill &middot; 2025</a>
 <a href="policy-reviews/wildlife-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Wildlife Conservation Bill &middot; 2025</a>
-<a href="policy-reviews/public-participation-bill-2024.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2024</a></div></div>
-<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="resources/law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law-Making Process Guide</a>
+<a href="policy-reviews/public-participation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill</a></div></div>
+<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="resources/law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law Making Process Guide</a>
 <a href="resources/environmental-impact-assessment.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">EIA Guide</a></div></div>
-<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="blogs/civic-engagement-nairobi-county-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Engagement &middot; 2026</a>
-<a href="blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
+<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
 <a href="blogs/exploring-the-public-participation-bill-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2025</a></div></div>
                 </nav>
             </div>
         </div>
     </div></header>
 
-    <section class="relative pt-20 md:pt-24 pb-12 bg-minimal-grid">
+    <section class="relative pt-32 md:pt-36 pb-12 bg-minimal-grid">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="header-anim visibility-hidden inline-flex items-center gap-2 px-3 py-1 bg-gray-50 text-brandGreen font-bold tracking-widest text-[10px] rounded-full mb-6 border border-gray-100 uppercase">
                 <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
@@ -264,7 +268,7 @@
                     <tbody>
                         <tr>
                             <td>Golda Awino</td>
-                            <td class="contact-cell" data-raw="goldarwelamila@gmail.com<br>+254 742 102 075" data-masked="g***@gmail.com<br>+254 74* *** 075">g***@gmail.com<br>+254 74* *** 075</td>
+                            <td class="contact-cell" data-raw="goldarwelamila@gmail.com<br>+254 742 102 075" data masked="g***@gmail.com<br>+254 74* *** 075">g***@gmail.com<br>+254 74* *** 075</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">FCMA</td>
                             <td class="opinion-col">While Section 56 is intended to support sustainable forest management, its broad authorization powers risk enabling privatization and exploitation of public forests unless strict oversight, transparency, and community participation are guaranteed. And we all know what that means.</td>
@@ -272,23 +276,23 @@
                         </tr>
                         <tr>
                             <td>Faith Koitikei</td>
-                            <td class="contact-cell" data-raw="faithkoitikei@gmail.com<br>+254 758 332 617" data-masked="f***@gmail.com<br>+254 75* *** 617">f***@gmail.com<br>+254 75* *** 617</td>
+                            <td class="contact-cell" data-raw="faithkoitikei@gmail.com<br>+254 758 332 617" data masked="f***@gmail.com<br>+254 75* *** 617">f***@gmail.com<br>+254 75* *** 617</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">FCMA</td>
-                            <td class="opinion-col">As a young Kenyan, I feel that this Bill talks a lot about management, regulation, and infrastructure, but very little about the people who will live with the long-term effects of these decisions. Forests are becoming smaller every year, climate change is affecting rainfall and food security, and many communities already struggle with water shortages. Because of this, forest laws should focus first on protection and restoration before commercial use. I am particularly worried about opening public forests to roads, pipelines, and other developments through Section 56. Even when projects begin as "public interest" developments, they can slowly lead to destruction of forests, human encroachment, and loss of biodiversity. Once forests are damaged, it takes decades to recover them.</td>
+                            <td class="opinion-col">As a young Kenyan, I feel that this Bill talks a lot about management, regulation, and infrastructure, but very little about the people who will live with the long term effects of these decisions. Forests are becoming smaller every year, climate change is affecting rainfall and food security, and many communities already struggle with water shortages. Because of this, forest laws should focus first on protection and restoration before commercial use. I am particularly worried about opening public forests to roads, pipelines, and other developments through Section 56. Even when projects begin as "public interest" developments, they can slowly lead to destruction of forests, human encroachment, and loss of biodiversity. Once forests are damaged, it takes decades to recover them.</td>
                             <td>8 May 2026</td>
                         </tr>
                         <tr>
                             <td>Rodhey Andeka</td>
-                            <td class="contact-cell" data-raw="rodgersandekah@gmail.com<br>+254 710 576 643" data-masked="r***@gmail.com<br>+254 71* *** 643">r***@gmail.com<br>+254 71* *** 643</td>
+                            <td class="contact-cell" data-raw="rodgersandekah@gmail.com<br>+254 710 576 643" data masked="r***@gmail.com<br>+254 71* *** 643">r***@gmail.com<br>+254 71* *** 643</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">The policy should be strengthened by clearly prioritising renewable energy pathways over fossil fuels, including a more defined approach to the gradual phase-down of coal and a cautious, limited role for natural gas, in order to fully align with Kenya's climate commitments and renewable energy advantage.</td>
+                            <td class="opinion-col">The policy should be strengthened by clearly prioritising renewable energy pathways over fossil fuels, including a more defined approach to the gradual phase down of coal and a cautious, limited role for natural gas, in order to fully align with Kenya's climate commitments and renewable energy advantage.</td>
                             <td>2 May 2026</td>
                         </tr>
                         <tr>
                             <td>Adalia Barsito</td>
-                            <td class="contact-cell" data-raw="adaliaanya@gmail.com<br>+254 112 499 229" data-masked="a***@gmail.com<br>+254 11* *** 229">a***@gmail.com<br>+254 11* *** 229</td>
+                            <td class="contact-cell" data-raw="adaliaanya@gmail.com<br>+254 112 499 229" data masked="a***@gmail.com<br>+254 11* *** 229">a***@gmail.com<br>+254 11* *** 229</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
                             <td class="opinion-col">This policy represents a major effort to reform how the country produces and uses power. And it is essentially built on principles of sustainability, equity, and economic development and seeks to aim for a just energy transition. However, a significant gap exists between these ambitions and the current reality, where over 60% of households still rely on biomass for cooking. While there is strong support for renewable sources like geothermal and wind, the system currently lacks the grid readiness and storage needed to fully integrate them. A major point of contention is the inclusion of fossil fuels, specifically coal for industrial use and natural gas as a transition fuel, which critics see as a contradiction to clean energy goals.</td>
@@ -296,23 +300,23 @@
                         </tr>
                         <tr>
                             <td>Christian Odhiambo</td>
-                            <td class="contact-cell" data-raw="christianodhiambo259@gmail.com<br>+254 112 501 200" data-masked="c***@gmail.com<br>+254 11* *** 200">c***@gmail.com<br>+254 11* *** 200</td>
+                            <td class="contact-cell" data-raw="christianodhiambo259@gmail.com<br>+254 112 501 200" data masked="c***@gmail.com<br>+254 11* *** 200">c***@gmail.com<br>+254 11* *** 200</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">Overall, the policy presents a strong and forward-looking vision, especially around renewable energy, universal access, and green industrialisation. However, there are a few critical issues that stand out. The biggest concern is the gap between ambition and implementation. While the policy sets very high targets, the current energy system is already under strain, particularly in transmission, distribution, and system integration.</td>
+                            <td class="opinion-col">Overall, the policy presents a strong and forward looking vision, especially around renewable energy, universal access, and green industrialisation. However, there are a few critical issues that stand out. The biggest concern is the gap between ambition and implementation. While the policy sets very high targets, the current energy system is already under strain, particularly in transmission, distribution, and system integration.</td>
                             <td>1 May 2026</td>
                         </tr>
                         <tr>
                             <td>Winny Jerop</td>
-                            <td class="contact-cell" data-raw="1066566@cuea.edu<br>+254 790 442 635" data-masked="1***@cuea.edu<br>+254 79* *** 635">1***@cuea.edu<br>+254 79* *** 635</td>
+                            <td class="contact-cell" data-raw="1066566@cuea.edu<br>+254 790 442 635" data masked="1***@cuea.edu<br>+254 79* *** 635">1***@cuea.edu<br>+254 79* *** 635</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">Natural gas is framed as a transition fuel, but it still extends dependence on fossil systems and risks delaying a full shift to renewables. Together, they create a tension between a clean energy pathway and a carbon-heavy backup path that may become harder to reverse.</td>
+                            <td class="opinion-col">Natural gas is framed as a transition fuel, but it still extends dependence on fossil systems and risks delaying a full shift to renewables. Together, they create a tension between a clean energy pathway and a carbon heavy backup path that may become harder to reverse.</td>
                             <td>1 May 2026</td>
                         </tr>
                         <tr>
                             <td>Raphael Munyaka</td>
-                            <td class="contact-cell" data-raw="rmutua.jr7@gmail.com<br>+254 712 772 657" data-masked="r***@gmail.com<br>+254 71* *** 657">r***@gmail.com<br>+254 71* *** 657</td>
+                            <td class="contact-cell" data-raw="rmutua.jr7@gmail.com<br>+254 712 772 657" data masked="r***@gmail.com<br>+254 71* *** 657">r***@gmail.com<br>+254 71* *** 657</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
                             <td class="opinion-col">The policy rightly focuses on universal access and renewable energy, but it needs stronger implementation frameworks and financing clarity to deliver impact.</td>
@@ -320,7 +324,7 @@
                         </tr>
                         <tr>
                             <td>Christopher Mutuku</td>
-                            <td class="contact-cell" data-raw="christophermutukumedia@gmail.com<br>+254 113 594 918" data-masked="c***@gmail.com<br>+254 11* *** 918">c***@gmail.com<br>+254 11* *** 918</td>
+                            <td class="contact-cell" data-raw="christophermutukumedia@gmail.com<br>+254 113 594 918" data masked="c***@gmail.com<br>+254 11* *** 918">c***@gmail.com<br>+254 11* *** 918</td>
                             <td>Nairobi, KE</td>
                             <td class="topic-col">Energy Policy</td>
                             <td class="opinion-col">Kenya cannot pursue clean energy while still investing in coal and expanding fossil fuels. The policy needs to move from ambition to clear choices by fully prioritising renewables and protecting communities affected by energy projects.</td>
@@ -509,5 +513,6 @@
             }
         })();
     </script>
+    <script src="warriors.js"></script>
 </body>
 </html>

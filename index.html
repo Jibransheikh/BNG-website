@@ -6,7 +6,17 @@
     <title>Bonga Na Gava | #YourVoiceMatters</title>
     <meta name="description" content="Bonga Na Gava facilitates youth and communities to formally present their views to the government on proposed policies and regulations on biodiversity protection and climate change.">
     <link rel="canonical" href="https://bonganagava.com/">
-    
+    <meta property="og:title" content="Bonga Na Gava | #YourVoiceMatters">
+    <meta property="og:description" content="Bonga Na Gava facilitates youth and communities to formally present their views to the government on proposed policies and regulations on biodiversity protection and climate change.">
+    <meta property="og:image" content="https://bonganagava.com/assets/images/og-image.png">
+    <meta property="og:url" content="https://bonganagava.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Bonga Na Gava">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bonga Na Gava | #YourVoiceMatters">
+    <meta name="twitter:description" content="Bonga Na Gava facilitates youth and communities to formally present their views to the government on proposed policies and regulations on biodiversity protection and climate change.">
+    <meta name="twitter:image" content="https://bonganagava.com/assets/images/og-image.png">
+    <link rel="icon" type="image/png" href="https://bonganagava.com/assets/images/favicon.png">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -42,6 +52,10 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .drag-scroll { cursor: grab; }
+        .drag-scroll.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+        .drag-scroll.dragging > * { pointer-events: none; user-select: none; }
         @keyframes subtlePulse {
             0% { box-shadow: 0 0 0 0 rgba(15, 81, 50, 0.4); transform: scale(1); }
             70% { box-shadow: 0 0 0 15px rgba(15, 81, 50, 0); transform: scale(1.03); }
@@ -86,6 +100,16 @@
 
     <!-- Navigation Header -->
     <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+        <div class="bg-white text-xs hidden sm:block border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-10">
+                <p class="text-brandAccent font-bold uppercase tracking-widest">#YourVoiceMatters</p>
+                <div class="flex items-center gap-2">
+                    <button type="button" class="js-open-sms bg-green-600 text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-green-700 transition-colors">SMS Alerts</button>
+                    <a href="#" class="js-open-opinion bg-green-900 text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-green-800 transition-colors">Share Your View</a>
+                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-black text-white px-3 py-1.5 rounded font-bold uppercase tracking-wider hover:bg-brandDark transition-colors">Join Us</a>
+                </div>
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="index.html" class="flex-shrink-0">
@@ -94,7 +118,7 @@
                 <nav class="hidden md:flex items-center gap-8">
                     <a href="index.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Home</a>
 <div class="relative policy-dropdown">
-                        <a href="policy-reviews/index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy
+                        <a href="policy-reviews/index.html" class="text-sm font-bold text-gray-600 transition-colors uppercase tracking-wider flex items-center gap-1">Policy Review
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                         </a>
                         <div class="policy-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
@@ -107,14 +131,6 @@
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
-<a href="policy-reviews/forest-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
-                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
-                                    <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Amendment Bill &middot; 2025</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Forest Conservation &amp; Management (Amendment) Bill, 2025</span>
-                                    </div>
-                                </a>
-                                <div class="h-px bg-gray-100"></div>
 <a href="policy-reviews/wildlife-conservation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
                                     <div>
@@ -123,11 +139,11 @@
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
-<a href="policy-reviews/public-participation-bill-2024.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
+<a href="policy-reviews/public-participation-bill.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
                                     <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">The Kenya Public Participation Bill, 2024</span>
+                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Bill &middot; 2024 &amp; 2025</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Public Participation Bill</span>
                                     </div>
                                 </a>
                             </div>
@@ -144,7 +160,7 @@
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandRed flex-shrink-0"></span>
                                     <div>
                                         <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Resource Guide &middot; 2025</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law-Making Process</span>
+                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">Guide on Participation in the Law Making Process</span>
                                     </div>
                                 </a>
                                 <div class="h-px bg-gray-100"></div>
@@ -165,14 +181,6 @@
                         </a>
                         <div class="blog-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
                             <div class="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden">
-<a href="blogs/civic-engagement-nairobi-county-2026.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
-                                    <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandAccent flex-shrink-0"></span>
-                                    <div>
-                                        <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Community Update &middot; 2026</span>
-                                        <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">You Know How We're Always Saying the County Doesn't Listen?</span>
-                                    </div>
-                                </a>
-                                <div class="h-px bg-gray-100"></div>
 <a href="blogs/forests-at-a-crossroads-2025.html" class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
                                     <span class="mt-0.5 w-1.5 h-1.5 rounded-full bg-brandGreen flex-shrink-0"></span>
                                     <div>
@@ -192,7 +200,6 @@
                         </div>
                     </div>
                     <a href="contact.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Contact</a>
-                    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors">Join Us</a>
                 </nav>
                 <button id="mobileMenuBtn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Open menu">
                     <span class="block w-6 h-0.5 bg-brandDark transition-all duration-300"></span>
@@ -208,21 +215,21 @@
                 <nav id="mobileNav" class="space-y-1 max-h-[80vh] overflow-y-auto">
 <div id="mnav-top">
 <a href="index.html" class="block text-sm font-bold text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Home</a>
-<div class="flex items-center justify-between"><a href="policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
+<div class="flex items-center justify-between"><a href="policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy Review</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <div class="flex items-center justify-between"><a href="resources/law-making-process-guide.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Resources</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-resources" aria-label="Toggle Resources menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <a href="campaigns.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Campaigns</a>
 <div class="flex items-center justify-between"><a href="blog.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Blog</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-blog" aria-label="Toggle Blog menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <a href="contact.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Contact</a>
+<button type="button" class="js-open-sms w-full bg-brandGreen/10 text-brandGreen border border-brandGreen/30 px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen hover:text-white transition-colors text-center mt-4">SMS Alerts</button>
+<a href="#" class="js-open-opinion block bg-brandGreen text-center text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-green-900 transition-colors mt-4">Share Your View</a>
 <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="block bg-brandDark text-white px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen transition-colors text-center mt-4">Join Us</a>
 </div>
 <div id="macc-policy" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Policy Reviews</h4><div class="space-y-1"><a href="policy-reviews/civic-education-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Education &middot; 2026</a>
-<a href="policy-reviews/forest-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forest Conservation (Amendment) Bill &middot; 2025</a>
 <a href="policy-reviews/wildlife-conservation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Wildlife Conservation Bill &middot; 2025</a>
-<a href="policy-reviews/public-participation-bill-2024.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2024</a></div></div>
-<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="resources/law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law-Making Process Guide</a>
+<a href="policy-reviews/public-participation-bill.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill</a></div></div>
+<div id="macc-resources" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Resources</h4><div class="space-y-1"><a href="resources/law-making-process-guide.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Law Making Process Guide</a>
 <a href="resources/environmental-impact-assessment.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">EIA Guide</a></div></div>
-<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="blogs/civic-engagement-nairobi-county-2026.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Civic Engagement &middot; 2026</a>
-<a href="blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
+<div id="macc-blog" class="mobile-nav-panel hidden"><button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Blog</h4><div class="space-y-1"><a href="blogs/forests-at-a-crossroads-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Forests at a Crossroads &middot; 2025</a>
 <a href="blogs/exploring-the-public-participation-bill-2025.html" class="block text-xs font-bold text-gray-500 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-2 pl-4 rounded-lg">Public Participation Bill &middot; 2025</a></div></div>
                 </nav>
             </div>
@@ -230,7 +237,7 @@
     </div></header>
 
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-20 lg:pt-32 lg:pb-32 bg-grid-pattern overflow-hidden">
+    <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 bg-grid-pattern overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-4xl mx-auto text-center">
                 
@@ -243,7 +250,7 @@
                 </h1>
                 
                 <p class="hero-elem text-lg md:text-xl font-medium mb-4 text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                    Bonga Na Gava facilitates youth and communities to formally present their views to the government on proposed policies and regulations on biodiversity protection and climate change. We are playing an active role to secure a nature-positive 2030.
+                    Bonga Na Gava facilitates youth and communities to formally present their views to the government on proposed policies and regulations on biodiversity protection and climate change. We are playing an active role to secure a nature positive 2030.
                 </p>
                 
                 <div class="mb-10">
@@ -262,7 +269,7 @@
                 </div>
 
                 <div class="hero-elem mt-8 flex justify-center">
-                    <a href="#sms-optin" class="animate-subtle-pulse flex items-center gap-2 bg-gradient-to-r from-green-600 to-brandGreen text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:from-green-700 hover:to-green-900 transition-colors">
+                    <a href="#" class="animate-subtle-pulse flex items-center gap-2 bg-gradient-to-r from-green-600 to-brandGreen text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:from-green-700 hover:to-green-900 transition-colors js-open-opinion">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
                         </svg>
@@ -283,43 +290,43 @@
                         About Us
                     </div>
                     <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-6 uppercase">
-                        Securing a <span class="text-brandGreen">Nature-Positive</span> 2030.
+                        Securing a <span class="text-brandGreen">Nature Positive</span> 2030.
                     </h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                        Bonga Na Gava is designed to bridge the gap between young Kenyans and the legislative tables where decisions are made. We facilitate the youth to formally present their views to the government on proposed policies.
+                        Bonga Na Gava is designed to bridge the gap between young Kenyans and the legislative tables where decisions are made. We facilitate the youth to formally present their views to the government on proposed laws, policies and regulations.
                     </p>
                     <blockquote class="border-l-4 border-brandAccent pl-6 italic text-gray-400 font-medium">
                         "Our mission is to get the voice of the youth and communities to the tables where the decisions are being made, to ensure inclusion and diversity of opinions brings out the best outcomes for our country." <br>
-                        <span class="text-brandAccent font-bold not-italic mt-2 inline-block uppercase">— Peter Moll, Founder</span>
+                        <span class="text-brandAccent font-bold not-italic mt-2 inline-block uppercase">  Peter Moll, Founder</span>
                     </blockquote>
                 </div>
 
                 <div class="space-y-8 section-fade">
                     <div class="grid grid-cols-2 gap-4 stagger-fade">
                         <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
-                            <div class="text-3xl font-black text-brandGreen mb-1">10k+</div>
-                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Youth Voices</div>
+                            <div class="text-3xl font-black text-brandGreen mb-1">86</div>
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">BNG Warriors</div>
                         </div>
                         <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
-                            <div class="text-3xl font-black text-brandGreen mb-1">04</div>
-                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Active Bills</div>
-                        </div>
-                        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
-                            <div class="text-3xl font-black text-brandGreen mb-1">47</div>
-                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Counties</div>
+                            <div class="text-3xl font-black text-brandGreen mb-1">03</div>
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Innovative Tools</div>
                         </div>
                         <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
                             <div class="text-3xl font-black text-brandGreen mb-1">100%</div>
                             <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Youth Led</div>
+                        </div>
+                        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
+                            <div class="text-3xl font-black text-brandGreen mb-1">10</div>
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Counties</div>
                         </div>
                     </div>
                     
                     <div class="bg-brandGreen text-white p-6 rounded-xl relative overflow-hidden shadow-lg">
                         <div class="absolute -right-6 -top-6 w-24 h-24 bg-green-700 rounded-full opacity-50"></div>
                         <h4 class="text-lg font-black uppercase mb-2 relative z-10">Did You Know?</h4>
-                        <p class="text-green-100 text-sm leading-relaxed relative z-10">
-                            Africa has the youngest population in the world, yet is the most vulnerable to climate change. By reviewing documents like the Draft Forest Conservation Management Act, you directly influence the laws dictating our environmental survival.
-                        </p>
+                        <p class="text-green-100 text-sm leading-relaxed relative z-10 mb-3">The future we want tomorrow is shaped by the policies, laws and regulations we make today.</p>
+                        <p class="text-green-100 text-sm leading-relaxed relative z-10 mb-3">What is decided today can influence our communities, environment, opportunities and way of life for years to come.</p>
+                        <p class="text-green-100 text-sm leading-relaxed relative z-10">Playing a role in shaping the decisions made today helps secure our tomorrow.</p>
                     </div>
                 </div>
             </div>
@@ -337,7 +344,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="w-full lg:w-1/2 section-fade">
                     <div class="bg-gray-50 p-2 rounded-xl border border-gray-200 shadow-xl">
-                        <img id="howToTrigger" src="https://bonganagava.com/wp-content/uploads/2024/03/how-to-use-suso-site.png.jpg" alt="How to use SUSO site flyer" class="w-full h-auto rounded-lg object-cover cursor-pointer hover:opacity-95 transition-opacity" title="Click to enlarge">
+                        <img id="howToTrigger" src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer" class="w-full h-auto rounded-lg object-cover cursor-pointer hover:opacity-95 transition-opacity" title="Click to enlarge">
                     </div>
                     <p class="text-center text-xs text-gray-400 mt-3 font-semibold uppercase tracking-wider">Click image to enlarge & download</p>
                 </div>
@@ -352,12 +359,12 @@
                         <li class="pl-8 relative">
                             <span class="absolute w-8 h-8 bg-brandGreen rounded-full -left-4 flex items-center justify-center text-sm font-bold text-white shadow-md border-4 border-white">2</span>
                             <h4 class="font-bold text-lg mb-1 uppercase text-brandDark">Find Topics</h4>
-                            <p class="text-gray-500 text-sm">Proceed to the National Topics of Interest Page.</p>
+                            <p class="text-gray-500 text-sm">Proceed to the Reviews Page.</p>
                         </li>
                         <li class="pl-8 relative">
                             <span class="absolute w-8 h-8 bg-brandGreen rounded-full -left-4 flex items-center justify-center text-sm font-bold text-white shadow-md border-4 border-white">3</span>
                             <h4 class="font-bold text-lg mb-1 uppercase text-brandDark">Select & Read</h4>
-                            <p class="text-gray-500 text-sm">There you shall find different policies, select those of interest to you. Read about the said policy.</p>
+                            <p class="text-gray-500 text-sm">There you shall find different policies, laws and regulations, select those of interest to you. Read about said legal instrument.</p>
                         </li>
                         <li class="pl-8 relative">
                             <span class="absolute w-8 h-8 bg-brandGreen rounded-full -left-4 flex items-center justify-center text-sm font-bold text-white shadow-md border-4 border-white">4</span>
@@ -367,9 +374,141 @@
                         <li class="pl-8 relative">
                             <span class="absolute w-8 h-8 bg-brandGreen rounded-full -left-4 flex items-center justify-center text-sm font-bold text-white shadow-md border-4 border-white">5</span>
                             <h4 class="font-bold text-lg mb-1 uppercase text-brandDark">Submit Opinion</h4>
-                            <p class="text-gray-500 text-sm">Proceed to the comment section & leave your recommendation or opinion which we shall compile & submit to relevant authorities. Ensure to leave your authentic details.</p>
+                            <p class="text-gray-500 text-sm">Proceed to the comment section & leave your recommendation or opinion which we shall compile & submit to relevant government authorities. Ensure to leave your authentic details.</p>
                         </li>
                     </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BNG SMS Platform Section -->
+    <section id="sms-platform" class="py-24 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 section-fade">
+                <h2 class="section-fade text-brandGreen font-bold text-sm mb-2 uppercase tracking-widest">BNG SMS</h2>
+                <h3 class="section-fade text-4xl font-black text-brandDark tracking-tight leading-tight">Policy participation at your fingertips</h3>
+            </div>
+
+            <div class="section-fade grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
+                <div class="sm:col-span-3 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+                    <img src="assets/images/bng_sms.jpeg" alt="BNG SMS Platform" class="w-full h-48 sm:h-72 object-cover" loading="lazy">
+                </div>
+                <div class="sm:col-span-2 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+                    <img src="assets/images/how_bng_sms.jpeg" alt="How BNG SMS works" class="w-full h-52 sm:h-64 object-cover" loading="lazy">
+                </div>
+                <div class="sm:col-span-1 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+                    <img src="assets/images/why_bng_sms.jpeg" alt="Why BNG SMS" class="w-full h-52 sm:h-64 object-cover object-top" loading="lazy">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start section-fade">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                        <p class="text-gray-600 leading-relaxed mb-6">The SUSO Bonga Na Gava (BNG) SMS Platform is a simple and accessible tool that helps young people and communities access information and participate in public policy processes directly from their mobile phones through SMS. It is designed to make policy engagement easier, more inclusive, and closer to the people.</p>
+                        <p class="text-gray-600 leading-relaxed mb-6">For those whose access to smartphones, internet, WhatsApp, or data bundles is limited, the SMS platform removes a major barrier to participation. All you need is an SMS-enabled phone.</p>
+                        <p class="text-gray-600 leading-relaxed mb-6">For those who already have smartphones and internet access, the platform also offers a faster, simpler, and more convenient way to engage &mdash; putting policy participation right at their fingertips.</p>
+                        <p class="text-gray-600 leading-relaxed mb-5">When a law, policy, regulation, bill, or other legal instrument is opened for public participation, registered users receive an SMS alert with information about the engagement and instructions on how to take part. From there, users can:</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Receive alerts</span></li>
+                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Choose topline comments</span></li>
+                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Submit comments</span></li>
+                        </ul>
+                        <p class="text-gray-600 leading-relaxed mb-6">All this happens through a simple SMS process, without needing social media, internet access, a mobile app, or WhatsApp.</p>
+                        <p class="text-gray-600 leading-relaxed">The service is free to use and creates a direct bridge between policy processes and the people they affect.</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" class="js-open-sms inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brandGreen text-white text-xs font-bold uppercase tracking-widest hover:bg-green-900 transition-colors shadow-sm">
+                            Opt In via SMS
+                        </button>
+                        <a href="#" class="js-open-opinion inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brandDark text-white text-xs font-bold uppercase tracking-widest hover:bg-brandGreen transition-colors shadow-sm">
+                            Share Your View
+                        </a>
+                        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-brandGreen/40 text-brandGreen text-xs font-bold uppercase tracking-widest hover:bg-brandGreen hover:text-white transition-colors">
+                            Join Us
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                        <h4 class="text-xl font-black text-brandDark mb-4">Why the BNG SMS Platform Matters</h4>
+                        <p class="text-gray-600 leading-relaxed mb-6">Public participation should not be limited by access to technology. The BNG SMS Platform enhances accessibility to policy engagement in two important ways:</p>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="font-bold text-brandGreen mb-2">1. It widens access</p>
+                                <p class="text-gray-600 leading-relaxed">For many young people and community members, smartphones, bundles, social media, and internet connectivity are not always available or affordable. The SMS platform allows them to still receive information and participate meaningfully.</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-brandGreen mb-2">2. It makes participation simpler</p>
+                                <p class="text-gray-600 leading-relaxed">Even for those with smartphones and internet, policy engagement can sometimes feel difficult to follow, navigate, or keep up with. The SMS platform offers a quick and easy alternative that keeps opportunities for participation directly within reach.</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mt-6">At its core, the BNG SMS Platform helps ensure that more people can engage, more easily, and more consistently.</p>
+                    </div>
+
+                    <div class="bg-brandDark rounded-2xl p-8 text-white">
+                        <h4 class="text-xl font-black mb-5">How it Works</h4>
+                        <ol class="space-y-5">
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">01.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">A public participation opportunity opens</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">A law, policy, bill, regulation, or other legal instrument is identified as open for public participation and the opportunity is uploaded onto the BNG system.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">02.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">You receive an alert</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Registered BNG warriors and citizens receive an SMS alert with information about the issue under review, the opportunity to participate, and how to engage.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">03.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">You choose topline comments</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Through a simple SMS flow, participants receive clear topline comments or engagement options that help break down the issue into understandable and actionable points.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">04.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">You submit your views</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Using the SMS menu, participants can select and submit comments, concerns, recommendations, or suggestions on the issue under review.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">05.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">Your views are captured</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Responses are collected and organised by BNG, creating a structured record of citizen contributions.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">06.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">Stay in the loop</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Participants may receive reminders, deadline alerts, confirmations, and other relevant updates throughout the engagement period.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">07.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">Voices become insights</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">BNG reviews and analyses the contributions to identify key concerns, suggestions, recurring issues, and emerging trends. These insights help inform reports, dashboards, advocacy efforts, and memoranda submitted to relevant government authorities.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">08.</span>
+                                <div>
+                                    <p class="font-bold text-white mb-1">The loop is closed</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">Where information is available, participants are updated on outcomes, key next steps, and links to final memoranda or other outputs.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
@@ -381,40 +520,87 @@
             <div class="text-center mb-14 section-fade">
                 <h2 class="text-brandGreen font-bold text-sm mb-2 uppercase tracking-widest">On the Ground</h2>
                 <h3 class="text-4xl font-black text-brandDark tracking-tight uppercase">Our Movement in Action</h3>
-                <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">From the streets to the chambers &mdash; moments from rallies, forums, and community engagement across Kenya.</p>
+                <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">From the streets to the chambers   moments from rallies, forums, and community engagement across Kenya.</p>
             </div>
 
             <div class="section-fade mx-auto mv-stage" id="mvStage">
 
-                    <div class="mv-slide active">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1707222956011-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                                        <div class="mv-slide active">
+                        <img src="assets/images/movement/movement-01.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1704685862201-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-02.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1708569360988-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-03.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1708569375836-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-04.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1708569449442-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-05.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1708569511171-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-06.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/02/FB_IMG_1708569522298-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-07.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/01/FB_IMG_1665595410591-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-08.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
                     <div class="mv-slide">
-                        <img src="https://bonganagava.com/wp-content/uploads/2024/01/FB_IMG_1665595398087-683x1024.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                        <img src="assets/images/movement/movement-09.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
                     </div>
-
-                    <button class="mv-prev mv-btn left-3" aria-label="Previous photo" type="button">&#8249;</button>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-10.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-11.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-12.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-13.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-14.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-15.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-16.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-17.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-18.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-19.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-20.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-21.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-22.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-23.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-24.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+                    <div class="mv-slide">
+                        <img src="assets/images/movement/movement-25.jpg" alt="Bonga Na Gava movement in action" class="w-full h-full object-cover mv-img" loading="lazy">
+                    </div>
+<button class="mv-prev mv-btn left-3" aria-label="Previous photo" type="button">&#8249;</button>
                     <button class="mv-next mv-btn right-3" aria-label="Next photo" type="button">&#8250;</button>
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10 mv-dots"></div>
             </div>
@@ -429,11 +615,11 @@
                 <h3 class="section-fade text-4xl font-black text-brandDark tracking-tight uppercase">Featured Policy Reviews</h3>
             </div>
             <div class="section-fade text-sm font-bold text-gray-500 uppercase tracking-widest flex items-center">
-                Scroll to view more <span class="ml-2">→</span>
+                Drag to explore <span class="ml-2"></span>
             </div>
         </div>
 
-        <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 sm:px-6 lg:px-8 pb-12 no-scrollbar section-fade">
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 sm:px-6 lg:px-8 pb-12 no-scrollbar section-fade drag-scroll" id="featuredPoliciesTrack">
             
             <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
                 <div>
@@ -444,7 +630,7 @@
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">Civic Education, Citizen Engagement and Public Participation Policy 2026</h4>
                 </div>
                 <a href="policy-reviews/civic-education-2026.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2">→</span>
+                    Read Review & Submit Opinion <span class="ml-2"></span>
                 </a>
             </div>
 
@@ -457,20 +643,7 @@
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE WILDLIFE CONSERVATION & MANAGEMENT BILL, 2025</h4>
                 </div>
                 <a href="policy-reviews/wildlife-conservation-bill.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2">→</span>
-                </a>
-            </div>
-
-            <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-xs font-bold text-white bg-brandGreen px-3 py-1 rounded-sm uppercase tracking-wider">Amendment Bill</span>
-                        <span class="text-xs font-semibold text-gray-400">2025</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE FOREST CONSERVATION & MANAGEMENT (AMENDMENT) BILL, 2025</h4>
-                </div>
-                <a href="policy-reviews/forest-conservation-bill.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2">→</span>
+                    Read Review & Submit Opinion <span class="ml-2"></span>
                 </a>
             </div>
 
@@ -482,8 +655,8 @@
                     </div>
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE DRAFT FOREST CONSERVATION MANAGEMENT ACT (FCMA)</h4>
                 </div>
-                <a href="#sms-optin" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Submit Opinion <span class="ml-2">→</span>
+                <a href="#" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800 js-open-opinion">
+                    Submit Opinion <span class="ml-2"></span>
                 </a>
             </div>
 
@@ -496,7 +669,20 @@
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">The Kenya Public Participation Bill 2024</h4>
                 </div>
                 <a href="policy-reviews/public-participation-bill-2024.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2">→</span>
+                    Read Review & Submit Opinion <span class="ml-2"></span>
+                </a>
+            </div>
+
+            <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs font-bold text-white bg-blue-900 px-3 py-1 rounded-sm uppercase tracking-wider">Bill</span>
+                        <span class="text-xs font-semibold text-gray-400">2025</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">The Public Participation Bill 2025</h4>
+                </div>
+                <a href="policy-reviews/public-participation-bill-2025.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
+                    Read Review & Submit Opinion <span class="ml-2"></span>
                 </a>
             </div>
 
@@ -507,76 +693,11 @@
                     </div>
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">COP 15</h4>
                 </div>
-                <a href="#sms-optin" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Submit Opinion <span class="ml-2">→</span>
+                <a href="#" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800 js-open-opinion">
+                    Submit Opinion <span class="ml-2"></span>
                 </a>
             </div>
 
-        </div>
-    </section>
-
-    <!-- SMS Opt-In Section -->
-    <section id="sms-optin" class="py-24 bg-white relative border-t border-gray-100">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="section-fade inline-flex items-center gap-2 px-3 py-1 bg-brandGreen/10 text-brandGreen font-bold tracking-widest text-xs rounded-full border border-brandGreen/20 uppercase mb-4">SMS Alerts</span>
-                <h2 class="section-fade text-3xl md:text-5xl font-black text-brandDark tracking-tight mb-4 uppercase">Never Miss a Policy Drop</h2>
-                <p class="section-fade text-gray-500 text-lg">Opt in and we&rsquo;ll text you the moment a new bill, policy or review drops &mdash; then reply to that text with your opinions and submissions. No spam, ever.</p>
-            </div>
-
-            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 md:p-12 shadow-sm section-fade">
-                <form id="smsOptinForm" action="#" method="POST" class="space-y-6">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="optinName" class="block text-sm font-bold text-brandDark mb-2 uppercase tracking-wide">Full Name</label>
-                            <input type="text" id="optinName" name="optinName" required placeholder="Jane Wanjiku" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent transition">
-                        </div>
-                        <div>
-                            <label for="optinPhone" class="block text-sm font-bold text-brandDark mb-2 uppercase tracking-wide">Phone Number</label>
-                            <input type="tel" id="optinPhone" name="optinPhone" required placeholder="+254 700 000000" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent transition">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="optinEmail" class="block text-sm font-bold text-brandDark mb-2 uppercase tracking-wide">Email <span class="normal-case font-normal text-gray-400">(optional)</span></label>
-                        <input type="email" id="optinEmail" name="optinEmail" placeholder="you@example.com" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brandGreen focus:border-transparent transition">
-                        <p class="text-xs text-gray-400 mt-1">Only add your email if you&rsquo;d also like our newsletter in future &mdash; SMS alerts don&rsquo;t need it.</p>
-                    </div>
-
-                    <div class="flex items-start gap-3 bg-white border border-gray-200 rounded-xl p-4">
-                        <input id="optinConsent" name="optinConsent" type="checkbox" required class="mt-1 w-4 h-4 bg-white border border-gray-300 rounded text-brandGreen focus:ring-brandGreen">
-                        <div class="text-sm">
-                            <label for="optinConsent" class="font-semibold text-gray-800">I want to opt in to SMS updates from Bonga Na Gava.</label>
-                            <p class="text-gray-500 mt-1">You&rsquo;ll only hear from us when there&rsquo;s something new &mdash; a bill, policy or review. Just reply <strong>STOP</strong> any time to unsubscribe. Standard message &amp; data rates may apply.</p>
-                        </div>
-                    </div>
-
-                    <p class="text-xs text-gray-400 text-center leading-relaxed">We&rsquo;ll never spam you or share your number with anyone. You stay in control and can opt out any time by replying <strong>STOP</strong> to our texts. By opting in you agree to receive automated SMS alerts, and you can reply directly to those texts to submit your opinions on the bills we cover.</p>
-
-                    <div class="pt-2">
-                        <button type="submit" class="w-full flex justify-center py-4 px-4 border border-transparent rounded-md shadow-sm text-lg font-black text-white bg-brandDark hover:bg-brandGreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandGreen transition uppercase tracking-widest">
-                            Opt In to SMS Alerts
-                        </button>
-                    </div>
-
-                    <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; opacity:0;" aria-hidden="true">
-                        <label for="optinWebsite">Website</label>
-                        <input type="text" id="optinWebsite" name="website" tabindex="-1" autocomplete="off">
-                    </div>
-
-                    <div id="optinSuccess" class="hidden border border-brandGreen/30 bg-brandGreen/5 rounded-xl p-8 text-center">
-                        <div class="success-pop mx-auto w-16 h-16 rounded-full bg-brandGreen/10 flex items-center justify-center mb-4">
-                            <div class="success-check-wrap flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-brandGreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path class="success-check-path" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                            </div>
-                        </div>
-                        <p class="text-2xl font-black text-brandGreen uppercase tracking-widest mb-2">You&rsquo;re opted in!</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">Welcome to the Bonga Na Gava SMS list. Our first alert will come your way when the next bill, policy or review drops &mdash; reply <strong>STOP</strong> any time to opt out.</p>
-                        <p class="text-xs text-gray-400 mt-4">Didn&rsquo;t receive confirmation? Email <a href="mailto:submissions.BNG@suso.world" class="text-brandGreen font-semibold hover:underline">submissions.BNG@suso.world</a></p>
-                    </div>
-                </form>
-            </div>
         </div>
     </section>
 
@@ -633,8 +754,8 @@
     <div id="imageLightbox" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
         <button id="closeLightboxBtn" class="absolute top-6 right-6 text-white hover:text-brandGreen text-4xl font-bold cursor-pointer z-50 transition-colors">&times;</button>
         <div class="relative max-w-4xl w-full flex flex-col items-center max-h-full">
-            <img src="https://bonganagava.com/wp-content/uploads/2024/03/how-to-use-suso-site.png.jpg" alt="How to use SUSO site flyer Enlarged" class="max-h-[75vh] w-auto rounded-lg object-contain shadow-2xl mb-6">
-            <a href="https://bonganagava.com/wp-content/uploads/2024/03/how-to-use-suso-site.png.jpg" download="How-To-BongaNaGava.jpg" target="_blank" class="bg-brandGreen text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-green-700 transition shadow-lg flex items-center gap-3">
+            <img src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer Enlarged" class="max-h-[75vh] w-auto rounded-lg object-contain shadow-2xl mb-6">
+            <a href="assets/images/How to use BNG Site.jpeg" download="How-To-BongaNaGava.jpg" target="_blank" class="bg-brandGreen text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-green-700 transition shadow-lg flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -799,6 +920,51 @@
             restart();
         })();
 
+        // Featured Policy Reviews drag to scroll
+        (function () {
+            const track = document.getElementById('featuredPoliciesTrack');
+            if (!track) return;
+            let isDown = false, startX = 0, startScroll = 0, moved = false;
+
+            track.addEventListener('pointerdown', function (e) {
+                isDown = true;
+                moved = false;
+                startX = e.pageX;
+                startScroll = track.scrollLeft;
+                track.classList.add('dragging');
+                if (track.setPointerCapture) {
+                    try { track.setPointerCapture(e.pointerId); } catch (err) {}
+                }
+            });
+
+            track.addEventListener('pointermove', function (e) {
+                if (!isDown) return;
+                e.preventDefault();
+                const dx = e.pageX - startX;
+                if (Math.abs(dx) > 5) moved = true;
+                track.scrollLeft = startScroll - dx;
+            });
+
+            function endDrag() {
+                if (!isDown) return;
+                isDown = false;
+                track.classList.remove('dragging');
+            }
+            track.addEventListener('pointerup', endDrag);
+            track.addEventListener('pointercancel', endDrag);
+            track.addEventListener('pointerleave', endDrag);
+
+            track.addEventListener('click', function (e) {
+                if (moved) e.preventDefault();
+            }, true);
+
+            document.addEventListener('keydown', function (e) {
+                if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && track.contains(document.activeElement)) {
+                    track.scrollBy({ left: (e.key === 'ArrowRight' ? 1 : -1) * track.clientWidth * 0.8, behavior: 'smooth' });
+                }
+            });
+        })();
+
         // Lightbox Logic
         document.addEventListener('DOMContentLoaded', () => {
             const howToImg = document.getElementById('howToTrigger');
@@ -823,40 +989,8 @@
             });
         });
 
-        // SMS opt-in form -> posts straight to the Google Sheet
-        const smsOptinForm = document.getElementById('smsOptinForm');
-        if (smsOptinForm) {
-            smsOptinForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const submitBtn = smsOptinForm.querySelector('button[type="submit"]');
-                const original = submitBtn.textContent;
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
-                const payload = {
-                    list: 'SMS Opt-Ins',
-                    name: document.getElementById('optinName').value,
-                    phone: document.getElementById('optinPhone').value,
-                    email: document.getElementById('optinEmail').value.trim() || '',
-                    consent: document.getElementById('optinConsent').checked ? 'Yes' : 'No',
-                    website: document.getElementById('optinWebsite').value
-                };
-                fetch('https://script.google.com/macros/s/AKfycbzfrMNUkF1ugLtuIYsxTFf5b-3ZzsrOLHbRq6X4RUJe3AOSzUUAuoWnzM_SHz3ADbhw/exec', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                }).then(() => {
-                    smsOptinForm.classList.add('hidden');
-                    const success = document.getElementById('optinSuccess');
-                    success.classList.remove('hidden');
-                    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }).catch(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = original;
-                    alert('Something went wrong. Please try again or email submissions.BNG@suso.world');
-                });
-            });
-        }
+// SMS opt-in and warriors forms are handled by warriors.js
     </script>
+    <script src="warriors.js"></script>
 </body>
 </html>
