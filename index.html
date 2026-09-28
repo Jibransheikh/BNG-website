@@ -174,7 +174,6 @@
                             </div>
                         </div>
                     </div>
-                    <a href="campaigns.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider">Campaigns</a>
                     <div class="relative blog-dropdown">
                         <a href="blog.html" class="text-sm font-bold text-gray-600 hover:text-brandGreen transition-colors uppercase tracking-wider flex items-center gap-1">Blog
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -217,7 +216,6 @@
 <a href="index.html" class="block text-sm font-bold text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Home</a>
 <div class="flex items-center justify-between"><a href="policy-reviews/index.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Policy Review</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-policy" aria-label="Toggle Policy menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <div class="flex items-center justify-between"><a href="resources/law-making-process-guide.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Resources</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-resources" aria-label="Toggle Resources menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
-<a href="campaigns.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Campaigns</a>
 <div class="flex items-center justify-between"><a href="blog.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Blog</a><button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="macc-blog" aria-label="Toggle Blog menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>
 <a href="contact.html" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">Contact</a>
 <button type="button" class="js-open-sms w-full bg-brandGreen/10 text-brandGreen border border-brandGreen/30 px-5 py-3 rounded-md font-bold text-xs uppercase tracking-widest hover:bg-brandGreen hover:text-white transition-colors text-center mt-4">SMS Alerts</button>
@@ -344,7 +342,9 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="w-full lg:w-1/2 section-fade">
                     <div class="bg-gray-50 p-2 rounded-xl border border-gray-200 shadow-xl">
-                        <img id="howToTrigger" src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer" class="w-full h-auto rounded-lg object-cover cursor-pointer hover:opacity-95 transition-opacity" title="Click to enlarge">
+                        <button type="button" class="js-lightbox block w-full cursor-pointer hover:opacity-95 transition-opacity" data-lightbox-src="assets/images/How to use BNG Site.jpeg" data-lightbox-alt="How to use BNG Site flyer" data-lightbox-download="How-To-BongaNaGava.jpg" data-lightbox-label="Download Flyer" title="Click to enlarge">
+                            <img src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer" class="w-full h-auto rounded-lg object-contain" loading="lazy">
+                        </button>
                     </div>
                     <p class="text-center text-xs text-gray-400 mt-3 font-semibold uppercase tracking-wider">Click image to enlarge & download</p>
                 </div>
@@ -390,125 +390,78 @@
                 <h3 class="section-fade text-4xl font-black text-brandDark tracking-tight leading-tight">Policy participation at your fingertips</h3>
             </div>
 
-            <div class="section-fade grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
-                <div class="sm:col-span-3 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
-                    <img src="assets/images/bng_sms.jpeg" alt="BNG SMS Platform" class="w-full h-48 sm:h-72 object-cover" loading="lazy">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center section-fade">
+                <div>
+                    <button type="button" class="js-lightbox block w-full bg-white rounded-2xl p-2 border border-gray-200 shadow-md cursor-pointer hover:opacity-95 transition-opacity" data-lightbox-src="assets/images/why_bng_sms.jpeg" data-lightbox-alt="Why BNG SMS" data-lightbox-download="Why-BNG-SMS.jpg" data-lightbox-label="Download Image" title="Click to enlarge">
+                        <img src="assets/images/why_bng_sms.jpeg" alt="Why BNG SMS" class="w-full h-auto object-contain" loading="lazy">
+                    </button>
+                    <p class="text-center text-xs text-gray-400 mt-3 font-semibold uppercase tracking-wider">Click image to enlarge &amp; download</p>
                 </div>
-                <div class="sm:col-span-2 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
-                    <img src="assets/images/how_bng_sms.jpeg" alt="How BNG SMS works" class="w-full h-52 sm:h-64 object-cover" loading="lazy">
-                </div>
-                <div class="sm:col-span-1 rounded-2xl overflow-hidden border border-gray-200 shadow-md">
-                    <img src="assets/images/why_bng_sms.jpeg" alt="Why BNG SMS" class="w-full h-52 sm:h-64 object-cover object-top" loading="lazy">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start section-fade">
-                <div class="space-y-6">
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                        <p class="text-gray-600 leading-relaxed mb-6">The SUSO Bonga Na Gava (BNG) SMS Platform is a simple and accessible tool that helps young people and communities access information and participate in public policy processes directly from their mobile phones through SMS. It is designed to make policy engagement easier, more inclusive, and closer to the people.</p>
-                        <p class="text-gray-600 leading-relaxed mb-6">For those whose access to smartphones, internet, WhatsApp, or data bundles is limited, the SMS platform removes a major barrier to participation. All you need is an SMS-enabled phone.</p>
-                        <p class="text-gray-600 leading-relaxed mb-6">For those who already have smartphones and internet access, the platform also offers a faster, simpler, and more convenient way to engage &mdash; putting policy participation right at their fingertips.</p>
-                        <p class="text-gray-600 leading-relaxed mb-5">When a law, policy, regulation, bill, or other legal instrument is opened for public participation, registered users receive an SMS alert with information about the engagement and instructions on how to take part. From there, users can:</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Receive alerts</span></li>
-                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Choose topline comments</span></li>
-                            <li class="flex gap-3 items-start"><span class="text-brandGreen font-black">&#9679;</span><span class="text-gray-700 font-semibold">Submit comments</span></li>
-                        </ul>
-                        <p class="text-gray-600 leading-relaxed mb-6">All this happens through a simple SMS process, without needing social media, internet access, a mobile app, or WhatsApp.</p>
-                        <p class="text-gray-600 leading-relaxed">The service is free to use and creates a direct bridge between policy processes and the people they affect.</p>
+                <div class="bg-brandDark rounded-2xl p-8 text-white">
+                    <div class="rounded-xl bg-white/10 border border-white/25 px-5 py-4 text-center mb-8">
+                        <div class="text-[10px] uppercase tracking-widest text-green-200 font-bold">SMS Shortcode</div>
+                        <div class="text-4xl font-black text-white tracking-[0.18em] my-1 tabular-nums">21064</div>
+                        <div class="text-xs text-green-100 leading-snug">Send <strong class="text-white">21064</strong> to our SMS line to join instantly</div>
                     </div>
-
-                    <div class="flex flex-wrap gap-3">
-                        <button type="button" class="js-open-sms inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brandGreen text-white text-xs font-bold uppercase tracking-widest hover:bg-green-900 transition-colors shadow-sm">
-                            Opt In via SMS
-                        </button>
-                        <a href="#" class="js-open-opinion inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brandDark text-white text-xs font-bold uppercase tracking-widest hover:bg-brandGreen transition-colors shadow-sm">
-                            Share Your View
-                        </a>
-                        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-brandGreen/40 text-brandGreen text-xs font-bold uppercase tracking-widest hover:bg-brandGreen hover:text-white transition-colors">
-                            Join Us
-                        </a>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                        <h4 class="text-xl font-black text-brandDark mb-4">Why the BNG SMS Platform Matters</h4>
-                        <p class="text-gray-600 leading-relaxed mb-6">Public participation should not be limited by access to technology. The BNG SMS Platform enhances accessibility to policy engagement in two important ways:</p>
-                        <div class="space-y-6">
+                    <h4 class="text-xl font-black mb-5">How it Works</h4>
+                    <ol class="space-y-5">
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">01.</span>
                             <div>
-                                <p class="font-bold text-brandGreen mb-2">1. It widens access</p>
-                                <p class="text-gray-600 leading-relaxed">For many young people and community members, smartphones, bundles, social media, and internet connectivity are not always available or affordable. The SMS platform allows them to still receive information and participate meaningfully.</p>
+                                <p class="font-bold text-white mb-1">A public participation opportunity opens</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">A law, policy, bill, regulation, or other legal instrument is identified as open for public participation and the opportunity is uploaded onto the BNG system.</p>
                             </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">02.</span>
                             <div>
-                                <p class="font-bold text-brandGreen mb-2">2. It makes participation simpler</p>
-                                <p class="text-gray-600 leading-relaxed">Even for those with smartphones and internet, policy engagement can sometimes feel difficult to follow, navigate, or keep up with. The SMS platform offers a quick and easy alternative that keeps opportunities for participation directly within reach.</p>
+                                <p class="font-bold text-white mb-1">You receive an alert</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Registered BNG warriors and citizens receive an SMS alert with information about the issue under review, the opportunity to participate, and how to engage.</p>
                             </div>
-                        </div>
-                        <p class="text-gray-600 leading-relaxed mt-6">At its core, the BNG SMS Platform helps ensure that more people can engage, more easily, and more consistently.</p>
-                    </div>
-
-                    <div class="bg-brandDark rounded-2xl p-8 text-white">
-                        <h4 class="text-xl font-black mb-5">How it Works</h4>
-                        <ol class="space-y-5">
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">01.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">A public participation opportunity opens</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">A law, policy, bill, regulation, or other legal instrument is identified as open for public participation and the opportunity is uploaded onto the BNG system.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">02.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">You receive an alert</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Registered BNG warriors and citizens receive an SMS alert with information about the issue under review, the opportunity to participate, and how to engage.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">03.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">You choose topline comments</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Through a simple SMS flow, participants receive clear topline comments or engagement options that help break down the issue into understandable and actionable points.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">04.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">You submit your views</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Using the SMS menu, participants can select and submit comments, concerns, recommendations, or suggestions on the issue under review.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">05.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">Your views are captured</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Responses are collected and organised by BNG, creating a structured record of citizen contributions.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">06.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">Stay in the loop</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Participants may receive reminders, deadline alerts, confirmations, and other relevant updates throughout the engagement period.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">07.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">Voices become insights</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">BNG reviews and analyses the contributions to identify key concerns, suggestions, recurring issues, and emerging trends. These insights help inform reports, dashboards, advocacy efforts, and memoranda submitted to relevant government authorities.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4">
-                                <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">08.</span>
-                                <div>
-                                    <p class="font-bold text-white mb-1">The loop is closed</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">Where information is available, participants are updated on outcomes, key next steps, and links to final memoranda or other outputs.</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">03.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">You choose topline comments</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Through a simple SMS flow, participants receive clear topline comments or engagement options that help break down the issue into understandable and actionable points.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">04.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">You submit your views</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Using the SMS menu, participants can select and submit comments, concerns, recommendations, or suggestions on the issue under review.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">05.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">Your views are captured</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Responses are collected and organised by BNG, creating a structured record of citizen contributions.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">06.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">Stay in the loop</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Participants may receive reminders, deadline alerts, confirmations, and other relevant updates throughout the engagement period.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">07.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">Voices become insights</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">BNG reviews and analyses the contributions to identify key concerns, suggestions, recurring issues, and emerging trends. These insights help inform reports, dashboards, advocacy efforts, and memoranda submitted to relevant government authorities.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="shrink-0 w-10 h-10 rounded-full bg-brandGreen text-white flex items-center justify-center text-sm font-black">08.</span>
+                            <div>
+                                <p class="font-bold text-white mb-1">The loop is closed</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Where information is available, participants are updated on outcomes, key next steps, and links to final memoranda or other outputs.</p>
+                            </div>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -623,78 +576,69 @@
             
             <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-6">
+                    <div class="flex justify-between items-start mb-4">
                         <span class="text-xs font-bold text-white bg-brandDark px-3 py-1 rounded-sm uppercase tracking-wider">Policy</span>
                         <span class="text-xs font-semibold text-gray-400">2026</span>
                     </div>
+                    <p class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brandRed bg-brandRed/10 border border-brandRed/30 rounded-sm px-2.5 py-1 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+                        Submissions Closed
+                    </p>
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">Civic Education, Citizen Engagement and Public Participation Policy 2026</h4>
                 </div>
                 <a href="policy-reviews/civic-education-2026.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2"></span>
+                    Read Review <span class="ml-2"></span>
                 </a>
             </div>
 
             <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-6">
+                    <div class="flex justify-between items-start mb-4">
                         <span class="text-xs font-bold text-brandDark bg-brandAccent px-3 py-1 rounded-sm uppercase tracking-wider">Bill</span>
                         <span class="text-xs font-semibold text-gray-400">2025</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE WILDLIFE CONSERVATION & MANAGEMENT BILL, 2025</h4>
+                    <p class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brandRed bg-brandRed/10 border border-brandRed/30 rounded-sm px-2.5 py-1 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+                        Submissions Closed
+                    </p>
+                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE WILDLIFE CONSERVATION &amp; MANAGEMENT BILL, 2025</h4>
                 </div>
                 <a href="policy-reviews/wildlife-conservation-bill.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2"></span>
+                    Read Review <span class="ml-2"></span>
                 </a>
             </div>
 
             <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-xs font-bold text-white bg-green-700 px-3 py-1 rounded-sm uppercase tracking-wider">Act</span>
-                        <span class="text-xs font-semibold text-gray-400">Draft</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">THE DRAFT FOREST CONSERVATION MANAGEMENT ACT (FCMA)</h4>
-                </div>
-                <a href="#" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800 js-open-opinion">
-                    Submit Opinion <span class="ml-2"></span>
-                </a>
-            </div>
-
-            <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
+                    <div class="flex justify-between items-start mb-4">
                         <span class="text-xs font-bold text-white bg-blue-900 px-3 py-1 rounded-sm uppercase tracking-wider">Bill</span>
                         <span class="text-xs font-semibold text-gray-400">2024</span>
                     </div>
+                    <p class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brandRed bg-brandRed/10 border border-brandRed/30 rounded-sm px-2.5 py-1 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+                        Submissions Closed
+                    </p>
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">The Kenya Public Participation Bill 2024</h4>
                 </div>
                 <a href="policy-reviews/public-participation-bill-2024.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2"></span>
+                    Read Review <span class="ml-2"></span>
                 </a>
             </div>
 
             <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-start mb-6">
+                    <div class="flex justify-between items-start mb-4">
                         <span class="text-xs font-bold text-white bg-blue-900 px-3 py-1 rounded-sm uppercase tracking-wider">Bill</span>
                         <span class="text-xs font-semibold text-gray-400">2025</span>
                     </div>
+                    <p class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brandRed bg-brandRed/10 border border-brandRed/30 rounded-sm px-2.5 py-1 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+                        Submissions Closed
+                    </p>
                     <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">The Public Participation Bill 2025</h4>
                 </div>
                 <a href="policy-reviews/public-participation-bill-2025.html" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800">
-                    Read Review & Submit Opinion <span class="ml-2"></span>
-                </a>
-            </div>
-
-            <div class="snap-center shrink-0 w-[85vw] sm:w-[400px] bg-white rounded-xl border border-gray-200 p-8 hover:border-brandGreen hover:shadow-xl transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-xs font-bold text-white bg-gray-900 px-3 py-1 rounded-sm uppercase tracking-wider">Global</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4 text-brandDark leading-snug">COP 15</h4>
-                </div>
-                <a href="#" class="mt-8 inline-flex items-center text-sm font-bold text-brandGreen hover:text-green-800 js-open-opinion">
-                    Submit Opinion <span class="ml-2"></span>
+                    Read Review <span class="ml-2"></span>
                 </a>
             </div>
 
@@ -717,7 +661,6 @@
                         
                         <a href="resources/law-making-process-guide.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Resources</a>
                         <a href="resources/environmental-impact-assessment.html" class="block text-sm text-gray-400 hover:text-brandRed transition-colors">Environmental Impact Assessment</a>
-                        <a href="campaigns.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Campaigns</a>
                         <a href="privacy.html" class="block text-sm text-gray-400 hover:text-brandAccent transition-colors">Privacy Policy</a>
                     </nav>
                 </div>
@@ -751,15 +694,15 @@
     </footer>
 
     <!-- Lightbox Overlay for Image -->
-    <div id="imageLightbox" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
-        <button id="closeLightboxBtn" class="absolute top-6 right-6 text-white hover:text-brandGreen text-4xl font-bold cursor-pointer z-50 transition-colors">&times;</button>
+    <div id="imageLightbox" class="fixed inset-0 z-[95] hidden bg-black bg-opacity-90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <button type="button" id="closeLightboxBtn" class="absolute top-6 right-6 text-white hover:text-brandGreen text-4xl font-bold cursor-pointer z-50 transition-colors">&times;</button>
         <div class="relative max-w-4xl w-full flex flex-col items-center max-h-full">
-            <img src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer Enlarged" class="max-h-[75vh] w-auto rounded-lg object-contain shadow-2xl mb-6">
-            <a href="assets/images/How to use BNG Site.jpeg" download="How-To-BongaNaGava.jpg" target="_blank" class="bg-brandGreen text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-green-700 transition shadow-lg flex items-center gap-3">
+            <img id="lightboxImg" src="assets/images/How to use BNG Site.jpeg" alt="How to use BNG Site flyer Enlarged" class="max-h-[75vh] w-auto rounded-lg object-contain shadow-2xl mb-6">
+            <a id="lightboxDownload" href="assets/images/How to use BNG Site.jpeg" download="How-To-BongaNaGava.jpg" target="_blank" class="bg-brandGreen text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-green-700 transition shadow-lg flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Download Flyer
+                <span id="lightboxLabel">Download Flyer</span>
             </a>
         </div>
     </div>
@@ -967,24 +910,50 @@
 
         // Lightbox Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const howToImg = document.getElementById('howToTrigger');
             const lightbox = document.getElementById('imageLightbox');
             const closeBtn = document.getElementById('closeLightboxBtn');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxDownload = document.getElementById('lightboxDownload');
+            const lightboxLabel = document.getElementById('lightboxLabel');
+            let lastTrigger = null;
 
-            howToImg.addEventListener('click', () => {
+            function openLightbox(trigger) {
+                lastTrigger = trigger;
+                const src = trigger.getAttribute('data-lightbox-src');
+                lightboxImg.setAttribute('src', src);
+                lightboxImg.setAttribute('alt', trigger.getAttribute('data-lightbox-alt') || 'Enlarged image');
+                lightboxDownload.setAttribute('href', src);
+                lightboxDownload.setAttribute('download', trigger.getAttribute('data-lightbox-download') || 'bng-image.jpg');
+                lightboxLabel.textContent = trigger.getAttribute('data-lightbox-label') || 'Download Image';
                 lightbox.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
-            });
+                closeBtn.focus();
+            }
 
-            closeBtn.addEventListener('click', () => {
+            function closeLightbox() {
                 lightbox.classList.add('hidden');
                 document.body.style.overflow = 'auto';
+                if (lastTrigger) {
+                    lastTrigger.focus();
+                    lastTrigger = null;
+                }
+            }
+
+            document.querySelectorAll('.js-lightbox').forEach(function (trigger) {
+                trigger.addEventListener('click', function () { openLightbox(trigger); });
             });
+
+            closeBtn.addEventListener('click', closeLightbox);
 
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
-                    lightbox.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                    closeLightbox();
                 }
             });
         });

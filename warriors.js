@@ -3,6 +3,12 @@
 
     var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzfrMNUkF1ugLtuIYsxTFf5b-3ZzsrOLHbRq6X4RUJe3AOSzUUAuoWnzM_SHz3ADbhw/exec';
     var GFORM_URL = 'https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform';
+    var SMS_SHORTCODE = '21064';
+
+    // Hover intent: the panel only opens once the pointer has rested on the
+    // bubble for FAB_HOVER_DELAY, so passing near it never triggers it.
+    var FAB_HOVER_DELAY = 300;
+    var FAB_COLLAPSE_DELAY = 400;
 
     // Add every new policy review here and it will automatically show in the
     // "Submit Your View" dropdown. First value is the sheet-friendly key, second
@@ -43,12 +49,13 @@
 }
 .bng-fab-root {
     position: fixed;
-    right: 1.25rem;
+    left: 1.25rem;
     bottom: 1.25rem;
     z-index: 80;
     display: none;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+    pointer-events: none;
 }
 .bng-fab-root.show {
     display: flex;
@@ -68,6 +75,7 @@
     box-shadow: 0 14px 30px rgba(15, 81, 50, 0.35);
     cursor: pointer;
     border: none;
+    pointer-events: auto;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .bng-fab-bubble:hover,
@@ -99,7 +107,7 @@
     border: 1px solid #e5e7eb;
     opacity: 0;
     transform: translateY(14px) scale(0.95);
-    transform-origin: bottom right;
+    transform-origin: bottom left;
     pointer-events: none;
     transition: opacity 0.22s ease, transform 0.22s ease;
     margin-bottom: 0.75rem;
@@ -176,11 +184,34 @@
     margin-bottom: 1.1rem;
     display: block;
 }
-.bng-fab-note {
-    font-size: 0.8rem;
-    color: #6b7280;
-    line-height: 1.5;
-    margin-bottom: 1rem;
+.bng-fab-shortcode {
+    background: #fffbeb;
+    border: 2px solid #fbbf24;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+.bng-fab-shortcode-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #92400e;
+}
+.bng-fab-shortcode-value {
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    color: #0f5132;
+    line-height: 1.15;
+    margin: 0.15rem 0;
+    font-variant-numeric: tabular-nums;
+}
+.bng-fab-shortcode-hint {
+    font-size: 0.68rem;
+    color: #92400e;
+    line-height: 1.4;
 }
 .bng-fab-cta,
 .bng-fab-cta-2 {
@@ -459,6 +490,11 @@
             <div class="text-[10px] uppercase tracking-widest text-green-200 font-bold mb-1">Bonga Na Gava &middot; SUSO</div>
             <h3 id="bngSmsTitle" class="text-xl sm:text-2xl font-black uppercase tracking-wide pr-10">SMS Alerts</h3>
             <p class="text-green-100 text-xs mt-1.5 leading-relaxed">Opt in and we will text you the moment a new bill, policy or review drops. Then reply directly to that text with your opinions and submissions. No spam, ever.</p>
+            <div class="mt-4 rounded-xl bg-white/10 border border-white/25 px-4 py-3 text-center">
+                <div class="text-[10px] uppercase tracking-widest text-green-200 font-bold">SMS Shortcode</div>
+                <div class="text-3xl font-black text-white tracking-[0.18em] my-0.5 tabular-nums">` + SMS_SHORTCODE + `</div>
+                <div class="text-[11px] text-green-100 leading-snug">Send <strong>` + SMS_SHORTCODE + `</strong> to our SMS line to join instantly</div>
+            </div>
         </div>
 
         <form id="bngSmsForm" class="flex flex-col flex-1 min-h-0" novalidate>
@@ -603,11 +639,13 @@
         </div>
         <img src="` + IMG_BASE + `assets/images/bng_sms.jpeg" alt="BNG SMS" class="bng-fab-banner">
         <div class="bng-fab-body">
+            <div class="bng-fab-shortcode">
+                <div class="bng-fab-shortcode-label">SMS Shortcode</div>
+                <div class="bng-fab-shortcode-value">` + SMS_SHORTCODE + `</div>
+                <div class="bng-fab-shortcode-hint">Text this to our SMS line to join</div>
+            </div>
             <h4>How BNG SMS works</h4>
             <img src="` + IMG_BASE + `assets/images/how_bng_sms.jpeg" alt="How BNG SMS works" class="bng-fab-img">
-            <h4>Why BNG SMS</h4>
-            <img src="` + IMG_BASE + `assets/images/why_bng_sms.jpeg" alt="Why BNG SMS" class="bng-fab-img">
-            <p class="bng-fab-note">We text you the moment new bills, policies or reviews drop. Then reply straight from your phone with your views. No forms, no spam.</p>
             <button type="button" id="bngSmsFabCta" class="bng-fab-cta">Get SMS Alerts</button>
             <button type="button" id="bngOpinionFabCta" class="bng-fab-cta-2">Share Your View</button>
         </div>
@@ -633,6 +671,8 @@
     var fabRoot = null;
     var fabBubble = null;
     var fabTimer = null;
+    var fabHoverTimer = null;
+    var fabCollapseTimer = null;
     var fabShown = false;
     var fabHovered = false;
     var fabPinned = false;
@@ -1004,18 +1044,27 @@
         var smsCta = document.getElementById('bngSmsFabCta');
         var opinionCta = document.getElementById('bngOpinionFabCta');
 
-        fabRoot.addEventListener('mouseenter', function () {
+        fabBubble.addEventListener('mouseover', function () {
             fabHovered = true;
-            expandFab();
+            clearTimeout(fabCollapseTimer);
+            if (fabPinned || fabRoot.classList.contains('expanded')) return;
+            clearTimeout(fabHoverTimer);
+            fabHoverTimer = setTimeout(function () {
+                if (fabRoot.matches(':hover')) expandFab();
+            }, FAB_HOVER_DELAY);
         });
-        fabRoot.addEventListener('mouseleave', function () {
+
+        fabRoot.addEventListener('mouseout', function () {
             fabHovered = false;
-            setTimeout(function () {
-                if (!fabHovered && !fabPinned) collapseFab();
-            }, 350);
+            clearTimeout(fabHoverTimer);
+            clearTimeout(fabCollapseTimer);
+            fabCollapseTimer = setTimeout(function () {
+                if (!fabPinned && !fabRoot.matches(':hover')) collapseFab();
+            }, FAB_COLLAPSE_DELAY);
         });
 
         fabBubble.addEventListener('click', function () {
+            clearTimeout(fabHoverTimer);
             fabPinned = !fabRoot.classList.contains('expanded');
             if (fabPinned) expandFab();
             else { collapseFab(); scheduleFabCycle(); }
@@ -1023,6 +1072,8 @@
 
         close.addEventListener('click', function () {
             fabPinned = false;
+            clearTimeout(fabHoverTimer);
+            clearTimeout(fabCollapseTimer);
             collapseFab();
             scheduleFabCycle();
         });

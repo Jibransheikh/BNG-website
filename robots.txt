@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /campaigns.html
 
 Sitemap: https://bonganagava.com/sitemap.xml
