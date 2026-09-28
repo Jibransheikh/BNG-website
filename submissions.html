@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submissions | Bonga Na Gava</title>
-    <meta name="description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
+    <title>Public Opinions | Bonga Na Gava</title>
+    <meta name="description" content="Browse public opinion submissions on Kenyan environmental policies and legislation. Filter by policy review and read what young citizens submitted.">
     <link rel="canonical" href="https://bonganagava.com/submissions.html">
-    <meta property="og:title" content="Submissions | Bonga Na Gava">
-    <meta property="og:description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
+    <meta property="og:title" content="Public Opinions | Bonga Na Gava">
+    <meta property="og:description" content="Browse public opinion submissions on Kenyan environmental policies and legislation. Filter by policy review and read what young citizens submitted.">
     <meta property="og:image" content="https://bonganagava.com/assets/images/og-image.png">
     <meta property="og:url" content="https://bonganagava.com/submissions.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Bonga Na Gava">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Submissions | Bonga Na Gava">
-    <meta name="twitter:description" content="Browse public opinion submissions on Kenya's environmental policies including the Draft Forest Conservation Act and National Energy Policy.">
+    <meta name="twitter:title" content="Public Opinions | Bonga Na Gava">
+    <meta name="twitter:description" content="Browse public opinion submissions on Kenyan environmental policies and legislation. Filter by policy review and read what young citizens submitted.">
     <meta name="twitter:image" content="https://bonganagava.com/assets/images/og-image.png">
     <link rel="icon" type="image/png" href="https://bonganagava.com/assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,8 +43,26 @@
         button, .dt-button { padding: 10px 16px !important; font-size: 13px !important; font-weight: 700 !important; border-radius: 6px !important; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; border: none !important; background-image: none !important; font-family: 'Inter', sans-serif !important; }
         #toggleMask { background: #111827; color: #ffffff; }
         #toggleMask:hover { background: #0f5132; }
+        #unlockBtn { background: #0f5132; color: #ffffff; }
+        #unlockBtn:hover { background: #059669; }
         .dt-button.btn-pdf { background: #0f5132 !important; color: #ffffff !important; }
         .dt-button.btn-pdf:hover { background: #059669 !important; }
+
+        /* Status / error banner above the table. */
+        .info-banner { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 14px 18px; margin-bottom: 20px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+        .info-banner.is-loading { background: #f4f4f5; color: #52525b; }
+        .info-banner.is-empty { background: #f4f4f5; color: #52525b; }
+        .info-banner.is-error { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+        .info-banner.is-ok { background: #0f5132; color: #ffffff; }
+        .info-banner button { background: #b91c1c; color: #ffffff; padding: 8px 16px !important; font-size: 11px !important; }
+
+        /* Placeholder row shown while loading or when the sheet has no rows. */
+        .placeholder-cell { text-align: center; color: #a1a1aa; padding: 50px 10px !important; font-weight: 600; }
+
+        /* Locked state: name/contact columns are not meaningful until unlocked. */
+        table.dataTable.locked thead th:nth-child(1),
+        table.dataTable.locked thead th:nth-child(2) { color: #a1a1aa; }
+        .lock-note { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.5px; color: #a1a1aa; margin-left: 6px; }
 
         .custom-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
         .toolbar-left, .toolbar-right { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
@@ -232,22 +250,27 @@
                 <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
                 Your Voice Matters
             </div>
-            <h1 class="header-anim visibility-hidden text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter leading-[1.05] text-brandDark uppercase">Public Submissions</h1>
-            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-2xl">Browse opinions submitted by Kenyan youth on active environmental policies and legislation.</p>
+            <h1 class="header-anim visibility-hidden text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter leading-[1.05] text-brandDark uppercase">Public Opinions</h1>
+            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-2xl">Browse opinions submitted by Kenyan youth on active environmental policies and legislation. Names and contact details are hidden until a reviewer unlocks them.</p>
         </div>
     </section>
 
     <section class="pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="op-table-card p-6 md:p-8 content-anim visibility-hidden">
+
+                <div class="info-banner" id="infoBanner">
+                    <p class="info-text" id="infoText">Loading opinions&hellip;</p>
+                    <button type="button" id="infoRetry" class="hidden">Try again</button>
+                </div>
+
                 <div class="custom-toolbar">
                     <div class="toolbar-left">
-                        <select class="policy-filter" id="policyFilter">
+                        <select class="policy-filter" id="policyFilter" aria-label="Filter by policy review">
                             <option value="">View All Policies</option>
-                            <option value="FCMA">Draft Forest Conservation Act (FCMA)</option>
-                            <option value="Energy Policy">National Energy Policy</option>
                         </select>
-                        <button id="toggleMask">Unmask Contacts</button>
+                        <button type="button" id="unlockBtn">Reveal Names &amp; Contacts</button>
+                        <button type="button" id="toggleMask" class="hidden" aria-pressed="false">Hide Personal Details</button>
                     </div>
                     <div class="toolbar-right" id="dt-controls"></div>
                 </div>
@@ -255,86 +278,17 @@
                 <table id="opinionsTable" class="display responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Contact</th>
+                            <th>Name<span class="lock-note" id="lockNoteName">LOCKED</span></th>
+                            <th>Contact<span class="lock-note" id="lockNoteContact">LOCKED</span></th>
                             <th>Location</th>
                             <th>Policy / Topic</th>
                             <th>Views / Suggestions</th>
                             <th>Date</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Golda Awino</td>
-                            <td class="contact-cell" data-raw="goldarwelamila@gmail.com<br>+254 742 102 075" data masked="g***@gmail.com<br>+254 74* *** 075">g***@gmail.com<br>+254 74* *** 075</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">FCMA</td>
-                            <td class="opinion-col">While Section 56 is intended to support sustainable forest management, its broad authorization powers risk enabling privatization and exploitation of public forests unless strict oversight, transparency, and community participation are guaranteed. And we all know what that means.</td>
-                            <td>8 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Faith Koitikei</td>
-                            <td class="contact-cell" data-raw="faithkoitikei@gmail.com<br>+254 758 332 617" data masked="f***@gmail.com<br>+254 75* *** 617">f***@gmail.com<br>+254 75* *** 617</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">FCMA</td>
-                            <td class="opinion-col">As a young Kenyan, I feel that this Bill talks a lot about management, regulation, and infrastructure, but very little about the people who will live with the long term effects of these decisions. Forests are becoming smaller every year, climate change is affecting rainfall and food security, and many communities already struggle with water shortages. Because of this, forest laws should focus first on protection and restoration before commercial use. I am particularly worried about opening public forests to roads, pipelines, and other developments through Section 56. Even when projects begin as "public interest" developments, they can slowly lead to destruction of forests, human encroachment, and loss of biodiversity. Once forests are damaged, it takes decades to recover them.</td>
-                            <td>8 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Rodhey Andeka</td>
-                            <td class="contact-cell" data-raw="rodgersandekah@gmail.com<br>+254 710 576 643" data masked="r***@gmail.com<br>+254 71* *** 643">r***@gmail.com<br>+254 71* *** 643</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">The policy should be strengthened by clearly prioritising renewable energy pathways over fossil fuels, including a more defined approach to the gradual phase down of coal and a cautious, limited role for natural gas, in order to fully align with Kenya's climate commitments and renewable energy advantage.</td>
-                            <td>2 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Adalia Barsito</td>
-                            <td class="contact-cell" data-raw="adaliaanya@gmail.com<br>+254 112 499 229" data masked="a***@gmail.com<br>+254 11* *** 229">a***@gmail.com<br>+254 11* *** 229</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">This policy represents a major effort to reform how the country produces and uses power. And it is essentially built on principles of sustainability, equity, and economic development and seeks to aim for a just energy transition. However, a significant gap exists between these ambitions and the current reality, where over 60% of households still rely on biomass for cooking. While there is strong support for renewable sources like geothermal and wind, the system currently lacks the grid readiness and storage needed to fully integrate them. A major point of contention is the inclusion of fossil fuels, specifically coal for industrial use and natural gas as a transition fuel, which critics see as a contradiction to clean energy goals.</td>
-                            <td>1 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Christian Odhiambo</td>
-                            <td class="contact-cell" data-raw="christianodhiambo259@gmail.com<br>+254 112 501 200" data masked="c***@gmail.com<br>+254 11* *** 200">c***@gmail.com<br>+254 11* *** 200</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">Overall, the policy presents a strong and forward looking vision, especially around renewable energy, universal access, and green industrialisation. However, there are a few critical issues that stand out. The biggest concern is the gap between ambition and implementation. While the policy sets very high targets, the current energy system is already under strain, particularly in transmission, distribution, and system integration.</td>
-                            <td>1 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Winny Jerop</td>
-                            <td class="contact-cell" data-raw="1066566@cuea.edu<br>+254 790 442 635" data masked="1***@cuea.edu<br>+254 79* *** 635">1***@cuea.edu<br>+254 79* *** 635</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">Natural gas is framed as a transition fuel, but it still extends dependence on fossil systems and risks delaying a full shift to renewables. Together, they create a tension between a clean energy pathway and a carbon heavy backup path that may become harder to reverse.</td>
-                            <td>1 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Raphael Munyaka</td>
-                            <td class="contact-cell" data-raw="rmutua.jr7@gmail.com<br>+254 712 772 657" data masked="r***@gmail.com<br>+254 71* *** 657">r***@gmail.com<br>+254 71* *** 657</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">The policy rightly focuses on universal access and renewable energy, but it needs stronger implementation frameworks and financing clarity to deliver impact.</td>
-                            <td>1 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Christopher Mutuku</td>
-                            <td class="contact-cell" data-raw="christophermutukumedia@gmail.com<br>+254 113 594 918" data masked="c***@gmail.com<br>+254 11* *** 918">c***@gmail.com<br>+254 11* *** 918</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">Energy Policy</td>
-                            <td class="opinion-col">Kenya cannot pursue clean energy while still investing in coal and expanding fossil fuels. The policy needs to move from ambition to clear choices by fully prioritising renewables and protecting communities affected by energy projects.</td>
-                            <td>1 May 2026</td>
-                        </tr>
-                        <tr>
-                            <td>Dianah Otieno</td>
-                            <td class="contact-cell" data-raw="dianalox@gmail.com" data-masked="d***@gmail.com">d***@gmail.com</td>
-                            <td>Nairobi, KE</td>
-                            <td class="topic-col">FCMA</td>
-                            <td class="opinion-col">The policy should clarify its stance on green hydrogen and critical minerals, ensuring that resource extraction and industrial development do not come at the expense of ecosystems and local communities. A more cohesive, transparent, and enforceable pathway is needed to align financing, infrastructure, and governance with Kenya's climate and development goals.</td>
-                            <td>1 May 2026</td>
+                    <tbody id="opinionsBody">
+                        <tr class="placeholder-row">
+                            <td colspan="6" class="placeholder-cell">Loading&hellip;</td>
                         </tr>
                     </tbody>
                 </table>
@@ -436,80 +390,246 @@
             gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 88%" }, y: 24, opacity: 0, duration: 0.7, ease: "power2.out" });
         });
 
-        $(document).ready(function() {
-            $('.opinion-col').each(function() {
-                var textLength = $(this).text().length;
-                var originalHtml = $(this).html();
-                if (textLength > 120) {
-                    $(this).html('<div class="opinion-text">' + originalHtml + '</div><span class="read-more-btn">Read More</span>');
-                } else {
-                    $(this).html('<div class="opinion-text expanded">' + originalHtml + '</div>');
+        // ---------------------------------------------------------- opinions
+        // Rows are fetched from the Apps Script at runtime, never baked into
+        // this file. The public feed omits name/contact entirely; those only
+        // arrive when a reviewer supplies the access code and the server
+        // validates it against its own stored key.
+        (function () {
+            'use strict';
+
+            var ENDPOINT = window.BNG_SHEET_URL;
+
+            var table = null;
+            var opinions = [];
+            var unlocked = false;
+            var unmasked = false;
+            var activePolicy = '';
+
+            var $info = $('#infoBanner');
+            var $infoText = $('#infoText');
+            var $retry = $('#infoRetry');
+            var $filter = $('#policyFilter');
+            var $unlock = $('#unlockBtn');
+            var $toggle = $('#toggleMask');
+
+            function esc(s) {
+                return String(s === undefined || s === null ? '' : s)
+                    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
+
+            function setInfo(kind, text, canRetry) {
+                $info.attr('class', 'info-banner is-' + kind);
+                $infoText.text(text);
+                $retry.toggleClass('hidden', !canRetry);
+            }
+
+            function maskEmail(v) {
+                var at = v.indexOf('@');
+                if (at < 1) return maskPhone(v);
+                return v.charAt(0) + '***' + v.slice(at);
+            }
+
+            function maskPhone(v) {
+                var digits = v.replace(/\D/g, '');
+                if (digits.length < 6) return v.charAt(0) + '***';
+                return v.replace(/\d(?=\D*\d\D*\d\D*\d\D*\d\D*\d\D*\d\D*\d\D*\d\D*\d)/g, '*');
+            }
+
+            function maskContact(v) {
+                if (!v) return '';
+                return v.indexOf('@') > -1 ? maskEmail(v) : maskPhone(v);
+            }
+
+            function formatDate(iso) {
+                if (!iso) return '';
+                var d = new Date(iso);
+                if (isNaN(d.getTime())) return String(iso);
+                return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            function policyLabel(key) {
+                var list = window.BNG_POLICIES || [];
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].key === key) return list[i].label;
                 }
-            });
+                return key || '';
+            }
 
-            var table = $('#opinionsTable').DataTable({
-                responsive: true,
-                dom: 'rt<"table-bottom"ilp><"clear">',
-                pageLength: 5,
-                lengthMenu: [5, 10, 25],
-                order: [[5, 'desc']],
-                buttons: [{
-                    extend: 'pdfHtml5',
-                    text: 'Download PDF',
-                    title: 'Bonga Na Gava - Public Submissions',
-                    className: 'btn-pdf',
-                    exportOptions: {
-                        stripHtml: false,
-                        format: {
-                            body: function(data, row, column, node) {
-                                if (column === 4) { return $(node).find('.opinion-text').text(); }
-                                if (column === 1) { return $(node).html().replace(/<br>/g, "\n"); }
-                                return data;
-                            }
-                        }
-                    }
-                }]
-            });
-
-            table.buttons().container().appendTo('#dt-controls');
-            var searchBox = $('<input type="text" placeholder="Search entries..." class="text-sm">').on('keyup', function() { table.search(this.value).draw(); });
-            $('#dt-controls').append($('<div class="dataTables_filter"></div>').append(searchBox));
-
-            $('#policyFilter').on('change', function() { table.column(3).search($(this).val()).draw(); });
-
-            $('#opinionsTable').on('click', '.read-more-btn', function() {
-                var textBox = $(this).prev('.opinion-text');
-                textBox.toggleClass('expanded');
-                $(this).text(textBox.hasClass('expanded') ? 'Show Less' : 'Read More');
-                table.columns.adjust();
-            });
-
-            var isMasked = true;
-            $('#toggleMask').on('click', function() {
-                $('.contact-cell').each(function() {
-                    var cell = $(this);
-                    cell.html(isMasked ? cell.attr('data-raw') : cell.attr('data-masked'));
+            function buildFilter() {
+                // Options come from the fetched rows, so opinions filed against a
+                // policy that has since been retired still show and stay filterable.
+                var seen = {};
+                var keys = [];
+                opinions.forEach(function (o) {
+                    if (o.policy && !seen[o.policy]) { seen[o.policy] = 1; keys.push(o.policy); }
                 });
-                table.rows().invalidate().draw(false);
-                isMasked = !isMasked;
-                $(this).text(isMasked ? 'Unmask Contacts' : 'Hide Contacts');
-                $(this).css({ 'background-color': isMasked ? '#111827' : '#ef4444', 'color': '#ffffff' });
+                (window.BNG_POLICIES || []).forEach(function (p) {
+                    if (!seen[p.key]) { seen[p.key] = 1; keys.push(p.key); }
+                });
+
+                var opts = '<option value="">View All Policies</option>';
+                keys.forEach(function (k) {
+                    opts += '<option value="' + esc(k) + '">' + esc(policyLabel(k) || k) + '</option>';
+                });
+                $filter.html(opts);
+            }
+
+            // The visible column shows the human label, so filtering has to
+            // match against the row's policy key rather than the rendered text.
+            $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+                if (settings.nTable.id !== 'opinionsTable' || !activePolicy) return true;
+                return opinions[dataIndex] && opinions[dataIndex].policy === activePolicy;
             });
-        });
-    </script>
-    <script>
-        (function() {
-            var pw = 'BNG@Subm1t';
-            var key = 'bng_sub_auth';
-            if (sessionStorage.getItem(key) === pw) return;
-            var pwd = prompt('This page is password protected. Please enter the access code:');
-            if (pwd === pw) {
-                sessionStorage.setItem(key, pw);
+
+            function initTable() {
+                table = $('#opinionsTable').DataTable({
+                    responsive: true,
+                    dom: 'rt<"table-bottom"ilp><"clear">',
+                    pageLength: 5,
+                    lengthMenu: [5, 10, 25],
+                    order: [[5, 'desc']],
+                    columns: [
+                        { data: null, render: function (d, t, row) { return row.nameCell; } },
+                        { data: null, render: function (d, t, row) { return row.contactCell; } },
+                        { data: 'location' },
+                        { data: 'policyLabel' },
+                        { data: 'opinion' },
+                        { data: 'dateText' }
+                    ],
+                        buttons: [{
+                            extend: 'pdfHtml5',
+                            text: 'Download PDF',
+                            title: 'Bonga Na Gava - Public Opinions',
+                            className: 'btn-pdf',
+                            // Only the rows surviving the current search and
+                            // policy filter are exported, and the personal
+                            // columns are blanked unless the reviewer has
+                            // explicitly unmasked them.
+                            exportOptions: {
+                                stripHtml: true,
+                                rows: function (dt, data, row) {
+                                    return dt.rows({ search: 'applied' }).indexes().indexOf(row) !== -1;
+                                },
+                                format: {
+                                    body: function (data, row, column) {
+                                        if (column === 0 || column === 1) {
+                                            return unlocked && unmasked ? data : '';
+                                        }
+                                        return data;
+                                    }
+                                },
+                                orientation: 'landscape',
+                                pageMargins: [40, 60, 40, 60]
+                            }
+                        }]
+                });
+
+                table.buttons().container().appendTo('#dt-controls');
+                var searchBox = $('<input type="text" placeholder="Search entries..." class="text-sm">')
+                    .on('keyup', function () { table.search(this.value).draw(); });
+                $('#dt-controls').append($('<div class="dataTables_filter"></div>').append(searchBox));
+
+                $filter.off('change').on('change', function () {
+                    activePolicy = $(this).val() || '';
+                    table.draw();
+                });
+
+                $('#opinionsTable').off('click', '.read-more-btn').on('click', '.read-more-btn', function () {
+                    var box = $(this).prev('.opinion-text');
+                    box.toggleClass('expanded');
+                    $(this).text(box.hasClass('expanded') ? 'Show Less' : 'Read More');
+                    table.columns.adjust();
+                });
+            }
+
+            // Feeds DataTables with plain strings, keeping the mask state out of
+            // the DOM so nothing sensitive is left behind in the page.
+            function toRows() {
+                return opinions.map(function (o) {
+                    return {
+                        nameCell: unlocked && o.name ? o.name : '',
+                        contactCell: unlocked && o.contact
+                            ? (unmasked ? o.contact : maskContact(o.contact))
+                            : '',
+                        location: o.location,
+                        policyLabel: policyLabel(o.policy) || o.policy,
+                        opinion: o.opinion,
+                        dateText: formatDate(o.date)
+                    };
+                });
+            }
+
+            function loadData(key) {
+                var url = ENDPOINT + '?view=opinions' + (key ? '&key=' + encodeURIComponent(key) : '');
+                setInfo('loading', 'Loading opinions…', false);
+
+                return fetch(url, { method: 'GET', mode: 'cors' })
+                    .then(function (res) { return res.json(); })
+                    .then(function (data) {
+                        if (!data || data.result !== 'success') {
+                            throw new Error((data && data.error) || 'Unexpected server response.');
+                        }
+                        opinions = data.opinions || [];
+
+                        if (key && !opinions.length) {
+                            setInfo('error', 'Incorrect access code, or there are no opinions yet.', true);
+                            return;
+                        }
+
+                        buildFilter();
+                        var rows = toRows();
+                        if (!table) initTable();
+                        table.clear().rows.add(rows).draw();
+
+                        if (key) {
+                            unlocked = true;
+                            $('#opinionsTable').removeClass('locked');
+                            $('#lockNoteName, #lockNoteContact').text('PRIVATE');
+                            $unlock.addClass('hidden');
+                            $toggle.removeClass('hidden');
+                            setInfo('ok', unlocked && opinions.some(function (o) { return o.name; })
+                                ? 'Personal details unlocked. Use "Hide Personal Details" before downloading a PDF to share.'
+                                : 'Unlocked, but no rows in the sheet carry a name or contact yet.', false);
+                        } else {
+                            setInfo('is-loading',
+                                opinions.length + ' opinion' + (opinions.length === 1 ? '' : 's') +
+                                ' published. Names and contact details are hidden.', false);
+                        }
+                    })
+                    .catch(function (err) {
+                        setInfo('error', 'Could not load opinions. ' + (err && err.message ? err.message : '') + ' Please try again.', true);
+                    });
+            }
+
+            $retry.on('click', function () { loadData(); });
+
+            $unlock.on('click', function () {
+                var key = window.prompt('Enter the reviewer access code to reveal names and contact details:');
+                if (!key) return;
+                loadData(key);
+            });
+
+            $toggle.on('click', function () {
+                unmasked = !unmasked;
+                $toggle.text(unmasked ? 'Hide Personal Details' : 'Show Personal Details');
+                $toggle.attr('aria-pressed', String(unmasked));
+                $toggle.css({ 'background-color': unmasked ? '#b91c1c' : '#111827', 'color': '#ffffff' });
+                if (table) { table.clear().rows.add(toRows()).draw(); }
+            });
+
+            $('#opinionsTable').addClass('locked');
+
+            if (!ENDPOINT) {
+                setInfo('error', 'Configuration error: the submissions endpoint is not loaded.', false);
             } else {
-                document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Inter,sans-serif;background:#f8fafc;"><div style="text-align:center;"><h1 style="font-size:1.5rem;font-weight:800;color:#111827;margin-bottom:0.5rem;">Access Denied</h1><p style="color:#6b7280;">Incorrect password. <a href="index.html" style="color:#0f5132;font-weight:600;">Return Home</a></p></div></div>';
+                loadData();
             }
         })();
     </script>
+    <script src="policy-reviews-data.js"></script>
+
     <script src="warriors.js"></script>
 </body>
 </html>

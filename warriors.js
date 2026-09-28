@@ -1,7 +1,11 @@
 (function () {
     'use strict';
 
-    var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzfrMNUkF1ugLtuIYsxTFf5b-3ZzsrOLHbRq6X4RUJe3AOSzUUAuoWnzM_SHz3ADbhw/exec';
+    // Single source of truth for the Apps Script endpoint. Rotating the
+    // deployment means editing this one line - contact.html and any other
+    // page reads it from here via window.BNG_SHEET_URL.
+    var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzmvyTxr2PiiQ9HZcM91iy_IQ8ZAyjZfmbYur7g7CIR0gmNAQQdNtykODl3cj5lBbSN/exec';
+    window.BNG_SHEET_URL = SHEET_URL;
     var GFORM_URL = 'https://docs.google.com/forms/u/3/d/e/1FAIpQLScoBESmtB9YkXkxAiE0wGY2_HjoV2o0kEdQqY5Thl1c0xKZPg/viewform';
     var SMS_SHORTCODE = '21064';
 
@@ -10,15 +14,23 @@
     var FAB_HOVER_DELAY = 300;
     var FAB_COLLAPSE_DELAY = 400;
 
-    // Add every new policy review here and it will automatically show in the
-    // "Submit Your View" dropdown. First value is the sheet-friendly key, second
-    // is what users see in the dropdown.
+    // Fallback list, used only when policy-reviews-data.js has not been
+    // generated/deployed. `node build.js` regenerates that file from the
+    // <meta name="bng-policy"> tag on each page in policy-reviews/, so adding
+    // a review page and running the build is all it takes to show up here.
     var POLICY_REVIEW_OPTIONS = [
         ['civic education 2026', 'Civic Education, Citizen Engagement & Public Participation Policy 2026'],
         ['wildlife conservation bill 2025', 'The Wildlife Conservation & Management Bill, 2025'],
-        ['public participation bill 2024', 'The Kenya Public Participation Bill, 2024'],
         ['public participation bill 2025', 'The Public Participation Bill, 2025']
     ];
+
+    function policyOptions() {
+        var list = window.BNG_POLICIES;
+        if (list && list.length) {
+            return list.map(function (p) { return [p.key, p.label]; });
+        }
+        return POLICY_REVIEW_OPTIONS;
+    }
 
     var SHARED_STYLES = `
 .success-pop {
@@ -737,7 +749,12 @@
             if (e.key === 'Escape' && opinionModal && !opinionModal.classList.contains('hidden')) closeOpinionModal();
         });
 
+        // The modal is injected just above this point, and it contains its own
+        // "prefer the Google Forms version" escape hatch pointing at GFORM_URL.
+        // Skip that one, otherwise the only route to the real form reopens this
+        // modal instead.
         document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(function (link) {
+            if (link.closest('#bngWarriorsModal')) return;
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 openModal();
@@ -747,7 +764,6 @@
         injectSharedStyles();
         setupSmsModal();
         setupOpinionModal();
-        setupEmbeddedForms();
         setupSmsFab();
     }
 
@@ -786,11 +802,22 @@
         });
     }
 
+    // Every submit button is disabled while its request is in flight and
+    // re-enabled afterwards. Without this, a modal that is closed after a
+    // successful submit and re-opened keeps the disabled "Submitting..."
+    // button and can never be used again without a page reload.
+    function setSubmitting(btn, isSubmitting, idleLabel) {
+        if (!btn) return;
+        btn.disabled = isSubmitting;
+        btn.textContent = isSubmitting ? 'Submitting...' : idleLabel;
+    }
+
     function openSmsModal() {
         var successEl = document.getElementById('bngSmsSuccess');
         if (successEl) successEl.classList.add('hidden');
         smsForm.classList.remove('hidden');
         smsForm.reset();
+        setSubmitting(document.getElementById('bngSmsSubmit'), false, 'Opt In to SMS Alerts');
         smsModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
@@ -802,35 +829,47 @@
 
     function submitSms(e) {
         e.preventDefault();
-        var btn = document.getElementById('bngSmsSubmit');
-        var original = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
+        // The form is marked novalidate, so the browser's own required-field
+        // checks never fire. Without this the consent box is decorative and
+        // empty submissions are accepted.
+        if (!smsForm.checkValidity()) {
+            smsForm.reportValidity();
+            return;
+        }
 
         var payload = {
             list: 'SMS Opt-Ins',
-            name: document.getElementById('bngSmsName').value,
-            phone: document.getElementById('bngSmsPhone').value,
-            email: document.getElementById('bngSmsEmail').value.trim() || '',
+            name: document.getElementById('bngSmsName').value.trim(),
+            phone: document.getElementById('bngSmsPhone').value.trim(),
+            email: document.getElementById('bngSmsEmail').value.trim(),
             consent: document.getElementById('bngSmsConsent').checked ? 'Yes' : 'No',
-            website: document.getElementById('bngSmsWebsite').value
+            website: document.getElementById('bngSmsWebsite').value.trim()
         };
 
+        // Honeypot first: bail before touching the button so a bot trip cannot
+        // leave the form in a permanently disabled state.
         if (payload.website) {
             showSmsSuccess();
             return;
         }
 
+        var btn = document.getElementById('bngSmsSubmit');
+        setSubmitting(btn, true);
+
         fetch(SHEET_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
-        }).then(function () {
-            showSmsSuccess();
+        }).then(function (res) { return res.json(); }).then(function (data) {
+            if (data && data.result === 'success') {
+                showSmsSuccess();
+            } else {
+                setSubmitting(btn, false, 'Opt In to SMS Alerts');
+                alert((data && data.error) || 'Something went wrong. Please try again or email submissions.BNG@suso.world');
+            }
         }).catch(function () {
-            btn.disabled = false;
-            btn.textContent = original;
+            setSubmitting(btn, false, 'Opt In to SMS Alerts');
             alert('Something went wrong. Please try again or email submissions.BNG@suso.world');
         });
     }
@@ -872,9 +911,12 @@
     function buildPolicyReviewSelect() {
         var select = document.getElementById('bngOpinionReview');
         select.innerHTML = '<option value="">Select a policy review</option>';
-        POLICY_REVIEW_OPTIONS.forEach(function (opt) {
+        policyOptions().forEach(function (opt) {
             var o = document.createElement('option');
-            o.value = opt[1];
+            // opt[0] is the normalised sheet key; opt[1] is the human label.
+            // Sending the label would fill the sheet with long, comma-laden
+            // strings that are painful to filter or pivot on.
+            o.value = opt[0];
             o.textContent = opt[1];
             select.appendChild(o);
         });
@@ -886,6 +928,7 @@
         opinionForm.classList.remove('hidden');
         opinionForm.reset();
         buildPolicyReviewSelect();
+        setSubmitting(document.getElementById('bngOpinionSubmit'), false, 'Submit Your View');
         opinionModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
@@ -901,19 +944,15 @@
             opinionForm.reportValidity();
             return;
         }
-        var btn = document.getElementById('bngOpinionSubmit');
-        var original = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
 
         var payload = {
             list: 'Policy Review Submissions',
-            name: document.getElementById('bngOpinionName').value,
-            contact: document.getElementById('bngOpinionContact').value,
+            name: document.getElementById('bngOpinionName').value.trim(),
+            contact: document.getElementById('bngOpinionContact').value.trim(),
             policyReview: document.getElementById('bngOpinionReview').value,
-            location: document.getElementById('bngOpinionLocation').value,
-            opinion: document.getElementById('bngOpinionText').value,
-            website: document.getElementById('bngOpinionWebsite').value
+            location: document.getElementById('bngOpinionLocation').value.trim(),
+            opinion: document.getElementById('bngOpinionText').value.trim(),
+            website: document.getElementById('bngOpinionWebsite').value.trim()
         };
 
         if (payload.website) {
@@ -921,16 +960,23 @@
             return;
         }
 
+        var btn = document.getElementById('bngOpinionSubmit');
+        setSubmitting(btn, true);
+
         fetch(SHEET_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
-        }).then(function () {
-            showOpinionSuccess();
+        }).then(function (res) { return res.json(); }).then(function (data) {
+            if (data && data.result === 'success') {
+                showOpinionSuccess();
+            } else {
+                setSubmitting(btn, false, 'Submit Your View');
+                alert((data && data.error) || 'Something went wrong. Please try again or email submissions.BNG@suso.world');
+            }
         }).catch(function () {
-            btn.disabled = false;
-            btn.textContent = original;
+            setSubmitting(btn, false, 'Submit Your View');
             alert('Something went wrong. Please try again or email submissions.BNG@suso.world');
         });
     }
@@ -939,95 +985,6 @@
         var successEl = document.getElementById('bngOpinionSuccess');
         opinionForm.classList.add('hidden');
         successEl.classList.remove('hidden');
-    }
-
-    function setupEmbeddedForms() {
-        document.querySelectorAll('form[data-bng-kind]').forEach(function (form) {
-            if (form.getAttribute('data-bng-bound')) return;
-            form.setAttribute('data-bng-bound', '1');
-
-            var select = form.querySelector('[data-bng-policy-select]');
-            if (select) {
-                var preset = form.getAttribute('data-bng-policy-default') || '';
-                select.innerHTML = '<option value="">Select a policy review</option>';
-                POLICY_REVIEW_OPTIONS.forEach(function (opt) {
-                    var o = document.createElement('option');
-                    o.value = opt[1];
-                    o.textContent = opt[1];
-                    if (preset && opt[1] === preset) o.selected = true;
-                    select.appendChild(o);
-                });
-                if (preset) select.value = preset;
-            }
-
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                submitEmbeddedForm(form);
-            });
-        });
-    }
-
-    function submitEmbeddedForm(form) {
-        var kind = form.getAttribute('data-bng-kind');
-        var data = {};
-        form.querySelectorAll('[data-bng-field]').forEach(function (el) {
-            var key = el.getAttribute('name');
-            if (!key) return;
-            if (el.type === 'checkbox') data[key] = el.checked ? 'Yes' : 'No';
-            else data[key] = el.type === 'email' ? el.value.trim() : el.value;
-        });
-
-        var btn = form.querySelector('button[type="submit"]');
-        var original = btn ? btn.textContent : '';
-        if (btn) {
-            btn.disabled = true;
-            btn.textContent = 'Submitting...';
-        }
-
-        var payload;
-        if (kind === 'sms') {
-            payload = {
-                list: 'SMS Opt-Ins',
-                name: data.name || '',
-                phone: data.phone || '',
-                email: data.email || '',
-                consent: data.consent || 'No',
-                website: data.website || ''
-            };
-        } else {
-            payload = {
-                list: 'Policy Review Submissions',
-                name: data.name || '',
-                contact: data.contact || '',
-                policyReview: data.policyReview || form.getAttribute('data-bng-policy-default') || '',
-                location: data.location || '',
-                opinion: data.opinion || '',
-                website: data.website || ''
-            };
-        }
-
-        function done() {
-            form.classList.add('hidden');
-            var success = form.nextElementSibling;
-            if (success && success.hasAttribute && success.hasAttribute('data-bng-success')) {
-                success.classList.add('show');
-            }
-        }
-
-        if (payload.website) { done(); return; }
-
-        fetch(SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(payload)
-        }).then(done).catch(function () {
-            if (btn) {
-                btn.disabled = false;
-                btn.textContent = original;
-            }
-            alert('Something went wrong. Please try again or email submissions.BNG@suso.world');
-        });
     }
 
     function setupSmsFab() {
@@ -1201,13 +1158,9 @@
     }
 
     function submitApplication() {
-        var submitLabel = nextBtn.textContent;
-        nextBtn.disabled = true;
-        nextBtn.textContent = 'Submitting...';
-
         var payload = {
             list: 'Bonga Na Gava Warriors',
-            website: document.getElementById('bngWebsite').value
+            website: document.getElementById('bngWebsite').value.trim()
         };
 
         FIELD_IDS.forEach(function (pair) {
@@ -1223,16 +1176,23 @@
             return;
         }
 
+        var submitLabel = nextBtn.textContent;
+        setSubmitting(nextBtn, true);
+
         fetch(SHEET_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
-        }).then(function () {
-            showSuccess();
+        }).then(function (res) { return res.json(); }).then(function (data) {
+            if (data && data.result === 'success') {
+                showSuccess();
+            } else {
+                setSubmitting(nextBtn, false, submitLabel);
+                alert((data && data.error) || 'Something went wrong. Please try again or email submissions.BNG@suso.world');
+            }
         }).catch(function () {
-            nextBtn.disabled = false;
-            nextBtn.textContent = submitLabel;
+            setSubmitting(nextBtn, false, submitLabel);
             alert('Something went wrong. Please try again or email submissions.BNG@suso.world');
         });
     }
