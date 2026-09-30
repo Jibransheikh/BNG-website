@@ -270,7 +270,79 @@
 @media (prefers-reduced-motion: reduce) {
     .bng-fab-root.show .bng-fab-bubble { animation: none; }
     .bng-fab-ping { animation: none; }
-}`;
+}
+
+/* ---------------------------------------------------------------------------
+   Site-wide accessibility.
+
+   Injected from here rather than pasted into 16 pages so the fixes stay in one
+   place. Only applies to elements that do not already declare their own
+   focus treatment, so the Tailwind focus:ring-* utilities on inputs still win.
+   --------------------------------------------------------------------------- */
+
+/* Keyboard users get a visible focus ring. :focus-visible keeps it off for
+   pointer clicks, which is where a ring looks like a bug. */
+.bng-a11y-root :focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #0f5132;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+/* Never let an input's own border colour hide the ring. */
+.bng-a11y-root input:focus-visible,
+.bng-a11y-root textarea:focus-visible,
+.bng-a11y-root select:focus-visible {
+    outline-offset: 1px;
+}
+/* Elements that supply their own visible ring (Tailwind ring utilities, the
+   dark-mode swap icons) should not also get the generic outline. */
+.bng-a11y-root .focus\\:ring-2:focus-visible,
+.bng-a11y-root .focus\\:border-brandGreen:focus-visible {
+    outline: none;
+}
+
+/* Jump link. Visually hidden until focused, then pinned to the top-left. */
+.bng-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: #0f5132;
+    color: #fff;
+    padding: 12px 20px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0 0 8px 0;
+}
+.bng-skip-link:focus {
+    left: 0;
+}
+
+/* Modals must be announced as dialogs and must keep focus inside. Without
+   this a screen reader announces nothing and Tab walks out into the page
+   behind the overlay. */
+.bng-modal-host[role="dialog"][aria-modal="true"] {
+    display: flex;
+    overflow-y: auto;
+}
+.bng-visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+`;
 
     var MODAL_HTML = `
 <div id="bngWarriorsModal" class="hidden fixed inset-0 z-[100] items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="bngModalTitle">
@@ -749,6 +821,18 @@
             if (e.key === 'Escape' && opinionModal && !opinionModal.classList.contains('hidden')) closeOpinionModal();
         });
 
+        // Remember the control that opened an overlay so focus returns to it on
+        // close. Capture phase so it runs before the open handlers. The dialog
+        // elements are read at click time rather than captured here, because the
+        // SMS and opinion modals do not exist yet.
+        document.addEventListener('click', function (e) {
+            var t = e.target && e.target.closest ? e.target.closest('a[href], button') : null;
+            if (!t) return;
+            [modal, document.getElementById('bngSmsModal'), document.getElementById('bngOpinionModal')]
+                .forEach(function (d) { if (d) d.__bngTrigger = t; });
+        }, true);
+
+
         // The modal is injected just above this point, and it contains its own
         // "prefer the Google Forms version" escape hatch pointing at GFORM_URL.
         // Skip that one, otherwise the only route to the real form reopens this
@@ -765,6 +849,15 @@
         setupSmsModal();
         setupOpinionModal();
         setupSmsFab();
+
+        // Keep Tab inside each open overlay. Attached after the setup calls
+        // above so the SMS and opinion modals actually exist.
+        [modal, smsModal, opinionModal].forEach(function (d) {
+            if (d) d.addEventListener('keydown', function (e) { trapFocus(d, e); });
+        });
+
+        announceFab();
+        injectSkipLink();
     }
 
     function injectSharedStyles() {
@@ -820,11 +913,13 @@
         setSubmitting(document.getElementById('bngSmsSubmit'), false, 'Opt In to SMS Alerts');
         smsModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        setInitialFocus(smsModal);
     }
 
     function closeSmsModal() {
         smsModal.classList.add('hidden');
         document.body.style.overflow = 'auto';
+        restoreFocus(smsModal.__bngTrigger);
     }
 
     function submitSms(e) {
@@ -931,11 +1026,13 @@
         setSubmitting(document.getElementById('bngOpinionSubmit'), false, 'Submit Your View');
         opinionModal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        setInitialFocus(opinionModal);
     }
 
     function closeOpinionModal() {
         opinionModal.classList.add('hidden');
         document.body.style.overflow = 'auto';
+        restoreFocus(opinionModal.__bngTrigger);
     }
 
     function submitOpinion(e) {
@@ -1088,11 +1185,13 @@
         goToStep(1);
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        setInitialFocus(modal);
     }
 
     function closeModal() {
         modal.classList.add('hidden');
         document.body.style.overflow = 'auto';
+        restoreFocus(modal.__bngTrigger);
     }
 
     function currentStep() {
@@ -1214,6 +1313,126 @@
             nextBtn.disabled = false;
             nextBtn.textContent = 'Continue';
         }
+    }
+
+    // -------------------------------------------------------------------------
+    // Focus management for the three overlays.
+    //
+    // Each modal already carries role="dialog" and aria-modal="true", but
+    // without a focus trap Tab walks straight out into the page behind the
+    // overlay, which strands keyboard and screen reader users. These two helpers
+    // move focus in on open, keep it inside while open, and return it to the
+    // trigger that opened the modal.
+    // -------------------------------------------------------------------------
+    var FOCUSABLE = [
+        'a[href]', 'button:not([disabled])', 'input:not([disabled]):not([type="hidden"])',
+        'select:not([disabled])', 'textarea:not([disabled])', '[tabindex]:not([tabindex="-1"])'
+    ].join(',');
+
+    function focusableIn(root) {
+        return Array.prototype.filter.call(
+            root.querySelectorAll(FOCUSABLE),
+            function (el) {
+                return el.offsetParent !== null || el === document.activeElement;
+            }
+        );
+    }
+
+    function trapFocus(dialog, event) {
+        if (event.key !== 'Tab') return;
+        var items = focusableIn(dialog);
+        if (!items.length) return;
+        var first = items[0];
+        var last = items[items.length - 1];
+        // Wrap in both directions so focus never escapes to the page behind.
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    function setInitialFocus(dialog) {
+        var items = focusableIn(dialog);
+        if (!items.length) return;
+        // Prefer the first real field, but never land on the close button as the
+        // first stop, since that reads as "this dialog is dismissable".
+        var target = items[0];
+        for (var i = 0; i < items.length; i++) {
+            var tag = items[i].tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+                target = items[i];
+                break;
+            }
+        }
+        target.focus();
+    }
+
+    function restoreFocus(trigger) {
+        if (trigger && typeof trigger.focus === 'function') {
+            trigger.focus();
+        }
+    }
+
+    // Most pages were authored with a bare sequence of <section> elements and
+    // no <main> landmark at all, which leaves screen reader users with no way
+    // to jump past the header nav. Give the page a landmark, then a skip link
+    // that targets it. Injected here so all 16 pages stay in step.
+    function ensureMainLandmark() {
+        var main = document.querySelector('main');
+        if (main) {
+            if (!main.id) main.id = 'main';
+            return main;
+        }
+
+        // Wrap everything from the first <section> up to (but not including)
+        // the <footer> in a <main>. That range is the page's unique content.
+        var body = document.body;
+        var kids = Array.prototype.slice.call(body.children);
+        var start = kids.findIndex(function (el) {
+            return el.tagName === 'SECTION' || el.tagName === 'MAIN';
+        });
+        if (start === -1) return null;
+
+        var end = kids.length;
+        for (var i = start; i < kids.length; i++) {
+            if (kids[i].tagName === 'FOOTER') { end = i; break; }
+        }
+
+        main = document.createElement('main');
+        main.id = 'main';
+        var toMove = kids.slice(start, end);
+        toMove.forEach(function (el) { main.appendChild(el); });
+        body.insertBefore(main, kids[end] || null);
+        return main;
+    }
+
+    // Applies a skip link to every page from one place. Injected here rather
+    // than added to 16 files so it cannot drift between them.
+    function injectSkipLink() {
+        if (document.querySelector('.bng-skip-link')) return;
+        if (!ensureMainLandmark()) return;
+        var link = document.createElement('a');
+        link.href = '#main';
+        link.className = 'bng-skip-link';
+        link.textContent = 'Skip to main content';
+        document.body.insertBefore(link, document.body.firstChild);
+    }
+
+    // The floating SMS panel auto-opens on a timer. An element that appears
+    // without user action needs to be announced, otherwise screen reader users
+    // have no idea it is there.
+    function announceFab() {
+        var fab = document.getElementById('bngSmsFab');
+        if (!fab) return;
+        var live = document.createElement('div');
+        live.setAttribute('aria-live', 'polite');
+        live.setAttribute('aria-atomic', 'true');
+        live.className = 'bng-visually-hidden';
+        document.body.appendChild(live);
+        fab.__bngLive = live;
     }
 
     if (document.readyState === 'loading') {

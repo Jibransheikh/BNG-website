@@ -1,0 +1,17 @@
+{
+  "name": "bonga-na-gava-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site for Bonga Na Gava, a Kenyan youth public-participation platform.",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node tests/a11y.test.js && node tests/structure.test.js",
+    "test:a11y": "node tests/a11y.test.js",
+    "test:structure": "node tests/structure.test.js",
+    "images": "node tools/optimize-images.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0",
+    "sharp": "^0.33.5"
+  }
+}

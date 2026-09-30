@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Opinions | Bonga Na Gava</title>
-    <meta name="description" content="Browse public opinion submissions on Kenyan environmental policies and legislation. Filter by policy review and read what young citizens submitted.">
+<title>Internal: Submissions Review | Bonga Na Gava</title>
+<!-- INTERNAL PAGE. Not part of the public site and must never be indexed.
+     robots.txt also disallows it, but that is only a crawler hint - real
+     access control is required. See docs/PROTECT-SUBMISSIONS.md. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="description" content="Internal reviewers' view of citizen submissions.">
+
     <link rel="canonical" href="https://bonganagava.com/submissions.html">
     <meta property="og:title" content="Public Opinions | Bonga Na Gava">
     <meta property="og:description" content="Browse public opinion submissions on Kenyan environmental policies and legislation. Filter by policy review and read what young citizens submitted.">
@@ -52,6 +58,7 @@
         .info-banner { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 14px 18px; margin-bottom: 20px; border-radius: 8px; font-size: 14px; font-weight: 600; }
         .info-banner.is-loading { background: #f4f4f5; color: #52525b; }
         .info-banner.is-empty { background: #f4f4f5; color: #52525b; }
+        .info-banner.is-empty a { color: #0f5132; font-weight: 700; text-decoration: underline; }
         .info-banner.is-error { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
         .info-banner.is-ok { background: #0f5132; color: #ffffff; }
         .info-banner button { background: #b91c1c; color: #ffffff; padding: 8px 16px !important; font-size: 11px !important; }
@@ -246,12 +253,22 @@
 
     <section class="relative pt-32 md:pt-36 pb-12 bg-minimal-grid">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Internal-use notice. If you are reading this as a visitor who
+                 is not a reviewer, stop and contact the site owner: you should
+                 not have been able to load this page. -->
+            <div class="mb-6 border-l-4 border-amber-500 bg-amber-50 text-amber-900 px-4 py-3 text-sm leading-relaxed" role="note">
+                <strong class="font-bold">Internal use only.</strong> This is a staff
+                review tool, not a public page. It contains personal data submitted by
+                identifiable members of the public. Do not share it, screenshot it into
+                shared documents, or export it to a shared drive. Exported files are as
+                sensitive as the data in them.
+            </div>
             <div class="header-anim visibility-hidden inline-flex items-center gap-2 px-3 py-1 bg-gray-50 text-brandGreen font-bold tracking-widest text-[10px] rounded-full mb-6 border border-gray-100 uppercase">
                 <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
-                Your Voice Matters
+                Reviewer Dashboard
             </div>
-            <h1 class="header-anim visibility-hidden text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter leading-[1.05] text-brandDark uppercase">Public Opinions</h1>
-            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-2xl">Browse opinions submitted by Kenyan youth on active environmental policies and legislation. Names and contact details are hidden until a reviewer unlocks them.</p>
+            <h1 class="header-anim visibility-hidden text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tighter leading-[1.05] text-brandDark uppercase">Submissions Review</h1>
+            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-2xl">A working view of opinions submitted by Kenyan youth on active environmental policies and legislation. Names and contact details stay hidden unless a reviewer unlocks them with the access code.</p>
         </div>
     </section>
 
@@ -273,6 +290,33 @@
                         <button type="button" id="toggleMask" class="hidden" aria-pressed="false">Hide Personal Details</button>
                     </div>
                     <div class="toolbar-right" id="dt-controls"></div>
+                </div>
+
+                <!-- Empty state. Shown in place of the table when the feed returns
+                     no rows. For a reviewer this is a DIAGNOSTIC panel, not a
+                     promotional one: an empty result here is ambiguous, so the
+                     likely causes and the endpoint are surfaced to help triage it.
+                     The "test the form" trigger reuses .js-open-opinion so
+                     warriors.js wires it up exactly like every other trigger,
+                     which lets a reviewer verify the collection pipeline end to end. -->
+                <div id="emptyState" class="hidden text-center py-16 px-4">
+                    <div class="max-w-xl mx-auto">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-amber-50 flex items-center justify-center">
+                            <svg class="w-7 h-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h2 class="text-2xl font-black text-brandDark uppercase tracking-tight mb-3">No submissions returned</h2>
+                        <p class="text-brandDark/70 leading-relaxed mb-6">The endpoint responded successfully but returned no rows. That is not necessarily a fault. Check, in order:</p>
+                        <ul class="text-left text-sm text-brandDark/80 space-y-2 mb-8 list-disc list-inside">
+                            <li>Is the sheet genuinely empty, or is the data on a different tab?</li>
+                            <li>Is <code class="text-xs bg-gray-100 px-1 py-0.5 rounded">view=opinions</code> pointing at the tab you expect?</li>
+                            <li>Were the submissions added to a list this view does not read?</li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a href="#" class="js-open-opinion inline-flex items-center justify-center px-8 py-4 rounded-md bg-brandGreen text-white font-bold text-sm uppercase tracking-wider hover:bg-brandDark transition-colors">Test the Form</a>
+                            <a href="policy-reviews/index.html" class="inline-flex items-center justify-center px-8 py-4 rounded-md bg-white border border-gray-200 text-brandDark font-bold text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">Browse Open Reviews</a>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-8">A successful test submission should appear here within a few seconds. If it does not, the problem is in the Apps Script or the sheet, not in this page.</p>
+                    </div>
                 </div>
 
                 <table id="opinionsTable" class="display responsive nowrap" style="width:100%">
@@ -574,14 +618,29 @@
                         opinions = data.opinions || [];
 
                         if (key && !opinions.length) {
+                            // An empty sheet and a wrong code look identical from here,
+                            // so say both and restore the public view underneath rather
+                            // than leaving the table hidden from the previous state.
                             setInfo('error', 'Incorrect access code, or there are no opinions yet.', true);
+                            $('#emptyState').removeClass('hidden');
+                            $('#opinionsTable').addClass('hidden');
+                            $('.custom-toolbar').removeClass('hidden');
                             return;
                         }
 
                         buildFilter();
                         var rows = toRows();
+
+                        // With no published opinions the grid is hidden and the
+                        // "be the first voice" panel takes its place. DataTables is
+                        // still initialised so that retrying after a later submission
+                        // does not need to build the table from scratch.
                         if (!table) initTable();
                         table.clear().rows.add(rows).draw();
+                        var isEmpty = rows.length === 0;
+                        $('#emptyState').toggleClass('hidden', !isEmpty);
+                        $('#opinionsTable').toggleClass('hidden', isEmpty);
+                        $('.custom-toolbar').toggleClass('hidden', isEmpty && !key);
 
                         if (key) {
                             unlocked = true;
@@ -590,12 +649,13 @@
                             $unlock.addClass('hidden');
                             $toggle.removeClass('hidden');
                             setInfo('ok', unlocked && opinions.some(function (o) { return o.name; })
-                                ? 'Personal details unlocked. Use "Hide Personal Details" before downloading a PDF to share.'
+                                ? 'Personal details unlocked. Use "Hide Personal Details" before exporting or sharing anything.'
                                 : 'Unlocked, but no rows in the sheet carry a name or contact yet.', false);
                         } else {
-                            setInfo('is-loading',
-                                opinions.length + ' opinion' + (opinions.length === 1 ? '' : 's') +
-                                ' published. Names and contact details are hidden.', false);
+                            setInfo('empty', isEmpty
+                                ? 'No rows returned. See the checklist below.'
+                                : opinions.length + ' submission' + (opinions.length === 1 ? '' : 's') +
+                                  ' loaded. Names and contact details are hidden.', false);
                         }
                     })
                     .catch(function (err) {
@@ -605,9 +665,42 @@
 
             $retry.on('click', function () { loadData(); });
 
+            // Client-side attempt limiter.
+            //
+            // IMPORTANT: this is a speed bump, not a security control. Anyone can
+            // bypass it with devtools or by calling the Apps Script endpoint
+            // directly. The real fix is the SAME limiter inside doGet() in
+            // Apps Script, which also has to track attempts per IP using
+            // CacheService. Until that exists, treat the reviewer code as
+            // "unlikely to be guessed by a passer-by", not "protected".
+            var MAX_ATTEMPTS = 5;
+            var LOCKOUT_MS = 5 * 60 * 1000;
+            var attempts = 0;
+            var lockedUntil = 0;
+
             $unlock.on('click', function () {
+                if (Date.now() < lockedUntil) {
+                    var mins = Math.ceil((lockedUntil - Date.now()) / 60000);
+                    setInfo('error', 'Too many incorrect codes. Try again in ' + mins +
+                        ' minute' + (mins === 1 ? '' : 's') + '.', true);
+                    return;
+                }
+
                 var key = window.prompt('Enter the reviewer access code to reveal names and contact details:');
                 if (!key) return;
+
+                attempts++;
+                if (attempts >= MAX_ATTEMPTS) {
+                    lockedUntil = Date.now() + LOCKOUT_MS;
+                    attempts = 0;
+                    setInfo('error', 'Too many incorrect codes. Locked out for 5 minutes. ' +
+                        'If you are a legitimate reviewer, ask the site owner to reset it.', true);
+                    return;
+                }
+                setInfo('empty', 'Incorrect code. ' + (MAX_ATTEMPTS - attempts) +
+                    ' attempt' + (MAX_ATTEMPTS - attempts === 1 ? '' : 's') +
+                    ' remaining before a 5 minute lockout.', true);
+
                 loadData(key);
             });
 

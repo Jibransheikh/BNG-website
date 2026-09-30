@@ -1,75 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Bonga Na Gava sitemap.
+
+  <lastmod> is deliberately omitted. Previously every entry carried a
+  hardcoded date that did not reflect real edits (all pages shared just two or
+  three dates), which teaches crawlers to ignore the field. Only supply it when
+  a page genuinely changes, and update it in the same commit as the edit.
+
+  campaigns.html is intentionally absent: it is an unpublished draft and is
+  disallowed in robots.txt.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://bonganagava.com/index.html</loc>
-        <lastmod>2026-08-19</lastmod>
+        <loc>https://bonganagava.com/</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://bonganagava.com/contact.html</loc>
-        <lastmod>2026-08-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/submissions.html</loc>
-        <lastmod>2026-08-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.3</priority>
+        <loc>https://bonganagava.com/policy-reviews/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://bonganagava.com/blog.html</loc>
-        <lastmod>2026-09-10</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bonganagava.com/blogs/forests-at-a-crossroads-2025.html</loc>
-        <lastmod>2026-09-10</lastmod>
-        <changefreq>monthly</changefreq>
+        <loc>https://bonganagava.com/policy-reviews/public-participation-bill</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/policy-reviews/public-participation-bill-2025</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/policy-reviews/wildlife-conservation-bill</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/policy-reviews/civic-education-2026</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/resources/law-making-process-guide</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/resources/environmental-impact-assessment</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/blogs/forests-at-a-crossroads-2025</loc>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bonganagava.com/blogs/exploring-the-public-participation-bill-2025.html</loc>
-        <lastmod>2026-09-10</lastmod>
+        <loc>https://bonganagava.com/blogs/exploring-the-public-participation-bill-2025</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://bonganagava.com/contact.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://bonganagava.com/privacy.html</loc>
-        <lastmod>2026-08-19</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/policy-reviews/index.html</loc>
-        <lastmod>2026-08-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/policy-reviews/civic-education-2026.html</loc>
-        <lastmod>2026-08-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/policy-reviews/wildlife-conservation-bill.html</loc>
-        <lastmod>2026-08-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/policy-reviews/public-participation-bill.html</loc>
-        <lastmod>2026-09-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://bonganagava.com/policy-reviews/public-participation-bill-2025.html</loc>
-        <lastmod>2026-09-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
     </url>
 </urlset>

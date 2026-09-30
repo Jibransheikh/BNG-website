@@ -1,0 +1,159 @@
+# =============================================================================
+# Bonga Na Gava — server config
+#
+# Works on Apache/LiteSpeed (Hostinger, most shared hosts) and is compatible
+# with Cloudflare's proxy in front. Everything here is origin-side, so it keeps
+# working if you move between them.
+#
+# NOTE: If you are using Cloudflare, prefer setting headers and cache rules in
+# the Cloudflare dashboard where you can see the response headers you actually
+# get back. This file is the baseline and the fallback for a host without that.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Force HTTPS + canonical host (www -> apex, apex -> https)
+# Hostinger issues free SSL; Cloudflare can also terminate at the edge.
+# -----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Send every http:// request to https://
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://bonganagava.com%{REQUEST_URI} [R=301,L]
+
+    # 2. Send www -> apex so the domain that serves the content is the canonical
+    #    one. Matches the canonical tags in every page's <head>.
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://bonganagava.com%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Security headers
+# -----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Force https for 1 year. Only honoured over https.
+    #
+    # Deliberately NOT shipping `includeSubDomains; preload`:
+    #   - includeSubDomains pins EVERY subdomain to HTTPS, including any staging
+    #     or mail host, and you cannot undo it from here if it breaks one.
+    #   - `preload` opts the domain into the browser preload list, a commitment
+    #     you are unlikely to want while hosting may move to Hostinger.
+    # Both are easy to add later once hosting is settled. To enable preload you
+    # need max-age >= 31536000 for 1 year, 2 years for the strict requirement,
+    # plus submission to hstspreload.org.
+    Header always set Strict-Transport-Security "max-age=31536000"
+
+    # Stop browsers guessing content types (a defence against MIME confusion).
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Do not leak the full URL (which can contain the reviewer code path) to
+    # third parties. Strict-origin-when-cross-origin still sends the full URL to
+    # your own pages, which is fine.
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Do not allow this site to be framed (clickjacking).
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Restrict powerful browser features we do not use.
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+    # Cross-origin isolation for the newer fetch-based CDNs.
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+
+    # --- Content-Security-Policy -------------------------------------------------
+    # Tailwind Play CDN needs 'unsafe-inline' and 'unsafe-eval' because it
+    # generates styles at runtime. Every page also uses inline <script>, so
+    # 'unsafe-inline' is currently required there too.
+    #
+    # To tighten this later (recommended): compile Tailwind to a static
+    # stylesheet and move inline scripts to files. Then you can drop
+    # 'unsafe-eval' and 'unsafe-inline' for scripts entirely. See docs/DEPLOY.md.
+    #
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://code.jquery.com https://cdn.datatables.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.datatables.net; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://script.google.com; frame-src https://www.youtube.com https://docs.google.com; base-uri 'self'; form-action 'self'; object-src 'none'"
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Caching
+# The origin was previously sending `max-age=0, must-revalidate` for everything,
+# so every visit re-downloaded all 25 large images (~5MB) and the 68KB
+# warriors.js. HTML stays revalidated so content edits appear immediately.
+#
+# Cache-Control is set once, in the mod_headers block below. mod_expires is
+# intentionally NOT used: running both makes Apache emit a redundant `Expires:`
+# header and leaves two places to change the durations, which is how they drift
+# out of sync.
+# -----------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    # IMPORTANT — these durations are deliberately short because the site's asset
+    # filenames are NOT fingerprinted:
+    #   - warriors.js is the same URL every deploy, and it changes often
+    #   - movement-NN.jpg is re-encoded in place by tools/optimize-images.js
+    # A "1 year + immutable" policy here would strand returning visitors on stale
+    # JS and old images for a year after a deploy. The re-download-every-visit
+    # problem this replaces was a 5MB image load on every page view, which a
+    # 30-day cache already fixes.
+    #
+    # If you later add fingerprinting (see docs/STACK-RECOMMENDATION.md), switch
+    # these to "public, max-age=31536000, immutable" — the filenames then change
+    # whenever the bytes do, which is the only thing that makes a year safe.
+    <FilesMatch "\.(?i:jpe?g|png|webp|avif|svg|woff2|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "\.(?i:css|js)$">
+        Header set Cache-Control "public, max-age=604800, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(?i:html)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+    # Prevent browsers from sniffing a mislabelled file.
+    <FilesMatch "\.(?i:php|phtml)$">
+        Header set X-Content-Type-Options "nosniff"
+    </FilesMatch>
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Compression — cuts HTML/CSS/JS/JSON transfer size substantially.
+# -----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css
+    AddOutputFilterByType BROTLI_COMPRESS application/javascript application/x-javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/json application/xml
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Custom 404 — serves 404.html with a real 404 status.
+# -----------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# -----------------------------------------------------------------------------
+# Hardening: block access to dotfiles and backups.
+# -----------------------------------------------------------------------------
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<FilesMatch "(?i)(README|LICENSE|backup|\.sql|\.log)$">
+    Require all denied
+</FilesMatch>
+
+# -----------------------------------------------------------------------------
+# Canonical trailing-slash behaviour.
+# Keep directory URLs (e.g. /policy-reviews/) working so the nav and canonical
+# tags stay consistent whether a visitor types the folder or the file.
+# -----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteCond %{REQUEST_URI} !\.html$
+    RewriteRule ^(.*)$ $1.html [L,QSA]
+</IfModule>
+
+DirectoryIndex index.html index.php

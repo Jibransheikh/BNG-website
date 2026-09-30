@@ -1,5 +1,16 @@
 User-agent: *
 Allow: /
+
+# Unpublished / under construction
 Disallow: /campaigns.html
+
+# INTERNAL ONLY. Contains a reviewer's birds-eye view of citizen submissions,
+# including opinion text tied to a specific policy. It is not part of the public
+# site and must not be indexed. This is a crawler hint, NOT access control: it
+# does not stop anyone loading the URL directly, and robots.txt is public. The
+# page is meant to sit behind real authentication - see
+# docs/PROTECT-SUBMISSIONS.md.
+Disallow: /submissions.html
+Disallow: /submissions
 
 Sitemap: https://bonganagava.com/sitemap.xml
