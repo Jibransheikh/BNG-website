@@ -6,5 +6,6 @@
 window.BNG_POLICIES = [
         { key: "civic education 2026", label: "Civic Education, Citizen Engagement & Public Participation Policy 2026" },
         { key: "wildlife conservation bill 2025", label: "The Wildlife Conservation & Management Bill, 2025" },
-        { key: "public participation bill 2025", label: "The Public Participation Bill, 2025" }
+        { key: "public participation bill 2025", label: "The Public Participation Bill, 2025" },
+        { key: "roads amendment bill 2024", label: "The Kenya Roads (Amendment) Bill, 2024" }
 ];

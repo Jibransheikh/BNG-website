@@ -21,7 +21,8 @@
     var POLICY_REVIEW_OPTIONS = [
         ['civic education 2026', 'Civic Education, Citizen Engagement & Public Participation Policy 2026'],
         ['wildlife conservation bill 2025', 'The Wildlife Conservation & Management Bill, 2025'],
-        ['public participation bill 2025', 'The Public Participation Bill, 2025']
+        ['public participation bill 2025', 'The Public Participation Bill, 2025'],
+        ['roads amendment bill 2024', 'The Kenya Roads (Amendment) Bill, 2024']
     ];
 
     function policyOptions() {
