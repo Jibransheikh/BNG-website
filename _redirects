@@ -1,0 +1,13 @@
+# Cloudflare redirects for bonganagava.com
+#
+# Ported from .htaccess (Apache/LiteSpeed). Both files must stay in sync.
+#
+# Two rules are handled in the Cloudflare dashboard instead, not here:
+#   - http:// -> https://  (enable "Always Use HTTPS" in SSL/TLS settings)
+#   - the extensionless /about -> /about.html rewrite, which the
+#     `html_handling: "auto-trailing-slash"` asset option does natively
+#
+# Cloudflare parses this file and does not serve it as a page.
+
+# www -> apex, matching the canonical tags in every page's <head>.
+https://www.bonganagava.com/* https://bonganagava.com/:splat 301

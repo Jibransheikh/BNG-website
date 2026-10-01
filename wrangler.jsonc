@@ -1,0 +1,31 @@
+{
+  // Cloudflare Workers static assets config.
+  //
+  // `assets.directory` points at dist/, which tools/build-deploy.js builds from
+  // an allowlist. Do not point this at "." : that makes Wrangler upload the whole
+  // working directory, including node_modules, and Workers rejects any single
+  // asset over 25 MiB. Wrangler's own workerd binary is ~92 MiB, so the deploy
+  // fails immediately.
+  //
+  // Note: there is no `assets.exclude` option. The Assets schema sets
+  // additionalProperties:false and only accepts directory, binding,
+  // html_handling, not_found_handling and run_worker_first. An exclude key is
+  // silently ignored with a warning, which is how that mistake usually gets made.
+  // Keep the allowlist in tools/build-deploy.js instead.
+
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bng-site",
+  "compatibility_date": "2026-09-30",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+
+    // /about resolves to about.html, matching the rewrite in .htaccess.
+    "html_handling": "auto-trailing-slash",
+
+    // Serve 404.html with a real 404 status, as ErrorDocument does in .htaccess.
+    "not_found_handling": "404-page"
+  }
+}

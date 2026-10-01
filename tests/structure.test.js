@@ -34,7 +34,10 @@ function load(rel) {
 const pages = [];
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.name === '.git' || e.name === 'node_modules' || e.name === 'tests') continue;
+    // `dist` is deploy staging produced by tools/build-deploy.js. It holds byte
+    // copies of the pages below, so walking it would check every page twice and
+    // report the failures twice.
+    if (e.name === '.git' || e.name === 'node_modules' || e.name === 'tests' || e.name === 'dist') continue;
     const full = path.join(dir, e.name);
     if (e.isDirectory()) walk(full);
     else if (e.name.endsWith('.html')) pages.push(path.relative(root, full));

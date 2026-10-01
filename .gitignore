@@ -3,6 +3,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Deploy staging output, rebuilt by tools/build-deploy.js on every deploy.
+dist/
+
 # Local editor / OS noise
 .vscode/
 .idea/

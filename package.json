@@ -5,6 +5,10 @@
   "description": "Static site for Bonga Na Gava, a Kenyan youth public-participation platform.",
   "scripts": {
     "build": "node build.js",
+    "build:deploy": "node tools/build-deploy.js",
+    "deploy": "npm run build:deploy && wrangler deploy",
+    "preview": "wrangler dev",
+    "deploy:dry": "npm run build:deploy && wrangler deploy --dry-run",
     "test": "node tests/a11y.test.js && node tests/structure.test.js",
     "test:a11y": "node tests/a11y.test.js",
     "test:structure": "node tests/structure.test.js",
@@ -12,6 +16,7 @@
   },
   "devDependencies": {
     "jsdom": "^26.0.0",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "wrangler": "^4.145.0"
   }
 }

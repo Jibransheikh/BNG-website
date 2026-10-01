@@ -80,6 +80,36 @@ so it should work as-is. Things to re-check on the move:
   and rollback is quick.
 - Cloudflare Web Analytics, if adopted, needs re-pointing to the new origin.
 
+## Cloudflare Workers deploy
+
+```bash
+npm install
+npm run build:deploy   # stage into dist/, then report sizes
+npm run deploy         # stage, then wrangler deploy
+npm run deploy:dry     # stage, then wrangler deploy --dry-run
+npm run preview        # serve dist/ locally via wrangler dev
+```
+
+Set the Cloudflare project's deploy command to `npm run deploy`. Use
+`npm run build` if you only need the generated file refreshed.
+
+**Do not point `assets.directory` at the repo root.** Workers rejects any single
+asset over 25 MiB, and Wrangler's own `workerd` binary is ~92 MiB, so deploying
+the working directory fails on that file alone. `tools/build-deploy.js` stages an
+allowlisted copy into `dist/` — the config points there, and nothing outside the
+allowlist can leak into an upload.
+
+There is no `assets.exclude` option to filter the upload instead: Wrangler's config
+schema rejects unknown keys under `assets` and silently ignores them with a
+warning, so an exclusion list there gives the false impression the upload was
+filtered when it was not.
+
+`_headers` and `_redirects` are ported from `.htaccess`. Both must be edited
+together — `.htaccess` serves the Apache origin, these serve the Cloudflare
+deploy. Two `.htaccess` rules are configured in the Cloudflare dashboard instead:
+enable "Always Use HTTPS" in SSL/TLS, and `html_handling` in `wrangler.jsonc`
+covers the extensionless `/about` → `/about.html` rewrite.
+
 ## Running locally
 
 ```bash
