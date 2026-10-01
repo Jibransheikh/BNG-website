@@ -9,9 +9,11 @@
     "deploy": "npm run build:deploy && wrangler deploy",
     "preview": "wrangler dev",
     "deploy:dry": "npm run build:deploy && wrangler deploy --dry-run",
-    "test": "node tests/a11y.test.js && node tests/structure.test.js",
+    "nav": "node tools/update-policy-nav.js",
+    "test": "node tests/a11y.test.js && node tests/structure.test.js && node tests/nav.test.js",
     "test:a11y": "node tests/a11y.test.js",
     "test:structure": "node tests/structure.test.js",
+    "test:nav": "node tests/nav.test.js",
     "images": "node tools/optimize-images.js"
   },
   "devDependencies": {
