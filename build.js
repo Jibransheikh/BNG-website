@@ -19,18 +19,36 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, 'policy-reviews');
 const OUT_FILE = path.join(__dirname, 'policy-reviews-data.js');
 
-// content="key | Label | optional sort order"
+// content="key | Label | optional sort order | optional status"
+//
+// `status` is either "open" (accepting submissions) or "closed". It defaults to
+// "open" so a page without the field keeps working. The submit form uses this to
+// offer only open policies; the opinions browse table still lists every policy so
+// views filed against a retired review stay readable and filterable.
 const TAG_RE = /<meta\s+name=["']bng-policy["']\s+content=["']([^"']+)["']\s*\/?>/i;
+
+const VALID_STATUS = new Set(['open', 'closed']);
 
 function parseEntry(content) {
     const parts = content.split('|').map((p) => p.trim());
     const key = parts[0] || '';
     const label = parts[1] || '';
     if (!key || !label) return null;
+
+    let status = 'open';
+    if (parts[3]) {
+        if (!VALID_STATUS.has(parts[3])) {
+            return { error: 'unknown status "' + parts[3] + '" (use "open" or "closed")' };
+        }
+        status = parts[3];
+    }
+
+    const orderRaw = parts[2];
     return {
         key,
         label,
-        order: parts[2] !== undefined && parts[2] !== '' ? Number(parts[2]) : null,
+        order: orderRaw !== undefined && orderRaw !== '' ? Number(orderRaw) : null,
+        status,
         file: null
     };
 }
@@ -57,6 +75,10 @@ function main() {
         const entry = parseEntry(match[1]);
         if (!entry) {
             problems.push(`${file}: tag found but "key | Label" is incomplete`);
+            return;
+        }
+        if (entry.error) {
+            problems.push(`${file}: ${entry.error}`);
             return;
         }
         entry.file = file;
@@ -107,7 +129,8 @@ function main() {
         .map((e) => {
             const key = JSON.stringify(decodeEntities(e.key));
             const label = JSON.stringify(decodeEntities(e.label));
-            return `        { key: ${key}, label: ${label} }`;
+            const status = JSON.stringify(e.status);
+            return `        { key: ${key}, label: ${label}, status: ${status} }`;
         })
         .join(',\n');
 
@@ -124,7 +147,15 @@ ${body}
     fs.writeFileSync(OUT_FILE, out, 'utf8');
 
     console.log('Wrote policy-reviews-data.js with ' + entries.length + ' policies:');
-    entries.forEach((e) => console.log(`  ${e.key}  <- ${e.file}`));
+    entries.forEach((e) => {
+        const flag = e.status === 'open' ? 'OPEN  ' : 'closed';
+        console.log(`  ${flag}  ${e.key}  <- ${e.file}`);
+    });
+
+    const openCount = entries.filter((e) => e.status === 'open').length;
+    console.log(
+        `  (${openCount} open for submissions, ${entries.length - openCount} closed)`
+    );
 }
 
 main();

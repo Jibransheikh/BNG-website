@@ -18,19 +18,34 @@
     // generated/deployed. `node build.js` regenerates that file from the
     // <meta name="bng-policy"> tag on each page in policy-reviews/, so adding
     // a review page and running the build is all it takes to show up here.
+    //
+    // Third element is the status: "open" policies can still receive new
+    // submissions, "closed" ones are retired and only appear in the opinions
+    // browse table.
     var POLICY_REVIEW_OPTIONS = [
-        ['civic education 2026', 'Civic Education, Citizen Engagement & Public Participation Policy 2026'],
-        ['wildlife conservation bill 2025', 'The Wildlife Conservation & Management Bill, 2025'],
-        ['public participation bill 2025', 'The Public Participation Bill, 2025'],
-        ['roads amendment bill 2024', 'The Kenya Roads (Amendment) Bill, 2024']
+        ['civic education 2026', 'Civic Education, Citizen Engagement & Public Participation Policy 2026', 'closed'],
+        ['wildlife conservation bill 2025', 'The Wildlife Conservation & Management Bill, 2025', 'closed'],
+        ['public participation bill 2025', 'The Public Participation Bill, 2025', 'closed'],
+        ['roads amendment bill 2024', 'The Kenya Roads (Amendment) Bill, 2024', 'open']
     ];
 
-    function policyOptions() {
+    // The generated file may predate the status field, so treat a missing
+    // status as "open" rather than silently hiding a live policy.
+    function isOpen(entry) {
+        return !entry[2] || entry[2] === 'open';
+    }
+
+    // Only open policies, for the "which review is this about?" dropdown in the
+    // submit form. Retired policies stay out of the form but are still labelled
+    // by submissions.html for opinions already filed against them.
+    function openPolicyOptions() {
         var list = window.BNG_POLICIES;
         if (list && list.length) {
-            return list.map(function (p) { return [p.key, p.label]; });
+            return list
+                .filter(function (p) { return !p.status || p.status === 'open'; })
+                .map(function (p) { return [p.key, p.label]; });
         }
-        return POLICY_REVIEW_OPTIONS;
+        return POLICY_REVIEW_OPTIONS.filter(isOpen).map(function (p) { return [p[0], p[1]]; });
     }
 
     var SHARED_STYLES = `
@@ -1007,7 +1022,7 @@ summary:focus-visible,
     function buildPolicyReviewSelect() {
         var select = document.getElementById('bngOpinionReview');
         select.innerHTML = '<option value="">Select a policy review</option>';
-        policyOptions().forEach(function (opt) {
+        openPolicyOptions().forEach(function (opt) {
             var o = document.createElement('option');
             // opt[0] is the normalised sheet key; opt[1] is the human label.
             // Sending the label would fill the sheet with long, comma-laden
