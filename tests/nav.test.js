@@ -142,24 +142,58 @@ for (const rel of pages) {
         notes.push(`mega=${basenames.length}`);
     }
 
-    // --- Blog mega: Saving NNP must be present and safe to open externally ---
+    // --- Blog mega: posts only. Campaigns live in their own menu now. --------
     const blogMega = d.querySelector('.blog-mega');
     if (blogMega) {
-        const nnp = blogMega.querySelector(`a[href="${NNP_URL}"]`);
-        if (!nnp) bad(`${rel}: blog mega missing Saving Nairobi National Park link`);
+        const hrefs = [...blogMega.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'));
+        if (hrefs.length !== 2) bad(`${rel}: blog mega has ${hrefs.length} items, expected 2 posts`);
+        if (hrefs.includes(NNP_URL)) bad(`${rel}: Saving Nairobi National Park is still in the blog menu`);
+        for (const h of hrefs) if (resolves(rel, h) === false) bad(`${rel}: blog mega href broken: ${h}`);
+        notes.push(`blogMega=${hrefs.length}`);
+    }
+
+    // --- Campaigns mega: the external link, and the draft page stays unlinked.
+    const campMega = d.querySelector('.campaigns-mega');
+    if (campMega) {
+        const nnp = campMega.querySelector(`a[href="${NNP_URL}"]`);
+        if (!nnp) bad(`${rel}: campaigns mega missing Saving Nairobi National Park link`);
         else {
             if (nnp.getAttribute('target') !== '_blank') bad(`${rel}: NNP link missing target=_blank`);
             const rel2 = nnp.getAttribute('rel') || '';
             if (!/noopener/.test(rel2)) bad(`${rel}: NNP link missing rel=noopener`);
         }
-        notes.push('blogMega=nnp-ok');
+        notes.push('campMega=nnp-ok');
+
+        // campaigns.html is an unpublished draft: disallowed in robots.txt and
+        // absent from sitemap.xml. The menu must not offer a route to it.
+        if (/campaigns\.html/.test(campMega.innerHTML)) bad(`${rel}: campaigns menu links to the unpublished campaigns.html`);
+        const trigger = campMega.parentElement && campMega.parentElement.querySelector(':scope > button');
+        if (!trigger) bad(`${rel}: campaigns trigger is not a button (it must not navigate)`);
     }
 
     // --- Mobile panels: accordion must actually toggle -----------------------
-    for (const id of ['macc-policy', 'macc-blog']) {
+    // 404.html is a bare error page with no nav, so there is nothing to assert.
+    const MOBILE_PANELS = {
+        'macc-policy': { title: 'Policy Reviews', expected: EXPECTED_POLICIES.length },
+        'macc-resources': { title: 'Resources', expected: 2 },
+        'macc-blog': { title: 'Blog', expected: 2 },
+        'macc-campaigns': { title: 'Campaigns', expected: 1 }
+    };
+
+    const hasNav = d.querySelector('.mobile-acc-btn') !== null;
+    if (hasNav && Object.keys(MOBILE_PANELS).some((id) => !d.getElementById(id))) {
+        bad(`${rel}: this page has a mobile nav but is missing a panel`);
+    }
+
+    for (const id of Object.keys(MOBILE_PANELS)) {
+        const meta = MOBILE_PANELS[id];
         const btn = d.querySelector(`.mobile-acc-btn[aria-controls="${id}"]`);
         const panel = d.getElementById(id);
-        if (!btn || !panel) continue;
+        if (!hasNav) break;
+        if (!btn || !panel) {
+            bad(`${rel}: ${id} or its toggle button is missing`);
+            continue;
+        }
 
         const startHidden = panel.classList.contains('hidden');
         btn.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
@@ -175,9 +209,9 @@ for (const rel of pages) {
         const hrefs = [...panel.querySelectorAll('a')].map((a) => a.getAttribute('href') || '');
         if (hrefs.some((h) => !h.trim())) bad(`${rel}: ${id} contains a link with no href`);
         for (const h of hrefs) if (h && resolves(rel, h) === false) bad(`${rel}: ${id} href broken: ${h}`);
+        if (id === 'macc-campaigns' && hrefs.includes(NNP_URL) === false) bad(`${rel}: ${id} missing the campaign link`);
 
-        const expected = id === 'macc-policy' ? EXPECTED_POLICIES.length : 3;
-        if (hrefs.length !== expected) bad(`${rel}: ${id} has ${hrefs.length} links, expected ${expected}`);
+        if (hrefs.length !== meta.expected) bad(`${rel}: ${id} has ${hrefs.length} links, expected ${meta.expected}`);
         notes.push(`${id}=${hrefs.length}`);
     }
 

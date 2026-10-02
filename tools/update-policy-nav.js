@@ -1,18 +1,27 @@
 /**
- * Rewrites the Policy Review and Blog dropdowns across every page that has them.
+ * Rewrites the header dropdowns across every page that carries them.
  *
  * The mega menus are duplicated by hand in 17 HTML files, so editing one page
- * leaves the other 16 stale. This script rebuilds both dropdowns from a single
- * definition so nav order and targets can't drift apart.
+ * leaves the other 16 stale. This script rebuilds them from a single definition
+ * so nav order, targets and colours can't drift apart between pages.
+ *
+ * It manages four dropdowns plus the CSS and the mobile trigger rows:
+ *   Policy Review  - the five reviews, also mirrored as cards on the hub page
+ *   Resources      - the two guides
+ *   Blog           - the two analysis posts
+ *   Campaigns      - external campaign links
  *
  * Blocks are located by their container markup rather than by line number:
- *   desktop policy mega : <div class="policy-mega" ..> up to the resources dropdown
- *   desktop blog mega   : <div class="blog-mega" ..> up to the contact link
- *   mobile policy panel : <div id="macc-policy" ..> up to <div id="macc-resources"
- *   mobile blog panel   : <div id="macc-blog" ..> up to </nav>
+ *   desktop mega   : <div class="<name>-mega" ..> up to the next top-level link
+ *   mobile panel   : <div id="macc-<name>" ..> up to the next panel or </nav>
  *
  * Links are written relative to each page's own folder, so a page at the repo
  * root gets "policy-reviews/x.html" and one inside policy-reviews/ gets "x.html".
+ *
+ * The Campaigns trigger is a <button>, not an <a>: campaigns.html is an
+ * unpublished draft (disallowed in robots.txt, absent from sitemap.xml), so the
+ * menu must not link anywhere. A button is also the honest element for a
+ * control that only reveals a panel.
  *
  * Run: node tools/update-policy-nav.js
  */
@@ -28,8 +37,8 @@ const CHEVRON =
 const EXTERNAL_LINK = 'https://savennp.org/speak-up';
 
 // The five policy reviews, in the order they should appear everywhere.
-// `href` is resolved against the page folder at write time, so pages in
-// different directories each get a correct relative path.
+// `dot` is required on every entry: the bullet colour is rendered into the
+// markup, so a missing value would ship a literal "undefined" class.
 const POLICIES = [
     {
         slug: 'policy-reviews/roads-amendment-bill-2024.html',
@@ -56,9 +65,8 @@ const POLICIES = [
         mobileTitle: 'Civic Education &middot; 2026'
     },
     {
-        // No dedicated review page exists yet - this bill is covered by the
-        // blog analysis, so the nav entry points there rather than at a
-        // placeholder that went nowhere.
+        // No dedicated review page exists yet - this bill is covered by the blog
+        // analysis, so the nav entry points there rather than at a placeholder.
         slug: 'blogs/forests-at-a-crossroads-2025.html',
         dot: 'bg-brandAccent',
         kind: 'Bill',
@@ -76,10 +84,29 @@ const POLICIES = [
     }
 ];
 
-// Blog dropdown entries. `external: true` gets target=_blank plus rel=noopener.
+const RESOURCES = [
+    {
+        slug: 'resources/law-making-process-guide.html',
+        dot: 'bg-brandRed',
+        kind: 'Resource Guide',
+        year: '2025',
+        megaTitle: 'Guide on Participation in the Law Making Process',
+        mobileTitle: 'Law Making Process Guide'
+    },
+    {
+        slug: 'resources/environmental-impact-assessment.html',
+        dot: 'bg-brandRed',
+        kind: 'Resource Guide',
+        year: 'EIA',
+        megaTitle: 'Environmental Impact Assessment (EIA)',
+        mobileTitle: 'EIA Guide'
+    }
+];
+
 const BLOGS = [
     {
         slug: 'blogs/forests-at-a-crossroads-2025.html',
+        dot: 'bg-brandGreen',
         kind: 'Policy Analysis',
         year: '2025',
         megaTitle: 'Forests at a Crossroads: Power, Institutions &amp; Forests',
@@ -87,14 +114,21 @@ const BLOGS = [
     },
     {
         slug: 'blogs/exploring-the-public-participation-bill-2025.html',
+        dot: 'bg-brandGreen',
         kind: 'Policy Analysis',
         year: '2025',
         megaTitle: 'Exploring the Public Participation Bill 2025',
         mobileTitle: 'Public Participation Bill &middot; 2025'
-    },
+    }
+];
+
+// External campaigns. These live under their own menu rather than the blog,
+// and each opens in a new tab.
+const CAMPAIGNS = [
     {
         slug: EXTERNAL_LINK,
         external: true,
+        dot: 'bg-brandRed',
         kind: 'Campaign',
         year: 'Nairobi National Park',
         megaTitle: 'Saving Nairobi National Park',
@@ -116,30 +150,25 @@ function collectPages() {
 }
 
 // Rewrite a repo-relative slug so it resolves from the page's own folder.
-// "policy-reviews/x.html" becomes "../policy-reviews/x.html" for a page in blogs/.
 function relativize(slug, pageFile) {
     if (/^https?:/i.test(slug)) return slug;
     const fromParts = path.relative(path.dirname(pageFile), ROOT).split(path.sep).filter(Boolean);
     const toParts = slug.split('/');
     let i = 0;
     while (i < fromParts.length && i < toParts.length - 1 && fromParts[i] === toParts[i]) i++;
-    const up = fromParts.length - i;
-    return '../'.repeat(up) + toParts.slice(i).join('/');
+    return '../'.repeat(fromParts.length - i) + toParts.slice(i).join('/');
 }
 
 function megaItems(items, pageFile) {
     return items
         .map((it) => {
             const href = relativize(it.slug, pageFile);
-            const dot = it.external ? 'bg-brandRed' : it.dot;
-            const attrs = it.external
-                ? ` target="_blank" rel="noopener noreferrer"`
-                : '';
+            const attrs = it.external ? ` target="_blank" rel="noopener noreferrer"` : '';
             const note = it.external
-                ? `\n                                        <span class="block text-[10px] font-bold text-brandRed uppercase tracking-wider mt-1">Open on savennp.org</span>`
+                ? `\n                                        <span class="block text-[10px] font-bold text-brandRed uppercase tracking-wider mt-1">Opens on savennp.org</span>`
                 : '';
             return `<a href="${href}"${attrs} class="flex gap-3 px-5 py-4 hover:bg-gray-50 transition-colors group">
-    <span class="mt-0.5 w-1.5 h-1.5 rounded-full ${dot} flex-shrink-0"></span>
+    <span class="mt-0.5 w-1.5 h-1.5 rounded-full ${it.dot} flex-shrink-0"></span>
     <div>
         <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">${it.kind} &middot; ${it.year}</span>
         <span class="block text-sm font-bold text-brandDark group-hover:text-brandGreen transition-colors">${it.megaTitle}</span>${note}
@@ -172,11 +201,48 @@ function panelBlock(title, items, pageFile) {
     return `<button type="button" class="mnav-back flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-brandGreen py-2 px-1 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to menu</button><h4 class="mt-2 mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">${title}</h4><div class="space-y-1">${mobileItems(items, pageFile)}</div>`;
 }
 
+// Desktop trigger + its panel. Campaigns gets no href: campaigns.html is an
+// unpublished draft disallowed in robots.txt, so the menu must not link anywhere.
+// A button is the honest element for a control that only reveals a panel.
+function desktopDropdown(name, label, href, accent, panel) {
+    const head = href
+        ? `<a href="${href}" class="text-sm font-bold text-gray-600 hover:text-${accent} transition-colors uppercase tracking-wider flex items-center gap-1">`
+        : `<button type="button" class="text-sm font-bold text-gray-600 hover:text-${accent} transition-colors uppercase tracking-wider flex items-center gap-1 bg-transparent border-0 p-0 cursor-pointer">`;
+    const tail = href ? '</a>' : '</button>';
+    return `<div class="relative ${name}-dropdown">
+                        ${head}${label}
+                            ${CHEVRON}
+                        ${tail}
+                        <div class="${name}-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            ${panel}
+                        </div>
+                    </div>`;
+}
+
+// Mobile top-level row: label + the chevron that reveals the sub-panel.
+function mobileRow(label, href, panelId, isButton) {
+    const head = isButton
+        ? `<span class="block text-sm font-bold text-gray-600 uppercase tracking-wider py-3 px-4 rounded-lg">${label}</span>`
+        : `<a href="${href}" class="block text-sm font-bold text-gray-600 hover:text-brandGreen hover:bg-gray-50 transition-colors uppercase tracking-wider py-3 px-4 rounded-lg">${label}</a>`;
+    return `<div class="flex items-center justify-between">${head}<button type="button" class="mobile-acc-btn text-gray-400 hover:text-brandGreen transition-colors p-3 flex-shrink-0" aria-expanded="false" aria-controls="${panelId}" aria-label="Toggle ${label} menu"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div>`;
+}
+
 const RULES = [
     {
+        name: 'dropdown CSS',
+        // Anchored on the blog-dropdown rule, which is the last of the three
+        // existing dropdown styles, and carries the campaigns styles with it.
+        // The trailing group swallows any campaigns lines written by a previous
+        // run, so re-running replaces them instead of stacking copies.
+        re: /(\.blog-dropdown:hover > a \{ color: #0f5132; \})(?:\r?\n[ \t]*\.campaigns-dropdown[^\n]*)*/,
+        build: (_p, [anchor]) =>
+            `${anchor}
+        .campaigns-dropdown .campaigns-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
+        .campaigns-dropdown:hover .campaigns-mega, .campaigns-dropdown:focus-within .campaigns-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+        .campaigns-dropdown:hover > button { color: #dc2626; }`
+    },
+    {
         name: 'desktop policy mega',
-        // Everything from the policy-mega wrapper up to (not including) the
-        // resources dropdown wrapper.
         re: /<div class="policy-mega[\s\S]*?(?=<div class="relative resources-dropdown">)/,
         build: (p) => `<div class="policy-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
                             ${megaBlock(POLICIES, p)}
@@ -186,12 +252,24 @@ const RULES = [
                     `
     },
     {
-        name: 'desktop blog mega',
+        name: 'desktop resources mega',
+        re: /<div class="resources-mega[\s\S]*?(?=<div class="relative blog-dropdown">)/,
+        build: (p) => `<div class="resources-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
+                            ${megaBlock(RESOURCES, p)}
+                        </div>
+                    </div>
+                    `
+    },
+    {
+        name: 'desktop blog mega + campaigns dropdown',
+        // Blog and Campaigns are adjacent, and Contact follows both, so one rule
+        // covers them and keeps their relative order fixed.
         re: /<div class="blog-mega[\s\S]*?(?=<a href="[^"]*contact\.html")/,
         build: (p) => `<div class="blog-mega hidden absolute left-1/2 -translate-x-1/2 top-full pt-4 w-80">
                             ${megaBlock(BLOGS, p)}
                         </div>
                     </div>
+                    ${desktopDropdown('campaigns', 'Campaigns', null, 'brandRed', megaBlock(CAMPAIGNS, p))}
                     `
     },
     {
@@ -201,10 +279,25 @@ const RULES = [
                 `
     },
     {
-        name: 'mobile blog panel',
+        name: 'mobile resources panel',
+        re: /<div id="macc-resources"[\s\S]*?(?=<div id="macc-blog")/,
+        build: (p) => `<div id="macc-resources" class="mobile-nav-panel hidden">${panelBlock('Resources', RESOURCES, p)}</div>
+                `
+    },
+    {
+        name: 'mobile blog + campaigns panels',
         re: /<div id="macc-blog"[\s\S]*?(?=<\/nav>)/,
         build: (p) => `<div id="macc-blog" class="mobile-nav-panel hidden">${panelBlock('Blog', BLOGS, p)}</div>
+                <div id="macc-campaigns" class="mobile-nav-panel hidden">${panelBlock('Campaigns', CAMPAIGNS, p)}</div>
                 `
+    },
+    {
+        name: 'mobile campaigns trigger row',
+        // Sits immediately after the Blog row, before the Contact link. Any rows
+        // a previous run appended are consumed here, so the replacement is a
+        // no-op on re-runs rather than adding one more row each time.
+        re: /(<div class="flex items-center justify-between"><a href="[^"]*blog\.html"[^>]*>Blog<\/a><button[^>]*aria-controls="macc-blog"[\s\S]*?<\/button><\/div>)(?:<div class="flex items-center justify-between"><span[^>]*>Campaigns<\/span><button[^>]*aria-controls="macc-campaigns"[\s\S]*?<\/button><\/div>)*/,
+        build: (_p, [blogRow]) => blogRow + mobileRow('Campaigns', null, 'macc-campaigns', true)
     }
 ];
 
@@ -220,14 +313,24 @@ function main() {
 
         for (const rule of RULES) {
             const before = html;
-            html = html.replace(rule.re, rule.build(file));
+            // build(pageFile, captures) returns the replacement. Only the mobile
+            // campaigns row rule uses captures, to re-emit the Blog row it
+            // anchors on; every other rule replaces its whole match.
+            // replace() hands the callback (match, ...groups, offset, string),
+            // so the groups start at index 1. Including the full match here
+            // would make a rule re-emit what it just consumed, and every run
+            // would grow the file.
+            html = html.replace(rule.re, (...args) => {
+                const captures = args.slice(1, -2);
+                return rule.build(file, captures);
+            });
             if (html !== before) applied.push(rule.name);
         }
 
         if (html !== original) {
             fs.writeFileSync(file, html, 'utf8');
             changed++;
-            report.push(`  ${path.relative(ROOT, file).padEnd(50)} ${applied.length}/4 blocks`);
+            report.push(`  ${path.relative(ROOT, file).padEnd(46)} ${applied.length}/${RULES.length} blocks`);
         }
     }
 
