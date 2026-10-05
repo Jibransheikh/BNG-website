@@ -65,16 +65,6 @@ const POLICIES = [
         mobileTitle: 'Civic Education &middot; 2026'
     },
     {
-        // No dedicated review page exists yet - this bill is covered by the blog
-        // analysis, so the nav entry points there rather than at a placeholder.
-        slug: 'blogs/forests-at-a-crossroads-2025.html',
-        dot: 'bg-brandAccent',
-        kind: 'Bill',
-        year: '2025',
-        megaTitle: 'Forest Conservation &amp; Management (Amendment) Bill',
-        mobileTitle: 'Forest Conservation Bill &middot; 2025'
-    },
-    {
         slug: 'policy-reviews/wildlife-conservation-bill.html',
         dot: 'bg-brandAccent',
         kind: 'Bill',

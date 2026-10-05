@@ -27,12 +27,24 @@ try {
 
 const root = path.join(__dirname, '..');
 
-// The five policies in the order they must appear in every dropdown.
+// The four policies in the order they must appear in every dropdown. The Forest
+// Conservation entry was dropped: it had no review page and pointed at the blog
+// post, so in a list of reviews it read as one.
 const EXPECTED_POLICIES = [
     'roads-amendment-bill-2024.html',
     'public-participation-bill.html',
     'civic-education-2026.html',
-    'forests-at-a-crossroads-2025.html',
+    'wildlife-conservation-bill.html'
+];
+
+// The hub carries one tile per Bill, so Public Participation appears twice. This
+// is deliberately not EXPECTED_POLICIES: the nav's combined PP entry still points
+// at the landing page, while the hub links each year's review directly.
+const EXPECTED_HUB_CARDS = [
+    'roads-amendment-bill-2024.html',
+    'public-participation-bill-2025.html',
+    'public-participation-bill-2024.html',
+    'civic-education-2026.html',
     'wildlife-conservation-bill.html'
 ];
 
@@ -113,11 +125,22 @@ for (const rel of pages) {
     if (hub && /policy-reviews[\\/]index/.test(rel)) {
         const tiles = [...hub.children].filter((t) => !t.classList.contains('col-span-full'));
         const links = tiles.filter((t) => t.tagName === 'A' && t.getAttribute('href'));
-        if (links.length !== 5) bad(`${rel}: expected 5 clickable cards, found ${links.length}`);
-        for (const a of links) {
-            const href = a.getAttribute('href');
-            if (resolves(rel, href) === false) bad(`${rel}: card href does not resolve: ${href}`);
+        if (links.length !== EXPECTED_HUB_CARDS.length) {
+            bad(`${rel}: expected ${EXPECTED_HUB_CARDS.length} clickable cards, found ${links.length}`);
         }
+        EXPECTED_HUB_CARDS.forEach((want, i) => {
+            const a = links[i];
+            if (!a) return;
+            const href = a.getAttribute('href');
+            if (path.basename(href) !== want) bad(`${rel}: card ${i + 1} is ${href}, expected ${want}`);
+            if (resolves(rel, href) === false) bad(`${rel}: card href does not resolve: ${href}`);
+
+            // Every title must name its year. A bare "Public Participation Bill"
+            // is ambiguous when two Bills share the name.
+            const h3 = a.querySelector('h3');
+            const title = h3 ? h3.textContent.trim() : '';
+            if (!/\b20\d\d\b/.test(title)) bad(`${rel}: card title has no year: "${title}"`);
+        });
         // A dead tile is a <div>, not an <a>. Guard against one creeping back in.
         const deadTiles = tiles.filter((t) => t.tagName !== 'A');
         if (deadTiles.length) bad(`${rel}: ${deadTiles.length} card(s) are not links`);

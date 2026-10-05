@@ -6,6 +6,17 @@
  * nowhere. Every tile is now a real <a> to a page that exists, in the order the
  * nav uses, so the hub and the dropdown can't disagree.
  *
+ * Two further changes:
+ * - The Forest Conservation tile is gone. It had no dedicated review page and
+ *   linked to the blog post instead, so it read as a policy review when it was
+ *   really an opinion piece. It stays in the blog and the sitemap.
+ * - Public Participation is now one tile per Bill. A single tile titled "Public
+ *   Participation Bill" covered both the 2024 and 2025 drafts while linking to
+ *   one of them, which made the year ambiguous. Splitting them also un-orphans
+ *   public-participation-bill-2024.html, which nothing on the site linked to.
+ *
+ * Every title carries its year, so the tile reads the same as the review's h1.
+ *
  * The file has mixed CRLF/LF endings, so this matches on markup rather than
  * trying to reproduce exact whitespace.
  *
@@ -17,8 +28,6 @@ const path = require('path');
 
 const TARGET = path.join(__dirname, '..', 'policy-reviews', 'index.html');
 
-// `analysis: true` marks the forest tile, which links to the blog post because
-// no dedicated review page exists for that bill yet.
 const CARDS = [
     {
         href: 'roads-amendment-bill-2024.html',
@@ -31,32 +40,34 @@ const CARDS = [
         featured: true
     },
     {
-        href: 'public-participation-bill.html',
+        // 2025 first: this is the operative Bill, passed by the National Assembly
+        // and now before the Senate. Comments closed on 28 September 2026, so the
+        // copy must not invite submissions that can no longer be made.
+        href: 'public-participation-bill-2025.html',
         badge: { text: 'Bill', cls: 'text-brandDark bg-brandAccent' },
-        year: '2024 &amp; 2025',
-        title: 'Public Participation Bill',
+        year: '2025',
+        title: 'Public Participation Bill, 2025',
         body:
-            'The 2024 and 2025 drafts, side by side. Draft National Assembly Bills to make public participation a binding legal duty for every level of government. Read the review, then submit your view.',
+            'Passed by the National Assembly and now before the Senate. The Senate&rsquo;s call for comments closed on 28 September 2026; the review stays online as a record, with the citizen views we gathered still published.',
+        cta: 'Read Full Review'
+    },
+    {
+        href: 'public-participation-bill-2024.html',
+        badge: { text: 'Bill', cls: 'text-brandDark bg-brandAccent' },
+        year: '2024',
+        title: 'Public Participation Bill, 2024',
+        body:
+            'The Attorney General&rsquo;s draft to give every Kenyan a direct role in shaping the laws, policies and decisions that affect them. Read the review of its objectives and how it would streamline public involvement at every level of government.',
         cta: 'Read Full Review'
     },
     {
         href: 'civic-education-2026.html',
         badge: { text: 'Policy', cls: 'text-white bg-brandDark' },
         year: '2026',
-        title: 'Nairobi City County Civic Education, Citizen Engagement &amp; Public Participation Policy',
+        title: 'Nairobi City County Civic Education, Citizen Engagement &amp; Public Participation Policy, 2026',
         body:
             'Nairobi City County is writing a new rulebook on how they engage with residents. This is your chance to literally write the rules on how you want to be heard.',
         cta: 'Read Full Review'
-    },
-    {
-        href: '../blogs/forests-at-a-crossroads-2025.html',
-        badge: { text: 'Analysis', cls: 'text-white bg-brandGreen' },
-        year: '2025',
-        title: 'Forest Conservation &amp; Management (Amendment) Bill',
-        body:
-            'Our analysis of the Bill amending the Forest Conservation and Management Act 2016 &mdash; consolidation of power in the Cabinet Secretary&rsquo;s office, the KFS mandate, decentralisation, and what these shifts mean for communities and forests.',
-        cta: 'Read Full Analysis',
-        analysis: true
     },
     {
         href: 'wildlife-conservation-bill.html',
