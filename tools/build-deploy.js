@@ -1,18 +1,18 @@
-// Stages the deployable site into dist/ for Cloudflare Workers static assets.
+// Stages the deployable site into dist/ for a static host (Hostinger/Apache,
+// or Cloudflare Workers static assets).
 //
-// Why this exists: pointing `assets.directory` at the repo root makes Wrangler
-// upload everything in the working directory. In CI that pulls in node_modules,
-// and the Cloudflare Workers Static Assets limit is 25 MiB per file. Wrangler's
-// own workerd binary is over 90 MiB, so the deploy fails on a single file long
-// before anything is served. Wrangler has no `assets.exclude` field (its config
+// Why this exists: pointing a deploy tool at the repo root makes it upload
+// everything in the working directory. That pulls in node_modules, and both
+// the Cloudflare Workers Static Assets limit and most shared hosts choke on
+// large files. Cloudflare's Wrangler has no `assets.exclude` field (its config
 // schema sets additionalProperties:false), so an allowlist is the only reliable
 // way to keep the upload clean.
 //
 // The rule is simple: copy the site in, never out. Anything not named here is
 // not deployed, so adding a devDependency or a scratch file can never break the
 // deploy. Running `node build.js` first is deliberate -- policy-reviews-data.js
-// is generated from the <meta name="bng-policy"> tags, and the Cloudflare build
-// container starts from a fresh checkout with no generated file in it.
+// is generated from the <meta name="bng-policy"> tags, and a CI container or a
+// fresh checkout starts with no generated file in it.
 
 const fs = require('fs');
 const path = require('path');
@@ -37,7 +37,15 @@ const ASSET_FILES = [
     'policy-reviews-data.js',
     'robots.txt',
     'sitemap.xml',
-    // Cloudflare parses these and does not serve them as content.
+    // Apache/LiteSpeed server config. This is the file that makes a plain
+    // static host behave: HTTPS + www->apex redirects, the security headers and
+    // CSP, cache lifetimes, compression, ErrorDocument 404, and the
+    // extensionless rewrite. A dist/ without it still renders, but silently
+    // loses all of that, so it must be staged alongside the HTML.
+    '.htaccess',
+    // Cloudflare-only. Apache ignores both, so on a plain host they are inert
+    // duplicates of rules .htaccess already sets. Harmless, but they are dead
+    // weight once Cloudflare is out of the picture.
     '_headers',
     '_redirects',
 ];
@@ -87,7 +95,6 @@ for (const dir of ASSET_DIRS) {
 for (const file of ASSET_FILES) {
     const src = path.join(ROOT, file);
     if (!fs.existsSync(src)) {
-        // _headers and _redirects are generated below if absent, so only warn.
         problems.push(`missing asset file: ${file}`);
         continue;
     }
