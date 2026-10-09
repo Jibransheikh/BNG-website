@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civic Education Policy 2026 | Bonga Na Gava</title>
+    <title>National Environment Policy 2026 | Bonga Na Gava</title>
 <!-- Feeds the "Submit Your View" dropdown and the opinions filter. Run `node build.js` after adding or editing this tag. -->
-<meta name="bng-policy" content="civic education 2026 | Civic Education, Citizen Engagement &amp; Public Participation Policy 2026 | 1 | closed">
-    <meta name="description" content="Review of the Nairobi City County Civic Education, Citizen Engagement and Public Participation Policy 2026. Submit your views on how the county should engage with residents.">
-    <link rel="canonical" href="https://bonganagava.com/policy-reviews/civic-education-2026">
-    <meta property="og:title" content="Civic Education Policy 2026 | Bonga Na Gava">
-    <meta property="og:description" content="Review of the Nairobi City County Civic Education, Citizen Engagement and Public Participation Policy 2026. Submit your views on how the county should engage with residents.">
+<meta name="bng-policy" content="national environment policy 2026 | The National Environment Policy, 2026 | 0 | open">
+    <meta name="description" content="Review of the National Environment Policy 2026, which replaces the National Environment Policy 2013. Read the goal, the objectives and the guiding principles, and submit your views.">
+    <link rel="canonical" href="https://bonganagava.com/policy-reviews/national-environment-policy-2026">
+    <meta property="og:title" content="National Environment Policy 2026 | Bonga Na Gava">
+    <meta property="og:description" content="Review of the National Environment Policy 2026, which replaces the National Environment Policy 2013. Read the goal, the objectives and the guiding principles, and submit your views.">
     <meta property="og:image" content="https://bonganagava.com/assets/images/og-image.png">
-    <meta property="og:url" content="https://bonganagava.com/policy-reviews/civic-education-2026">
+    <meta property="og:url" content="https://bonganagava.com/policy-reviews/national-environment-policy-2026">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Bonga Na Gava">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Civic Education Policy 2026 | Bonga Na Gava">
-    <meta name="twitter:description" content="Review of the Nairobi City County Civic Education, Citizen Engagement and Public Participation Policy 2026. Submit your views on how the county should engage with residents.">
+    <meta name="twitter:title" content="National Environment Policy 2026 | Bonga Na Gava">
+    <meta name="twitter:description" content="Review of the National Environment Policy 2026, which replaces the National Environment Policy 2013. Read the goal, the objectives and the guiding principles, and submit your views.">
     <meta name="twitter:image" content="https://bonganagava.com/assets/images/og-image.png">
     <link rel="icon" type="image/png" href="https://bonganagava.com/assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,50 +41,31 @@
 
         .pr-section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #0f5132; margin-bottom: 0.75rem; }
         .pr-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1.5rem; padding: 2.5rem; max-width: 1000px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
-        .pr-quote-box { background: #f1f5f9; border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid #0f5132; }
-        .pr-quote-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
-        .pr-quote-list li { font-size: 1rem; font-weight: 600; font-style: italic; color: #374151; padding-left: 1.5rem; position: relative; }
-        .pr-quote-list li::before { content: "\201C"; position: absolute; left: 0; top: -2px; color: #0f5132; font-size: 1.2rem; font-weight: 800; }
 
-        .pr-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 2px dashed rgba(0,0,0,0.08); align-items: start; }
-        .pr-images-col { display: flex; flex-direction: column; gap: 1rem; position: relative; perspective: 1000px; }
-        .pr-mobile-indicator { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #111827; color: #fff; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; z-index: 20; box-shadow: 0 4px 10px rgba(0,0,0,0.2); animation: prPulse 2s infinite; pointer-events: none; }
-        @keyframes prPulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } }
-        @media (min-width: 768px) { .pr-mobile-indicator { display: none; } }
+        .pr-list { list-style: disc; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; color: #374151; line-height: 1.7; }
 
-        .pr-img-wrap { background: white; padding: 8px 8px 16px 8px; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); cursor: pointer; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .pr-img-wrap img { width: 100%; border-radius: 0.5rem; pointer-events: none; }
-        .pr-img-caption { font-size: 0.85rem; font-weight: 700; color: #111827; margin-top: 0.75rem; }
-        .pr-img-wrap:hover, .pr-img-wrap.active { transform: scale(1.03); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
-        .pr-img-wrap:hover .pr-img-caption, .pr-img-wrap.active .pr-img-caption { color: #0f5132; }
-
-        .pr-lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.95); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; }
-        .pr-lightbox.show { opacity: 1; pointer-events: auto; }
-        .pr-lightbox img { max-width: 100%; max-height: 80vh; border-radius: 0.75rem; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .pr-lightbox.show img { transform: scale(1); }
-        .pr-lightbox-caption { color: white; font-size: 1.1rem; font-weight: 700; margin-top: 0.75rem; }
-        .pr-lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
-        .pr-lightbox-close:hover { opacity: 1; }
+        .diff-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }
+        .diff-table thead th { background: #111827; color: white; padding: 0.875rem 1rem; text-align: left; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+        .diff-table thead th:first-child { border-radius: 0.5rem 0 0 0; }
+        .diff-table thead th:last-child { border-radius: 0 0.5rem 0 0; }
+        .diff-table tbody td { padding: 0.875rem 1rem; border-bottom: 1px solid #e5e7eb; vertical-align: top; line-height: 1.5; }
+        .diff-table tbody tr:last-child td { border-bottom: none; }
+        .diff-table tbody tr:last-child td:first-child { border-radius: 0 0 0 0.5rem; }
+        .diff-table tbody tr:last-child td:last-child { border-radius: 0 0 0.5rem 0; }
+        .diff-table tbody tr:nth-child(even) td { background: #f9fafb; }
+        .diff-table .area-label { font-weight: 700; color: #0f5132; }
 
         .pr-form { display: flex; flex-direction: column; gap: 1rem; background: #f8fafc; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb; }
         .pr-form h3 { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.25rem 0; }
-        .pr-form-group { display: flex; flex-direction: column; gap: 0.3rem; }
-        .pr-form label { font-size: 0.85rem; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.05em; }
-        .pr-form select { cursor: pointer; width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid #d1d5db; background: white; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #111827; box-sizing: border-box; }
-        .pr-form input, .pr-form textarea { width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid #d1d5db; background: white; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #111827; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box; }
-        .pr-form input:focus, .pr-form textarea:focus, .pr-form select:focus { outline: none; border-color: #0f5132; box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.15); }
-        .pr-btn { background: #0f5132; color: #fff; font-weight: 800; padding: 0.875rem 2rem; border-radius: 0.5rem; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pr-btn { background: #0f5132; color: #fff; font-weight: 800; padding: 0.875rem 2rem; border-radius: 0.5rem; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; }
         .pr-btn:hover:not(:disabled) { background: #065f46; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 81, 50, 0.3); }
-        .pr-btn:disabled { background: #9ca3af; cursor: not-allowed; }
-        .pr-success { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #f0fdf4; padding: 2rem; border-radius: 1rem; border: 1px solid #bbf7d0; min-height: 300px; }
-        .pr-success.show { display: flex; animation: prPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-        @keyframes prPop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
         @media (max-width: 768px) {
             .pr-card { padding: 1.25rem; border-radius: 1.25rem; }
-            .pr-split { grid-template-columns: 1fr; gap: 2rem; }
+            .diff-table { font-size: 0.8rem; }
+            .diff-table thead th, .diff-table tbody td { padding: 0.6rem 0.75rem; }
         }
-    
+
         .policy-dropdown .policy-mega { opacity: 0; visibility: hidden; transform: translate(-50%, -6px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; pointer-events: none; display: block; }
         .policy-dropdown:hover .policy-mega, .policy-dropdown:focus-within .policy-mega { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
         .policy-dropdown:hover > a { color: #0f5132; }
@@ -291,61 +272,302 @@
                 <span class="w-1.5 h-1.5 rounded-full bg-brandGreen animate-pulse"></span>
                 Policy
             </div>
-            <h1 class="header-anim visibility-hidden text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tighter leading-[1.1] text-brandDark uppercase">Civic Education, Citizen Engagement &amp; Public Participation Policy 2026</h1>
-            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-3xl">Nairobi City County is writing a new rulebook on how they engage with residents. This is your chance to literally write the rules.</p>
+            <h1 class="header-anim visibility-hidden text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tighter leading-[1.1] text-brandDark uppercase">The National Environment Policy, 2026</h1>
+            <p class="header-anim visibility-hidden text-lg text-gray-500 max-w-3xl">This Policy replaces the National Environment Policy 2013, adopted as Sessional Paper No 10 of 2014. It provides the national policy framework for the protection, conservation and sustainable management of Kenya's environment and natural resources.</p>
         </div>
     </section>
 
-    <section class="py-12 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="pr-card content-anim visibility-hidden">
-                <p class="text-lg text-gray-700 leading-relaxed mb-4">Hey Bonga Na Gava community,</p>
-                <p class="text-lg text-gray-700 leading-relaxed mb-4">You know how we're always saying the county doesn't listen to us? Well, here's the deal: The <strong>Nairobi City County Government</strong> is actually writing a new rulebook on how they should engage with residents (officially called the <strong>Civic Education, Citizen Engagement and Public Participation Policy 2026</strong>). And the best part? They are actively asking for our input to build it.</p>
-                <p class="text-lg text-gray-700 leading-relaxed mb-4">This isn't just another boring government document to ignore. For us as young people, this is a rare chance to <strong class="text-brandGreen">literally write the rules</strong> on how we want to be heard, how public forums should run, and how the county communicates with us moving forward.</p>
+    <section class="py-8 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="pr-card mx-auto content-anim visibility-hidden">
+                <p class="pr-section-label">Why the Policy is being revised</p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">The case for the revision of the Policy as stated in the National Environment Policy 2026 entails:</p>
+                <ul class="pr-list text-base">
+                    <li>The 2013 policy was finalised before county governments became operational and before most of the environmental law now in force was enacted.</li>
+                    <li>The courts have built a body of environmental jurisprudence on Articles 10, 42, 69 and 70 of the Constitution that the 2013 policy did not anticipate, on public participation, on the polluter pays principle, on intergenerational equity and on the standard of environmental assessment. Kenya has also assumed international obligations since 2013, among them the Paris Agreement and the Nationally Determined Contribution made under it, the Kunming-Montreal Global Biodiversity Framework and the Agreement on marine biological diversity of areas beyond national jurisdiction.</li>
+                    <li>The scientific basis has changed with the Sixth Assessment Report of the Intergovernmental Panel on Climate Change and the assessments that followed it, and the 2013 policy provided no mechanism for taking new evidence into account.</li>
+                    <li>Questions that did not arise in 2013 now require policy direction, including carbon markets, loss and damage, the just transition and the use of artificial intelligence in environmental decisions.</li>
+                </ul>
+            </div>
 
-                <div class="pr-quote-box">
-                    <h4 class="font-bold text-brandDark mb-3">Honestly, if you've ever found yourself saying:</h4>
-                    <ul class="pr-quote-list">
-                        <li>"They never consult the youth."</li>
-                        <li>"Public participation is just a PR stunt."</li>
-                        <li>"The government really needs to engage us better."</li>
-                    </ul>
-                </div>
+            <div class="pr-card mx-auto content-anim visibility-hidden">
+                <p class="pr-section-label">The Goal</p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-8">The goal of this Policy is to provide a coherent, constitutionally grounded and evidence-based framework for the protection, conservation and sustainable management of Kenya's environment and natural resources, for the benefit of present and future generations.</p>
 
-                <p class="text-lg text-gray-700 leading-relaxed text-center font-bold mb-0">This is our chance to define exactly what "better" looks like.</p>
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark mb-3">Key Objectives</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">The Policy sets out 10 objectives to give effect to this goal. These include:</p>
+                <ul class="pr-list text-base mb-8">
+                    <li>To give practical effect to the right to a clean and healthy environment</li>
+                    <li>To settle environmental governance at both levels of government</li>
+                    <li>To meet Kenya's obligations under the multilateral environmental agreements</li>
+                    <li>To protect, conserve and restore terrestrial, freshwater, coastal and marine ecosystems and to reach and hold a tree cover of at least ten per cent</li>
+                    <li>To prevent, control and abate pollution and to advance resource efficiency and a circular economy</li>
+                    <li>To manage the environmental conditions on which climate resilience depends</li>
+                    <li>To distribute environmental benefits and burdens fairly within and between generations</li>
+                    <li>To mobilise finance for environmental management and to bring environmental cost into public finance and planning</li>
+                    <li>To govern environmental data and the use of artificial intelligence</li>
+                    <li>To monitor and evaluate implementation against measurable indicators</li>
+                </ul>
 
-                <div class="pr-split" id="submit-views">
-                    <div class="pr-images-col">
-                        <div class="pr-mobile-indicator">Tap image to view</div>
-                        <div class="pr-img-wrap" onclick="openLightbox(this)">
-                            <img src="https://bonganagava.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-16-at-10.49.23-PM.jpeg" alt="Bonga Na Gava Movement">
-                            <span class="pr-img-caption">The Movement</span>
-                        </div>
-                        <div class="pr-img-wrap" onclick="openLightbox(this)">
-                            <img src="https://bonganagava.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-16-at-10.48.56-PM.jpeg" alt="Official Nairobi County Letter">
-                            <span class="pr-img-caption">Official Letter</span>
-                        </div>
-                    </div>
-                                                                                <div>
-                        <div class="pr-form">
-                            <h3>Get SMS Alerts &amp; Reply With Your Views</h3>
-                            <p class="text-gray-500 text-sm mb-6">Opt in and we&rsquo;ll text you when new policies or bills drop, then reply with your opinions straight from your phone. No forms, no spam.</p>
-                            <div class="flex flex-col sm:flex-row gap-4">
-                                <a href="#" class="pr-btn js-open-sms" style="text-decoration:none; margin:0; display:block;">Opt In via SMS</a>
-                                <a href="#" class="pr-btn js-open-opinion" style="text-decoration:none; margin:0; display:block; background:#111827;">Submit Your View</a>
-                            </div>
-                        </div>
-                    </div>
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark mb-3">Guiding Principles</h2>
+                <p class="text-gray-700 leading-relaxed">Twenty-two guiding principles inform how those objectives are pursued. They include sustainable development, the precautionary principle, polluter pays, intergenerational and intragenerational equity, public participation and environmental democracy, gender equality, disability mainstreaming, the best interests of the child, the rights of Indigenous Peoples and marginalised communities, subsidiarity and devolution, the ecosystem based approach, nexus governance, science and policy integration, the circular economy, adaptive governance and common but differentiated responsibilities.</p>
             </div>
         </div>
+    </section>
+
+    <section class="pb-8 lg:pb-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-anim visibility-hidden">
+                <div class="mb-6 px-4 sm:px-0">
+                    <p class="pr-section-label">Side by Side</p>
+                    <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark">Major thematic differences at a glance</h2>
+                </div>
+                <div class="pr-card mx-auto" style="padding: 0; overflow: hidden;">
+                    <div class="overflow-x-auto">
+                        <table class="diff-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 22%;">Thematic Area</th>
+                                    <th style="width: 39%;">Sessional Paper No 10 of 2014</th>
+                                    <th style="width: 39%;">2026 National Environment Policy, 2026 (First-draft)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="area-label">Devolution</td>
+                                    <td>Broad institutional arrangements</td>
+                                    <td>Detailed coordination of national and county environmental functions</td>
+                                </tr>
+                                <tr>
+                                    <td class="area-label">Conservation, ecosystems and natural resources</td>
+                                    <td>Addressed forests, wildlife, biodiversity, wetlands, land, fisheries and other natural resources largely through separate sectoral approaches.</td>
+                                    <td>Emphasises on interconnected ecosystems, ecological corridors, landscape restoration, nature-based solutions, sustainable resource use and stronger integration of conservation with land-use planning and community livelihoods</td>
+                                </tr>
+                                <tr>
+                                    <td class="area-label">Environment, Pollution &amp; Public Health</td>
+                                    <td>Focused on controlling pollution, managing waste, protecting water and air quality, and addressing environmental health risks.</td>
+                                    <td>Expands towards a circular economy, resource recovery, extended producer responsibility, the One Health approach and emerging environmental concerns such as light pollution and extreme temperatures.</td>
+                                </tr>
+                                <tr>
+                                    <td class="area-label">Climate Change, Energy &amp; Emerging Issues</td>
+                                    <td>Recognised climate change, adaptation, mitigation, energy efficiency and disaster management.</td>
+                                    <td>Introduces dedicated provisions for carbon markets, loss and damage, energy transition, climate finance, just transition, artificial intelligence, environmental data governance and rights of nature</td>
+                                </tr>
+                                <tr>
+                                    <td class="area-label">Communities, inclusion and public participation</td>
+                                    <td>Recognised stakeholder engagement, gender, vulnerable groups, community participation and environmental education</td>
+                                    <td>Strengthens meaningful public participation, environmental justice, youth and Indigenous Peoples' inclusion, community benefit-sharing and transparency on how public submissions influence decisions.</td>
+                                </tr>
+                                <tr>
+                                    <td class="area-label">Environmental financing, implementation and accountability</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div id="bng-lightbox" class="pr-lightbox">
-        <div class="pr-lightbox-close" id="lightbox-close">&times;</div>
-        <img id="lightbox-img" src="" alt="Expanded Image">
-        <div class="pr-lightbox-caption" id="lightbox-caption"></div>
-    </div>
+    <section class="pb-8 lg:pb-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pr-card content-anim visibility-hidden">
+                <p class="pr-section-label">Structure of the Policy</p>
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark mb-6">Key Chapters Of The National Environment Policy, 2026</h2>
+                <div class="overflow-x-auto rounded-xl border border-gray-200">
+                    <table class="w-full text-left text-sm bg-white">
+                        <thead>
+                            <tr class="bg-brandDark text-white">
+                                <th class="px-5 py-4 font-bold uppercase tracking-wider text-xs">Chapter</th>
+                                <th class="px-5 py-4 font-bold uppercase tracking-wider text-xs">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Preliminary Pages</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Foreword &amp; Preface (To be inserted in the Second Draft), Abbreviations &amp; Acronyms Executive Summary<br><br>Provides the context and overview of the National Environment Policy 2026, covering the political context and review process, contributors to its development, key abbreviations and acronyms, and a summary of the Policy's rationale, goal, objectives, guiding principles, commitments, implementation and next steps.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 1: Preamble To The National Environment Policy</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Provides the context and rationale for the National Environment Policy 2026. It traces Kenya's environmental policy development since independence through key international and national milestones, including the 1992 Rio Earth Summit, following which Kenya initiated the National Environment Action Plan (NEAP) process, completed in 1994, the 1999 EMCA and the 2010 Constitution, and outlines the development of the 2013 Policy. It then sets out why the Policy requires revision, highlighting changes in legislation, constitutional jurisprudence, devolution, international commitments, scientific evidence, emerging environmental governance issues and policy development standards, before introducing the approach and structure of the National Environment Policy 2026.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 2: Policy Making &amp; Implementation In A Devolved Government Context</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Sets out the framework for environmental policy making and implementation within Kenya's devolved system of government. It explains the constitutional framework governing environmental responsibilities, the distribution of functions between the national and county governments, and the mechanisms for intergovernmental relations and coordination where functions are shared. It also identifies the gap in county environmental policy and establishes the basis for strengthening coordination, guidance and implementation of environmental governance at both levels of government.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 3: Rationale For The Revision Of Sessional Paper No. 10 Of 2014 On National Environment Policy</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Sets out the rationale for revising the National Environment Policy 2013. It explains how Kenya's environmental governance landscape has changed over the past decade through developments in legislation, sectoral policies, international commitments, constitutional jurisprudence, scientific knowledge and devolution. It also highlights emerging environmental governance themes and the need to align the Policy with current policy formulation standards, providing the basis for a coherent, constitutionally grounded and forward-looking framework for environmental governance.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 4: Goal, Objectives &amp; Guiding Principles</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Sets out the goal, objectives and guiding principles of the National Environment Policy 2026, which provide the normative foundation for the policy directions that follow. It defines the Policy's overall goal of protecting, conserving and sustainably managing Kenya's environment and natural resources, sets out its 10 objectives and 22 guiding principles.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 5: Constitutional &amp; Legal Foundation</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Establishes the constitutional and legal foundation of the National Environment Policy 2026. It aligns the Policy with relevant constitutional provisions, particularly Articles 10, 42, 69 and 70, and incorporates key court decisions that have shaped environmental governance. It also sets standards for areas such as public participation, environmental justice, environmental assessments, liability, intergenerational equity and the protection of environmental rights.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 6: International Commitments &amp; MEA Alignment</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">In a nutshell, Chapter 6 establishes how Kenya's international environmental commitments will be translated into national and county-level policy and action. It maps Kenya's obligations under key multilateral environmental agreements and frameworks, including climate change, biodiversity, chemicals and waste, marine environments, land degradation and disaster risk reduction, to the domestic policy responses required. It also sets out a domestication pathway linking each commitment to the relevant legal or policy instrument, accountable institution and reporting mechanism, while strengthening coordination between national and county governments.</td>
+                            </tr>
+                            <tr class="border-t border-gray-100">
+                                <td class="px-5 py-4 font-bold text-brandDark align-top">Chapter 7: Overarching Policy Commitments</td>
+                                <td class="px-5 py-4 text-gray-600 align-top leading-relaxed">Chapter 7 brings together the overarching policy commitments that apply across the entire National Environment Policy 2026. It sets out the common commitments that guide all sectors, chapters and both levels of government, including constitutional compliance, implementation of international environmental obligations, ecosystem-based management, environmental quality and pollution control, climate and energy governance, cross-sectoral coordination, equity and public participation, devolved environmental governance, financing, and monitoring and evaluation. It provides a single view of what the Policy commits the Government to before the specific environmental governance areas are addressed in the subsequent chapters.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-8 lg:pb-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pr-card content-anim visibility-hidden">
+                <p class="pr-section-label">Part II</p>
+                <p class="text-gray-700 leading-relaxed mb-4">The chapters that follow set out the substantive commitments of this Policy. They begin with the natural resource base and with environmental quality and public health, turn to climate change, the energy transition and the emerging governance themes, and then to the cross-sectoral and cross-cutting arrangements. They conclude with the institutions, the financing and the monitoring and evaluation through which this Policy is delivered.</p>
+                <p class="text-gray-700 leading-relaxed mb-4">Each chapter is structured around a Chapter Policy Objective and Overview, a situational analysis that explains the issue, context, challenges and gaps, and policy statements that set out what the Government commits to do in response.</p>
+                <p class="text-gray-700 leading-relaxed mb-8 font-semibold">Below is an overview of Chapter 8 to 14</p>
+
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 8: Ecosystems, Natural Resources &amp; Landscape Management</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>8.1 Chapter Policy Objective and Overview</li>
+                            <li>8.2 Forests and Woodlands Ecosystem</li>
+                            <li>8.3 Inland Waters, Wetlands and Riparian Lands Ecosystems</li>
+                            <li>8.4 Drylands, Rangelands and Savannah Ecosystems</li>
+                            <li>8.5 Urban and Peri-urban Ecosystems</li>
+                            <li>8.6 Coastal and Marine Ecosystems</li>
+                            <li>8.7 Agroecosystems</li>
+                            <li>8.8 Ecological Connectivity and Biodiversity Conservation</li>
+                            <li>8.9 Land Degradation Neutrality and Ecosystem Restoration</li>
+                            <li>8.10 Sustainable Use, Ecosystem Services and Nature-Based Economies</li>
+                            <li>8.11 Tourism and Heritage</li>
+                            <li>8.12 Extractive Resource Use and Ecosystem Integrity</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 9: Environmental Quality &amp; Public Health</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>9.1 Chapter Policy Objective and Overview</li>
+                            <li>9.2 Chemicals and Hazardous Substances</li>
+                            <li>9.3 Occupational Health</li>
+                            <li>9.4 Air Quality, Odour, Dust and Other Particulate Matter</li>
+                            <li>9.5 Soil</li>
+                            <li>9.6 Noise</li>
+                            <li>9.7 Lighting</li>
+                            <li>9.8 Temperature Extremes and Thermal Comfort</li>
+                            <li>9.9 Waste Management and the Circular Economy</li>
+                            <li>9.10 Public Health and the One Health Approach</li>
+                            <li>9.11 Wastewater</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 10: Climate Change, Energy Transition and Emerging Governance Themes</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>10.1 Chapter Policy Objective and Overview</li>
+                            <li>10.2 Climate Change Mitigation and Adaptation</li>
+                            <li>10.3 Carbon Markets and Environmental Integrity</li>
+                            <li>10.4 Means of Implementation for Climate Commitments</li>
+                            <li>10.5 Loss and Damage</li>
+                            <li>10.6 Energy Transition, Energy Security and Environmental Integrity</li>
+                            <li>10.7 Inclusive Energy Access, Clean Cooking and End-Use Transition</li>
+                            <li>10.8 Emerging Energy Technologies, Green Industrialisation and Circular Value Chains</li>
+                            <li>10.9 Just Transition, Decent Work and Equitable Benefit Sharing</li>
+                            <li>10.10 Artificial Intelligence and Environmental Governance</li>
+                            <li>10.11 Rights of Nature and Ecocide</li>
+                            <li>10.12 Environmental Data and Information Governance</li>
+                            <li>10.13 Disaster Risk Reduction</li>
+                            <li>10.14 Nature-Based Solutions</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 11: Cross Sectoral &amp; Cross-Cutting Governance</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>11.1 Chapter Policy Objective and Overview</li>
+                            <li>11.2 Water-Energy-Food</li>
+                            <li>11.3 Land-Biodiversity-Climate</li>
+                            <li>11.4 Urban-Environment-Health</li>
+                            <li>11.5 Public Finance and Investment</li>
+                            <li>11.6 Gender, Social Inclusion and Environmental Justice</li>
+                            <li>11.7 Public Participation in Environmental Governance</li>
+                            <li>11.8 Science-Policy Interface and Global Environmental Assessments</li>
+                            <li>11.9 Environmental Governance of the Transport Sector</li>
+                            <li>11.10 Arid and Semi-Arid Lands Governance and Pastoral Livelihoods</li>
+                            <li>11.11 Research, Training, Capacity Building and Public Awareness</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 12: Devolution, Institutions &amp; Enforcement</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>12.1 Chapter Policy Objective and Overview</li>
+                            <li>12.2 Devolution and Intergovernmental Relations</li>
+                            <li>12.3 Institutional Framework</li>
+                            <li>12.4 Implementation, Compliance and Enforcement</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 13: Investment Planning, Resource Mobilisation &amp; Financing</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>13.1 Chapter Policy Objective and Overview</li>
+                            <li>13.2 Natural Capital and Environmental-Economic Accounting</li>
+                            <li>13.3 Public Finance and the Budget Process</li>
+                            <li>13.4 Financing Environmental Management</li>
+                            <li>13.5 The National Environment Trust Fund</li>
+                            <li>13.6 Environmental Fiscal Instruments</li>
+                            <li>13.7 Climate, International and Private Finance</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-black tracking-tight text-brandDark mb-3">Chapter 14: Implementation, Monitoring &amp; Evaluation</h3>
+                        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-600">
+                            <li>14.1 Chapter Policy Objective and Overview</li>
+                            <li>14.2 Framework for Implementing this Policy</li>
+                            <li>14.3 Monitoring, Evaluation, Reporting and Learning</li>
+                            <li>14.4 Policy Review Interval.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-gray-100 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-black tracking-tight text-brandDark mb-2">Annex A to Chapter 14: Implementation matrix</h3>
+                        <p class="text-gray-700 leading-relaxed">The matrix follows the format in the Public Policy Handbook for Kenya. The rows below are for the commitments in this chapter 14 only.</p>
+                        <p class="text-gray-700 leading-relaxed">The rows for every other chapter will be prepared for the Second Draft, after the public consultation process.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black tracking-tight text-brandDark mb-2">Annex B: Monitoring and Evaluation matrix for the National Environment Policy</h3>
+                        <p class="text-gray-700 leading-relaxed">The matrix follows the format in the Public Policy Handbook for Kenya. It runs from the objectives at 4.2, and will be completed with the Second Draft of this Policy, once the policy statements in every chapter are confirmed after the public consultation. Where no baseline exists at the time of completion it is recorded as not existing, and the date by which the baseline is to be established and recorded will be entered in its place.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-16 lg:pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pr-card content-anim visibility-hidden" id="submit-views">
+                <div class="pr-form">
+                    <h3>Get SMS Alerts &amp; Reply With Your Views</h3>
+                    <p class="text-gray-500 text-sm mb-6">Opt in and we will text you when new policies or bills drop, then reply with your opinions straight from your phone. No forms, no spam.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="pr-btn js-open-sms" style="text-decoration:none; margin:0; display:block;">Opt In via SMS</a>
+                        <a href="#" class="pr-btn js-open-opinion" style="text-decoration:none; margin:0; display:block; background:#111827;">Submit Your View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="bg-brandDark text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -389,7 +611,7 @@
 </button>
 
     <script>
-                        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileNavTop = document.getElementById('mnav-top');
         function resetMobileNav() {
@@ -428,23 +650,6 @@
         gsap.utils.toArray('.content-anim').forEach(elem => {
             gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power2.out" });
         });
-
-        function openLightbox(el) {
-            const img = el.querySelector('img');
-            const caption = el.querySelector('.pr-img-caption').innerText;
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox-caption').innerText = caption;
-            document.getElementById('bng-lightbox').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            document.getElementById('bng-lightbox').classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        document.getElementById('bng-lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
-
 
 // Dark Mode Toggle
 const themeToggle = document.getElementById('themeToggle');

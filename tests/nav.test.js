@@ -9,7 +9,7 @@
  *   - every hub card is a real anchor with a resolvable href
  *   - the mobile accordion actually reveals its panel on tap and hides on back
  *   - every link inside a revealed panel has a non-empty href
- *   - the desktop mega menus list the five policies in the agreed order
+ *   - the desktop mega menus list the policies in the agreed order
  *   - the Saving Nairobi National Park entry is present and external
  *
  * Run: node tests/nav.test.js
@@ -27,10 +27,11 @@ try {
 
 const root = path.join(__dirname, '..');
 
-// The four policies in the order they must appear in every dropdown. The Forest
+// The policies in the order they must appear in every dropdown. The Forest
 // Conservation entry was dropped: it had no review page and pointed at the blog
 // post, so in a list of reviews it read as one.
 const EXPECTED_POLICIES = [
+    'national-environment-policy-2026.html',
     'roads-amendment-bill-2024.html',
     'public-participation-bill.html',
     'civic-education-2026.html',
@@ -41,6 +42,7 @@ const EXPECTED_POLICIES = [
 // is deliberately not EXPECTED_POLICIES: the nav's combined PP entry still points
 // at the landing page, while the hub links each year's review directly.
 const EXPECTED_HUB_CARDS = [
+    'national-environment-policy-2026.html',
     'roads-amendment-bill-2024.html',
     'public-participation-bill-2025.html',
     'public-participation-bill-2024.html',

@@ -4,6 +4,7 @@
  * Source: the <meta name="bng-policy"> tag on each page in policy-reviews/.
  */
 window.BNG_POLICIES = [
+        { key: "national environment policy 2026", label: "The National Environment Policy, 2026", status: "open" },
         { key: "civic education 2026", label: "Civic Education, Citizen Engagement & Public Participation Policy 2026", status: "closed" },
         { key: "wildlife conservation bill 2025", label: "The Wildlife Conservation & Management Bill, 2025", status: "closed" },
         { key: "public participation bill 2025", label: "The Public Participation Bill, 2025", status: "closed" },

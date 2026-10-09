@@ -30,14 +30,24 @@ const TARGET = path.join(__dirname, '..', 'policy-reviews', 'index.html');
 
 const CARDS = [
     {
+        // Newest review, and the one now open for submissions, so it leads.
+        href: 'national-environment-policy-2026.html',
+        badge: { text: 'Policy', cls: 'text-white bg-brandDark' },
+        year: '2026',
+        title: 'The National Environment Policy, 2026',
+        body:
+            'The Policy that replaces the National Environment Policy 2013. Read the goal, the 10 objectives and the 22 guiding principles, the chapter structure, and how the policy direction has moved since 2013.',
+        cta: 'Read Full Review',
+        featured: true
+    },
+    {
         href: 'roads-amendment-bill-2024.html',
         badge: { text: 'Bill', cls: 'text-brandDark bg-brandAccent' },
         year: '2024',
         title: 'Roads (Amendment) Bill, 2024',
         body:
             "Follow the Bill through Parliament, read the Roads Act, the Bill, BNG's Simplified Guide and Memorandum, and copy our top line comments on NMT, sustainability and the Roads Board.",
-        cta: 'Read Full Review',
-        featured: true
+        cta: 'Read Full Review'
     },
     {
         // 2025 first: this is the operative Bill, passed by the National Assembly

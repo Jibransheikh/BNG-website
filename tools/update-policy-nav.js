@@ -6,7 +6,7 @@
  * so nav order, targets and colours can't drift apart between pages.
  *
  * It manages four dropdowns plus the CSS and the mobile trigger rows:
- *   Policy Review  - the five reviews, also mirrored as cards on the hub page
+ *   Policy Review  - the six reviews, also mirrored as cards on the hub page
  *   Resources      - the two guides
  *   Blog           - the two analysis posts
  *   Campaigns      - external campaign links
@@ -36,10 +36,18 @@ const CHEVRON =
 
 const EXTERNAL_LINK = 'https://savennp.org/speak-up';
 
-// The five policy reviews, in the order they should appear everywhere.
+// The policy reviews, in the order they should appear everywhere.
 // `dot` is required on every entry: the bullet colour is rendered into the
 // markup, so a missing value would ship a literal "undefined" class.
 const POLICIES = [
+    {
+        slug: 'policy-reviews/national-environment-policy-2026.html',
+        dot: 'bg-brandAccent',
+        kind: 'Policy',
+        year: '2026',
+        megaTitle: 'The National Environment Policy, 2026',
+        mobileTitle: 'National Environment Policy &middot; 2026'
+    },
     {
         slug: 'policy-reviews/roads-amendment-bill-2024.html',
         dot: 'bg-brandGreen',
