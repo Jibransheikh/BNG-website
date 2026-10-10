@@ -68,6 +68,19 @@
         .doc-link .doc-meta { display: block; font-size: 0.75rem; color: #6b7280; margin-top: 0.15rem; }
         .doc-link .doc-open { flex-shrink: 0; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0f5132; white-space: nowrap; }
 
+        .pr-carousel { position: relative; overflow: hidden; border-radius: 1rem; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #e5e7eb; }
+        .pr-carousel-inner { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pr-slide { min-width: 100%; padding: 2.5rem; display: flex; flex-direction: column; min-height: 320px; }
+        .pr-slide-fill { flex-grow: 1; }
+        .pr-nav { display: flex; justify-content: center; align-items: center; margin-top: 1.5rem; gap: 1.25rem; }
+        .pr-nav-btn { background: #0f5132; color: white; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+        .pr-nav-btn:hover { background: #065f46; transform: scale(1.1); }
+        .pr-nav-btn:disabled { background: #d1d5db; cursor: not-allowed; transform: none; }
+        .pr-indicators { display: flex; gap: 0.5rem; }
+        .pr-indicator { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; cursor: pointer; transition: all 0.2s; border: none; padding: 0; }
+        .pr-indicator.active { background: #0f5132; transform: scale(1.2); }
+        .pr-counter { color: #6b7280; font-weight: 600; font-size: 0.9rem; }
+
         @media (max-width: 768px) {
             .pr-card { padding: 1.25rem; border-radius: 1.25rem; }
             .diff-table { font-size: 0.8rem; }
@@ -594,10 +607,73 @@
             <div class="pr-card content-anim visibility-hidden">
                 <p class="pr-section-label">Top Line Comments</p>
                 <h2 class="text-2xl md:text-3xl font-black tracking-tight text-brandDark mb-2">BNG's Comments on the First Draft</h2>
-                <p class="text-gray-500 text-sm mb-8">Our shorthand on the Policy, tied to the sections they speak to. Copy a comment as your own view, or send the full letter to the Principal Secretary by email.</p>
-                <div class="grid lg:grid-cols-5 gap-6 items-start">
-                    <div class="lg:col-span-3 space-y-6">
-        <article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
+                <p class="text-gray-500 text-sm mb-8">Our shorthand on the Policy, tied to the sections they speak to. On desktop, tap the arrows to browse the comments one at a time. Copy a comment as your own view, or send the full letter to the Principal Secretary by email.</p>
+
+                <div class="hidden lg:block">
+                    <div class="pr-carousel">
+                        <div class="pr-carousel-inner" id="nepCarouselInner">
+<div class="pr-slide pr-comment">
+    <h3 class="pr-comment-title text-lg font-bold text-brandDark mb-3">Human-Wildlife Conflict and Coexistence</h3>
+    <div class="pr-comment-body pr-slide-fill text-gray-700 leading-relaxed text-sm space-y-3">
+    <p><span class="font-bold text-brandDark">Relevant policy sub section:</span> 8.8 Ecological Connectivity and Biodiversity Conservation</p>
+                    <p>Policy Sub Section 8.8 should more explicitly recognise human-wildlife conflict and the need to promote coexistence in landscapes shared by people and wildlife.</p>
+                    <p>The situational analysis should address the impacts of human-wildlife interactions on community safety and livelihoods, alongside the importance of supporting coexistence, with corresponding policy commitments to support community led approaches.</p>
+                    <p><span class="font-bold text-brandDark">Add new policy statement 8.8.6</span></p>
+                    <p>The Government and county governments shall:</p>
+                    <p>8.8.6 Support community-led coexistence approaches that integrate local and Indigenous knowledge, community participation and sustainable livelihood opportunities into wildlife conservation and landscape management.</p>
+    </div>
+    <button type="button" class="pr-copy-btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors self-start" aria-label="Copy comment"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span class="pr-copy-label">Copy</span></button>
+</div>
+<div class="pr-slide pr-comment">
+    <h3 class="pr-comment-title text-lg font-bold text-brandDark mb-3">Public Participation</h3>
+    <div class="pr-comment-body pr-slide-fill text-gray-700 leading-relaxed text-sm space-y-3">
+    <p><span class="font-bold text-brandDark">Relevant section:</span> 11.7 Public Participation in Environmental Governance</p>
+                    <p>Policy Sub Section 11.7 should address the gap between the constitutional requirement for meaningful public participation and its implementation in environmental decision-making.</p>
+                    <p>Recent concerns surrounding developments in areas of significant ecological importance highlight the need for greater transparency, accountability and safeguards to ensure that participation is meaningful.</p>
+                    <p>Processes should enable the public to access relevant information, express their views freely and influence decisions, with clear documentation of how public submissions are considered in final outcomes.</p>
+                    <p><span class="font-bold text-brandDark">Strengthen existing policy statement 11.7.1</span></p>
+                    <p>The Government shall:</p>
+                    <p>11.7.1 Set and enforce national standards for public participation in environmental decisions that are prior, meaningful, informed, transparent and inclusive, with reasonable notice, translation and accessibility for persons with disabilities, and safeguards against intimidation, manipulation or undue influence to ensure that the public can express their views freely.</p>
+    </div>
+    <button type="button" class="pr-copy-btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors self-start" aria-label="Copy comment"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span class="pr-copy-label">Copy</span></button>
+</div>
+<div class="pr-slide pr-comment">
+    <h3 class="pr-comment-title text-lg font-bold text-brandDark mb-3">Youth in Environmental Justice</h3>
+    <div class="pr-comment-body pr-slide-fill text-gray-700 leading-relaxed text-sm space-y-3">
+    <p><span class="font-bold text-brandDark">Relevant section:</span> 11.6 Gender, Social Inclusion and Environmental Justice</p>
+                    <p>While Policy Sub Section 11.6 recognises youth in environmental justice, participation and inclusion, it does not adequately address barriers such as limited funding, technical capacity, mentorship, professional experience and access to decision making.</p>
+                    <p>The Policy should establish practical mechanisms to support youth led environmental action through accessible financing, skills development, mentorship and meaningful involvement in policy development, implementation and monitoring, with measurable indicators to track progress.</p>
+                    <p><span class="font-bold text-brandDark">Add new policy statement 11.6.7, after 11.6.6</span></p>
+                    <p>The Government and county governments shall:</p>
+                    <p>11.6.7 Establish adequately resourced mechanisms to strengthen youth participation and leadership in environmental governance at national and county levels, including accessible financing, technical capacity, mentorship, professional development and decision-making opportunities, with measurable indicators to monitor progress.</p>
+    </div>
+    <button type="button" class="pr-copy-btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors self-start" aria-label="Copy comment"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span class="pr-copy-label">Copy</span></button>
+</div>
+<div class="pr-slide pr-comment">
+    <h3 class="pr-comment-title text-lg font-bold text-brandDark mb-3">Energy Transition, Environmental Integrity and Equitable Benefit-Sharing</h3>
+    <div class="pr-comment-body pr-slide-fill text-gray-700 leading-relaxed text-sm space-y-3">
+    <p><span class="font-bold text-brandDark">Relevant policy sub sections:</span> 10.6 Energy Transition, Energy Security and Environmental Integrity; 10.9 Just Transition, Decent Work and Equitable Benefit-Sharing</p>
+                    <p>Energy development presents environmental and social challenges, including cumulative impacts on biodiversity, water resources and sensitive ecosystems, as well as risks associated with land acquisition, displacement and the unequal distribution of project benefits.</p>
+                    <p>The Policy should strengthen environmental safeguards and establish clear commitments to meaningful community participation, equitable benefit sharing and protection of affected communities' rights and livelihoods.</p>
+                    <p><span class="font-bold text-brandDark">Add new policy statements</span></p>
+                    <p>The Government shall:</p>
+                    <p>10.6.7 Align energy development with Kenya's climate commitments and strengthen environmental safeguards, including cumulative impact assessments, to protect biodiversity, water resources and sensitive ecosystems.</p>
+                    <p>10.9.5 Strengthen community participation and equitable benefit sharing in large scale land based energy projects through enforceable Community Development Agreements and adequate safeguards for land acquisition, compensation and resettlement.</p>
+    </div>
+    <button type="button" class="pr-copy-btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors self-start" aria-label="Copy comment"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span class="pr-copy-label">Copy</span></button>
+</div>
+                        </div>
+                    </div>
+                    <div class="pr-nav">
+                        <button class="pr-nav-btn" id="nepPrevBtn" aria-label="Previous comment">&#8249;</button>
+                        <div class="pr-indicators" id="nepIndicators"></div>
+                        <span class="pr-counter" id="nepSlideCounter">1 / 4</span>
+                        <button class="pr-nav-btn" id="nepNextBtn" aria-label="Next comment">&#8250;</button>
+                    </div>
+                </div>
+
+                <div class="lg:hidden space-y-6">
+<article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
             <button type="button" class="pr-copy-btn absolute top-4 right-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100" aria-label="Copy comment">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span class="pr-copy-label">Copy</span>
@@ -612,7 +688,8 @@
                 <p>8.8.6 Support community-led coexistence approaches that integrate local and Indigenous knowledge, community participation and sustainable livelihood opportunities into wildlife conservation and landscape management.</p>
             </div>
         </article>
-        <article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
+
+<article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
             <button type="button" class="pr-copy-btn absolute top-4 right-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100" aria-label="Copy comment">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span class="pr-copy-label">Copy</span>
@@ -628,7 +705,8 @@
                 <p>11.7.1 Set and enforce national standards for public participation in environmental decisions that are prior, meaningful, informed, transparent and inclusive, with reasonable notice, translation and accessibility for persons with disabilities, and safeguards against intimidation, manipulation or undue influence to ensure that the public can express their views freely.</p>
             </div>
         </article>
-        <article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
+
+<article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
             <button type="button" class="pr-copy-btn absolute top-4 right-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100" aria-label="Copy comment">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span class="pr-copy-label">Copy</span>
@@ -643,7 +721,8 @@
                 <p>11.6.7 Establish adequately resourced mechanisms to strengthen youth participation and leadership in environmental governance at national and county levels, including accessible financing, technical capacity, mentorship, professional development and decision-making opportunities, with measurable indicators to monitor progress.</p>
             </div>
         </article>
-        <article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
+
+<article class="pr-comment relative bg-gray-50 border border-gray-200 rounded-xl p-6 group">
             <button type="button" class="pr-copy-btn absolute top-4 right-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-brandGreen hover:bg-brandDark rounded-lg px-3 py-2 transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:focus:opacity-100" aria-label="Copy comment">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-pr-icon><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span class="pr-copy-label">Copy</span>
@@ -659,37 +738,37 @@
                 <p>10.9.5 Strengthen community participation and equitable benefit sharing in large scale land based energy projects through enforceable Community Development Agreements and adequate safeguards for land acquisition, compensation and resettlement.</p>
             </div>
         </article>
-                    </div>
-                    <div class="lg:col-span-2">
-                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                            <p class="text-xs font-bold uppercase tracking-wider text-brandGreen mb-1">The Letter</p>
-                            <h3 class="text-lg font-bold text-brandDark mb-4">To the Principal Secretary</h3>
-                            <div class="text-sm text-gray-700 leading-relaxed space-y-3 max-h-96 overflow-y-auto pr-2" id="letterBody">
-                                <p>The Principal Secretary</p>
-                                <p>State Department for Environment and Climate Change</p>
-                                <p>Ministry of Environment, Climate Change and Forestry</p>
-                                <p>Nairobi, Kenya</p>
-                                <p class="font-bold">RE: SUBMISSION OF COMMENTS ON THE NATIONAL ENVIRONMENT POLICY, 2026 (FIRST DRAFT)</p>
-                                <p>Dear Principal Secretary,</p>
-                                <p>Thank you for the opportunity to submit comments on the First Draft of the National Environment Policy, 2026.</p>
-                                <p>We welcome the revision of the Policy as an important step towards strengthening Kenya's environmental governance framework in line with constitutional obligations, evolving environmental jurisprudence, devolution and emerging national and international environmental commitments. The draft provides an important basis for the protection, conservation and sustainable management of Kenya's environment and natural resources for present and future generations.</p>
-                                <p>We respectfully recommend strengthening specific provisions to ensure that the Policy translates its objectives and guiding principles into practical, inclusive and accountable measures. In particular, we propose amendments relating to human-wildlife coexistence, meaningful public participation, youth inclusion in environmental governance, and environmental safeguards and equitable benefit-sharing in the energy transition.</p>
-                                <p>Specifically, we recommend that:</p>
-                                <p><span class="font-bold">Human-wildlife conflict and coexistence:</span> Section 8.8 be strengthened to recognise the impacts of human-wildlife interactions on community safety and livelihoods, and include a policy commitment supporting community-led coexistence approaches that integrate local and Indigenous knowledge, community participation and sustainable livelihood opportunities.</p>
-                                <p><span class="font-bold">Public participation:</span> Policy statement 11.7.1 be strengthened by requiring enforceable national standards for prior, meaningful, informed, transparent and inclusive participation in environmental decision-making, including safeguards against intimidation, manipulation and undue influence, and measures to ensure accessibility and the free expression of public views.</p>
-                                <p><span class="font-bold">Youth in environmental justice:</span> A new policy statement, 11.6.7, be introduced to establish adequately resourced mechanisms for youth participation and leadership in environmental governance, including accessible financing, technical capacity, mentorship, professional development and meaningful decision-making opportunities, supported by measurable indicators.</p>
-                                <p><span class="font-bold">Energy transition and equitable benefit-sharing:</span> A new policy statement 10.6.7 to align energy development with Kenya's climate commitments and require stronger environmental safeguards, including cumulative impact assessments. New Policy statement 10.9.5 should also strengthen community participation and equitable benefit-sharing through enforceable Community Development Agreements and adequate safeguards for land acquisition, compensation and resettlement in large-scale land-based energy projects.</p>
-                                <p>These recommendations seek to strengthen the implementation of the Policy's existing objectives and principles by addressing identified gaps in environmental protection, community participation, social inclusion and accountability. We believe their incorporation would contribute to a more effective and equitable policy framework that safeguards biodiversity and ecosystems while recognising the rights, livelihoods and contributions of communities and young people.</p>
-                                <p>We appreciate the opportunity to contribute to the review process and respectfully request that these recommendations be considered in the development of the next draft of the National Environment Policy, 2026. We remain supportive of efforts to strengthen environmental governance and advance the sustainable management of Kenya's natural resources.</p>
-                                <p>Yours sincerely,</p>
-                            </div>
-                            <div class="mt-5 space-y-3">
-                                <a href="mailto:bng@suso.world" id="emailSendBtn" data-mailto="bng@suso.world" class="pr-btn" style="text-decoration:none; margin:0; display:block;">Send Comments by Email</a>
-                                <button type="button" id="copyLetterBtn" class="w-full bg-white border border-gray-300 text-brandDark font-bold uppercase tracking-wider text-xs rounded-lg px-4 py-3 hover:border-brandGreen hover:text-brandGreen transition-colors">Copy Letter Text</button>
-                                <p class="text-xs text-gray-400 leading-relaxed">The email button opens your email app with the letter pre-filled and ready to send. Edit anything you like before you hit send.</p>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+
+                <div class="mt-10">
+<div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <p class="text-xs font-bold uppercase tracking-wider text-brandGreen mb-1">The Letter</p>
+    <h3 class="text-lg font-bold text-brandDark mb-4">To the Principal Secretary</h3>
+    <div class="text-sm text-gray-700 leading-relaxed space-y-3 max-h-96 overflow-y-auto pr-2" id="letterBody">
+        <p>The Principal Secretary</p>
+        <p>State Department for Environment and Climate Change</p>
+        <p>Ministry of Environment, Climate Change and Forestry</p>
+        <p>Nairobi, Kenya</p>
+        <p class="font-bold">RE: SUBMISSION OF COMMENTS ON THE NATIONAL ENVIRONMENT POLICY, 2026 (FIRST DRAFT)</p>
+        <p>Dear Principal Secretary,</p>
+        <p>Thank you for the opportunity to submit comments on the First Draft of the National Environment Policy, 2026.</p>
+        <p>We welcome the revision of the Policy as an important step towards strengthening Kenya's environmental governance framework in line with constitutional obligations, evolving environmental jurisprudence, devolution and emerging national and international environmental commitments. The draft provides an important basis for the protection, conservation and sustainable management of Kenya's environment and natural resources for present and future generations.</p>
+        <p>We respectfully recommend strengthening specific provisions to ensure that the Policy translates its objectives and guiding principles into practical, inclusive and accountable measures. In particular, we propose amendments relating to human-wildlife coexistence, meaningful public participation, youth inclusion in environmental governance, and environmental safeguards and equitable benefit-sharing in the energy transition.</p>
+        <p>Specifically, we recommend that:</p>
+        <p><span class="font-bold">Human-wildlife conflict and coexistence:</span> Section 8.8 be strengthened to recognise the impacts of human-wildlife interactions on community safety and livelihoods, and include a policy commitment supporting community-led coexistence approaches that integrate local and Indigenous knowledge, community participation and sustainable livelihood opportunities.</p>
+        <p><span class="font-bold">Public participation:</span> Policy statement 11.7.1 be strengthened by requiring enforceable national standards for prior, meaningful, informed, transparent and inclusive participation in environmental decision-making, including safeguards against intimidation, manipulation and undue influence, and measures to ensure accessibility and the free expression of public views.</p>
+        <p><span class="font-bold">Youth in environmental justice:</span> A new policy statement, 11.6.7, be introduced to establish adequately resourced mechanisms for youth participation and leadership in environmental governance, including accessible financing, technical capacity, mentorship, professional development and meaningful decision-making opportunities, supported by measurable indicators.</p>
+        <p><span class="font-bold">Energy transition and equitable benefit-sharing:</span> A new policy statement 10.6.7 to align energy development with Kenya's climate commitments and require stronger environmental safeguards, including cumulative impact assessments. New Policy statement 10.9.5 should also strengthen community participation and equitable benefit-sharing through enforceable Community Development Agreements and adequate safeguards for land acquisition, compensation and resettlement in large-scale land-based energy projects.</p>
+        <p>These recommendations seek to strengthen the implementation of the Policy's existing objectives and principles by addressing identified gaps in environmental protection, community participation, social inclusion and accountability. We believe their incorporation would contribute to a more effective and equitable policy framework that safeguards biodiversity and ecosystems while recognising the rights, livelihoods and contributions of communities and young people.</p>
+        <p>We appreciate the opportunity to contribute to the review process and respectfully request that these recommendations be considered in the development of the next draft of the National Environment Policy, 2026. We remain supportive of efforts to strengthen environmental governance and advance the sustainable management of Kenya's natural resources.</p>
+        <p>Yours sincerely,</p>
+    </div>
+    <div class="mt-5 space-y-3">
+        <a href="mailto:nationalenvironmentpolicy2026@gmail.com?cc=ps@environment.go.ke&amp;bcc=bng@suso.world" id="emailSendBtn" data-mailto="nationalenvironmentpolicy2026@gmail.com" data-cc="ps@environment.go.ke" data-bcc="bng@suso.world" class="pr-btn" style="text-decoration:none; margin:0; display:block;">Send Comments by Email</a>
+        <button type="button" id="copyLetterBtn" class="w-full bg-white border border-gray-300 text-brandDark font-bold uppercase tracking-wider text-xs rounded-lg px-4 py-3 hover:border-brandGreen hover:text-brandGreen transition-colors">Copy Letter Text</button>
+        <p class="text-xs text-gray-400 leading-relaxed">The email button opens your email app with the letter pre-filled to the Principal Secretary, ready to send. Edit anything you like before you hit send.</p>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -863,10 +942,41 @@ if (backToTop) {
             document.body.removeChild(ta);
         }
 
+        // Top Line Comments carousel (desktop)
+        var nepInner = document.getElementById('nepCarouselInner');
+        if (nepInner) {
+            var nepSlides = nepInner.querySelectorAll('.pr-slide');
+            var nepTotal = nepSlides.length;
+            var nepCurrent = 0;
+            var nepInd = document.getElementById('nepIndicators');
+            var nepCounter = document.getElementById('nepSlideCounter');
+            var nepPrev = document.getElementById('nepPrevBtn');
+            var nepNext = document.getElementById('nepNextBtn');
+            function nepUpdate() {
+                nepInner.style.transform = 'translateX(-' + (nepCurrent * 100) + '%)';
+                nepInd.querySelectorAll('.pr-indicator').forEach(function(i, idx) { i.classList.toggle('active', idx === nepCurrent); });
+                nepCounter.textContent = (nepCurrent + 1) + ' / ' + nepTotal;
+                nepPrev.disabled = nepCurrent === 0;
+                nepNext.disabled = nepCurrent === nepTotal - 1;
+            }
+            for (var i = 0; i < nepTotal; i++) {
+                var dot = document.createElement('button');
+                dot.className = 'pr-indicator';
+                dot.setAttribute('aria-label', 'Go to comment ' + (i + 1));
+                dot.addEventListener('click', (function(j) { return function() { nepCurrent = j; nepUpdate(); }; })(i));
+                nepInd.appendChild(dot);
+            }
+            nepPrev.addEventListener('click', function() { if (nepCurrent > 0) { nepCurrent--; nepUpdate(); } });
+            nepNext.addEventListener('click', function() { if (nepCurrent < nepTotal - 1) { nepCurrent++; nepUpdate(); } });
+            nepUpdate();
+        }
+
         // Email the letter
         var emailSendBtn = document.getElementById('emailSendBtn');
         var letterBody = document.getElementById('letterBody');
         if (emailSendBtn && letterBody) {
+            var cc = emailSendBtn.getAttribute('data-cc') || '';
+            var bcc = emailSendBtn.getAttribute('data-bcc') || '';
             emailSendBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 var parts = [];
@@ -875,7 +985,10 @@ if (backToTop) {
                     if (t) parts.push(t);
                 });
                 var subject = 'RE: SUBMISSION OF COMMENTS ON THE NATIONAL ENVIRONMENT POLICY, 2026 (FIRST DRAFT)';
-                var href = 'mailto:' + emailSendBtn.getAttribute('data-mailto') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(parts.join('\n\n'));
+                var href = 'mailto:' + emailSendBtn.getAttribute('data-mailto') + '?subject=' + encodeURIComponent(subject);
+                if (cc) href += '&cc=' + encodeURIComponent(cc);
+                if (bcc) href += '&bcc=' + encodeURIComponent(bcc);
+                href += '&body=' + encodeURIComponent(parts.join('\n\n'));
                 window.location.href = href;
             });
         }
